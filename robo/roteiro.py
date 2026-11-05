@@ -11,7 +11,7 @@ from robo import config
 from robo.curriculo import ESPECIES, MATERIAS, VALORES
 from robo.resiliencia import gerar_com_fallback
 
-TENTATIVAS = 3
+TENTATIVAS = 4
 PALAVRAS = (85, 165)
 PROIBIDO_VISUAL = ["hybrid", "crossbreed", "mixed breed", "half "]
 
@@ -31,7 +31,7 @@ class Coadjuvante(BaseModel):
 
 
 class Cena(BaseModel):
-    narracao: str = Field(description="1 a 2 frases em português do Brasil")
+    narracao: str = Field(description="2 frases em português do Brasil, com 15 a 20 palavras no total")
     prompt_visual: str = Field(description="cena em INGLÊS citando pela espécie em inglês cada animal presente; sem texto na imagem")
 
 
@@ -45,7 +45,7 @@ class Roteiro(BaseModel):
     licao_educativa: str = Field(description="o conteúdo escolar ensinado, em uma frase")
     moral: str
     resumo: str = Field(description="resumo do enredo em uma frase")
-    cenas: list[Cena]
+    cenas: list[Cena] = Field(min_length=6, max_length=8, description="exatamente 7 cenas")
 
 
 class Revisao(BaseModel):
@@ -118,7 +118,7 @@ Protagonista OBRIGATÓRIO: um(a) {pt}, em inglês "{en}". Animal real, nunca hí
 - No máximo 2 coadjuvantes, todos animais reais, listados em "coadjuvantes" com a espécie em português e em inglês e uma aparência fixa em inglês ("aparencia_en") com traços típicos só da sua própria espécie.
 
 Regras:
-- Entre {config.CENAS_MIN} e {config.CENAS_MAX} cenas; narração total entre 100 e 130 palavras.
+- EXATAMENTE 7 cenas. A narração de CADA cena tem 2 frases e 15 a 20 palavras (total de 105 a 140 palavras). Conte as cenas e as palavras antes de responder.
 - Cada "prompt_visual" em inglês descreve só a ação e o ambiente da cena e cita pela espécie em inglês cada animal presente (ex.: "the {en} and the coati ..."). Nunca descreva um animal diferente do que a narração diz.
 - Estrutura: apresentação, problema, tentativa, virada, solução e final feliz.
 - Linguagem simples, frases curtas, tom acolhedor e alegre.
@@ -135,8 +135,11 @@ Regras:
             config=types.GenerateContentConfig(
                 response_mime_type="application/json", response_schema=Roteiro, temperature=0.9),
         )
-        r = Roteiro.model_validate_json(resp.text)
-        problemas = _validar(r, pt, en, chave)
+        try:
+            r = Roteiro.model_validate_json(resp.text)
+            problemas = _validar(r, pt, en, chave)
+        except Exception as e:
+            problemas = [f"resposta fora do formato pedido ({str(e)[:200]})"]
         if not problemas:
             revisor = f"""Você é o revisor de conteúdo de um canal infantil cristão (3 a 8 anos). Reprove o roteiro em JSON abaixo se houver QUALQUER problema:
 1. Coerência: narração e prompts visuais mostram exatamente os mesmos animais? O protagonista é um(a) {pt} ("{en}") em todas as cenas?
