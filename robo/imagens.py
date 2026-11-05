@@ -30,10 +30,18 @@ def _prompt(roteiro: dict, cena: dict, reforco: bool = False) -> str:
     especie = roteiro.get("especie_en", "")
     inicio = (f"IMPORTANT: the main character is a {especie}, a real animal, never any other species. "
               if reforco and especie else "")
+    cena_txt = cena["prompt_visual"].lower()
+    extras = [f"{c['nome']} is a {c['especie_en']}: {c.get('aparencia_en', '')}"
+              for c in roteiro.get("coadjuvantes", [])
+              if c["especie_en"].lower() in cena_txt or c["nome"].lower() in cena_txt]
+    elenco = ("Other characters, identical in every scene: " + "; ".join(extras)
+              + ". Only these characters appear; no other animals or characters, not even in the background. "
+              if extras else "No other animals or characters, not even in the background. ")
     return (
         inicio
         + f"Main character, identical in every scene: {roteiro['personagem_visual']}. "
-        f"Scene: {cena['prompt_visual']}. "
+        + elenco
+        + f"Scene: {cena['prompt_visual']}. "
         f"Style: {config.ESTILO_VISUAL}. "
         f"{config.PROIBIDO_VISUAL}."
     )
@@ -71,7 +79,7 @@ Protagonista: {roteiro.get('nome_protagonista', '')} = um(a) {roteiro.get('espec
 Coadjuvantes: {coadj}.
 Para cada imagem, reprove (ok=false) SOMENTE se houver um destes problemas:
 1. o protagonista não é claramente um(a) {roteiro.get('especie_en', '')} (espécie errada, animal inventado ou híbrido);
-2. aparece em destaque um animal de espécie que não está na história;
+2. aparece qualquer animal ou personagem que não está na história, mesmo pequeno ou ao fundo, ou um coadjuvante com traços de outra espécie (ex.: orelhas de coelho num porco-espinho);
 3. animal com mãos humanas e dedos, membros a mais ou deformação evidente;
 4. letras, textos ou marca d'água;
 5. algo assustador ou impróprio para crianças.

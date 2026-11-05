@@ -12,7 +12,7 @@ from robo.curriculo import ESPECIES, MATERIAS, VALORES
 from robo.resiliencia import gerar_com_fallback
 
 TENTATIVAS = 3
-PALAVRAS = (95, 140)
+PALAVRAS = (85, 165)
 PROIBIDO_VISUAL = ["hybrid", "crossbreed", "mixed breed", "half "]
 
 
@@ -20,6 +20,7 @@ class Coadjuvante(BaseModel):
     nome: str
     especie_pt: str = Field(description="espécie real em português")
     especie_en: str = Field(description="a mesma espécie em inglês")
+    aparencia_en: str = Field(description="aparência FIXA em inglês, 20 a 35 palavras, começando pela espécie em inglês: cores exatas do corpo e dos olhos e traços típicos da espécie")
 
 
 class Cena(BaseModel):
@@ -69,7 +70,7 @@ def _validar(r: Roteiro, pt: str, en: str, chave: str) -> list:
     narracao = " ".join(c.narracao for c in r.cenas)
     palavras = len(narracao.split())
     if not (PALAVRAS[0] <= palavras <= PALAVRAS[1]):
-        problemas.append(f"a narração tem {palavras} palavras; precisa ter entre 100 e 130")
+        problemas.append(f"a narração tem {palavras} palavras; precisa ter entre 100 e 140")
     if _norm(chave) not in _norm(narracao):
         problemas.append(f'a narração nunca diz que o protagonista é um(a) "{pt}"')
     if _norm(r.nome_protagonista) not in _norm(narracao):
@@ -81,6 +82,8 @@ def _validar(r: Roteiro, pt: str, en: str, chave: str) -> list:
         if termo in visual:
             problemas.append(f'proibido descrever animal híbrido ou inventado ("{termo.strip()}")')
     for co in r.coadjuvantes:
+        if _norm(co.especie_en) not in _norm(co.aparencia_en):
+            problemas.append(f'a aparência de {co.nome} precisa citar a espécie "{co.especie_en}"')
         if _norm(co.especie_en) not in visual:
             problemas.append(f'o coadjuvante {co.nome} ({co.especie_en}) não aparece pela espécie nos prompts visuais')
     return problemas
@@ -104,8 +107,8 @@ Crie uma fábula ORIGINAL e inédita que ensine, ao mesmo tempo:
 
 Protagonista OBRIGATÓRIO: um(a) {pt}, em inglês "{en}". Animal real, nunca híbrido nem inventado.
 - Dê a ele(a) um nome brasileiro simples e use a palavra "{pt}" na narração pelo menos uma vez, para a criança saber que animal é.
-- "personagem_visual" em inglês, com 40 a 60 palavras, começando exatamente com "a cute young {en}", com cores exatas do corpo, tipo de patas, asas ou nadadeiras (nunca mãos humanas), uma roupa com cores exatas e UM acessório.
-- No máximo 2 coadjuvantes, todos animais reais, listados em "coadjuvantes" com a espécie em português e em inglês.
+- "personagem_visual" em inglês, com 40 a 60 palavras, começando exatamente com "a cute young {en}", com cores exatas do corpo e dos olhos, tipo de patas, asas ou nadadeiras (nunca mãos humanas), uma roupa com cores exatas e UM acessório.
+- No máximo 2 coadjuvantes, todos animais reais, listados em "coadjuvantes" com a espécie em português e em inglês e uma aparência fixa em inglês ("aparencia_en") com traços típicos só da sua própria espécie.
 
 Regras:
 - Entre {config.CENAS_MIN} e {config.CENAS_MAX} cenas; narração total entre 100 e 130 palavras.

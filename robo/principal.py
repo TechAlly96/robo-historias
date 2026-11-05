@@ -2,6 +2,8 @@
 import json
 import os
 import shutil
+import datetime
+from zoneinfo import ZoneInfo
 
 from robo import config
 from robo.imagens import gerar_imagens
@@ -11,7 +13,31 @@ from robo.publicar import publicar
 from robo.roteiro import gerar_roteiro
 
 
+FUSO = ZoneInfo("America/Sao_Paulo")
+
+
+def _turno(dt) -> str:
+    return "manhã" if 5 <= dt.hour < 11 else "almoço" if 11 <= dt.hour < 15 else "noite"
+
+
+def _ja_publicado_neste_turno() -> bool:
+    if not config.HISTORICO.exists():
+        return False
+    agora = datetime.datetime.now(FUSO)
+    for h in json.loads(config.HISTORICO.read_text(encoding="utf-8")):
+        try:
+            dt = datetime.datetime.fromisoformat(h["data"]).astimezone(FUSO)
+        except (KeyError, ValueError):
+            continue
+        if dt.date() == agora.date() and _turno(dt) == _turno(agora):
+            return True
+    return False
+
+
 def main():
+    if not os.environ.get("FORCAR") and _ja_publicado_neste_turno():
+        print("O vídeo deste turno já foi publicado; nada a fazer.")
+        return
     if config.SAIDA.exists():
         shutil.rmtree(config.SAIDA)
     config.SAIDA.mkdir(parents=True)
