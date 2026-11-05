@@ -17,7 +17,7 @@ def main():
     config.SAIDA.mkdir(parents=True)
 
     print("1/5 Roteiro")
-    roteiro = json.loads(gerar_roteiro().model_dump_json())
+    roteiro = gerar_roteiro()
     (config.SAIDA / "roteiro.json").write_text(
         json.dumps(roteiro, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"  {roteiro['titulo']} ({len(roteiro['cenas'])} cenas)")

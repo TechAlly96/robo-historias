@@ -31,6 +31,11 @@ def _limpo(texto: str, limite: int) -> str:
     return texto.replace("<", "").replace(">", "").strip()[:limite]
 
 
+def _versiculo(roteiro: dict) -> str:
+    v = roteiro.get("versiculo")
+    return f"📖 \"{v['texto']}\" ({v['ref']})\n\n" if v else ""
+
+
 def _metadados(roteiro: dict) -> dict:
     titulo = _limpo(roteiro["titulo"], 100)
     if "#shorts" not in titulo.lower() and len(titulo) <= 90:
@@ -38,6 +43,7 @@ def _metadados(roteiro: dict) -> dict:
     descricao = _limpo(
         f"{roteiro['descricao']}\n\n"
         f"✨ Moral da história: {roteiro['moral']}\n\n"
+        f"{_versiculo(roteiro)}"
         "História infantil original, criada com inteligência artificial "
         "(roteiro, imagens e narração).\n"
         "Um novo episódio todos os dias!\n\n"
@@ -64,6 +70,12 @@ def _registrar(video_id: str, roteiro: dict, privacidade: str):
         "titulo": roteiro["titulo"],
         "moral": roteiro["moral"],
         "privacidade": privacidade,
+        "materia": roteiro.get("materia"),
+        "topico": roteiro.get("topico"),
+        "valor": roteiro.get("valor"),
+        "especie": roteiro.get("especie"),
+        "versiculo": roteiro.get("versiculo"),
+        "resumo": roteiro.get("resumo"),
     })
     config.HISTORICO.write_text(json.dumps(historico, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 

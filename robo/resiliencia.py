@@ -27,5 +27,8 @@ def gerar_com_fallback(cliente, modelos, esperas, **kwargs):
                 if codigo not in TEMPORARIOS:
                     raise
                 print(f"  {modelo}: erro temporário {codigo}")
+                if codigo == 429 and tentativa >= 1:
+                    print(f"  {modelo}: cota esgotada, passando para o próximo modelo")
+                    break
         print(f"  {modelo} indisponível, passando para o próximo modelo")
     raise RuntimeError(f"Todos os modelos falharam: {ultimo_erro}")
