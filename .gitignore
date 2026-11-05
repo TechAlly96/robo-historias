@@ -1,0 +1,22 @@
+# Credenciais — NUNCA versionar
+secrets/
+client_secret*.json
+token*.json
+*.pem
+.env
+
+# Saídas geradas pelo robô
+saida/
+*.mp4
+*.wav
+*.mp3
+!assets/musicas/*.mp3
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Modelos de voz baixados
+modelos/
