@@ -65,7 +65,22 @@ PROIBIDO_VISUAL = (
 # YouTube
 CATEGORIA_YT = "1"  # Film & Animation
 IDIOMA = "pt-BR"
-PRIVACIDADE_PADRAO = os.environ.get("PRIVACIDADE", "private")
+# Semana de revisão: privado até 12/11/2026; a partir de 13/11/2026, público automático.
+# Uma privacidade escolhida manualmente na execução (botão "Run workflow") sempre tem prioridade.
+PUBLICO_A_PARTIR_DE = "2026-11-13"
+
+
+def _privacidade_padrao() -> str:
+    escolhida = os.environ.get("PRIVACIDADE", "").strip()
+    if escolhida:
+        return escolhida
+    import datetime
+    from zoneinfo import ZoneInfo
+    hoje = datetime.datetime.now(ZoneInfo("America/Sao_Paulo")).date().isoformat()
+    return "public" if hoje >= PUBLICO_A_PARTIR_DE else "private"
+
+
+PRIVACIDADE_PADRAO = _privacidade_padrao()
 
 # Ordem de fallback para geração de texto (erros temporários 503/429/500)
 MODELOS_TEXTO = ["gemini-3.8-flash", "gemini-3.7-flash", "gemini-3.5-flash", "gemini-flash-latest", "gemini-3.5-flash-lite"]
