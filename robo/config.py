@@ -35,6 +35,10 @@ def cloudflare_account() -> str:
     return _credencial("CLOUDFLARE_ACCOUNT_ID", "cloudflare.account")
 
 
+def groq_key() -> str:
+    return _credencial("GROQ_API_KEY", "groq.key")
+
+
 def youtube_token_json() -> str:
     return _credencial("YOUTUBE_TOKEN_JSON", "token.json")
 
@@ -86,3 +90,6 @@ PRIVACIDADE_PADRAO = _privacidade_padrao()
 MODELOS_TEXTO = ["gemini-3.8-flash", "gemini-3.7-flash", "gemini-3.5-flash", "gemini-flash-latest", "gemini-3.5-flash-lite"]
 MODELOS_VOZ = ["gemini-3.8-flash-tts", "gemini-3.8-flash-lite-tts", "gemini-3.1-flash-tts-preview"]
 ESPERAS_RETRY_S = [5, 15, 45]
+
+# Ordem dos provedores de texto (roteiro e revisão). O revisor usa sempre outro provedor primeiro.
+ORDEM_TEXTO = tuple(p.strip() for p in os.environ.get("ORDEM_TEXTO", "gemini,groq,cloudflare").split(",") if p.strip())

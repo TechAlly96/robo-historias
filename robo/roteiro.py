@@ -16,6 +16,13 @@ PALAVRAS = (85, 165)
 PROIBIDO_VISUAL = ["hybrid", "crossbreed", "mixed breed", "half "]
 
 
+
+def _ordem_revisor(autor: str) -> tuple:
+    """Revisão cruzada: começa por um provedor diferente de quem escreveu."""
+    outros = [p for p in config.ORDEM_TEXTO if p != autor]
+    return (*outros, autor)
+
+
 class Coadjuvante(BaseModel):
     nome: str
     especie_pt: str = Field(description="espécie real em português")
@@ -142,7 +149,7 @@ Responda aprovado=true só se tudo estiver correto. Em "problemas", liste cada p
 Roteiro:
 {r.model_dump_json(indent=1)}"""
             rev = Revisao.model_validate_json(gerar_com_fallback(
-                cliente, config.MODELOS_TEXTO, config.ESPERAS_RETRY_S, contents=revisor,
+                cliente, config.MODELOS_TEXTO, config.ESPERAS_RETRY_S, ordem=_ordem_revisor(resp.provedor), contents=revisor,
                 config=types.GenerateContentConfig(
                     response_mime_type="application/json", response_schema=Revisao, temperature=0.0),
             ).text)
@@ -157,7 +164,7 @@ Roteiro:
 
     d = r.model_dump()
     d["cenas"][-1]["narracao"] = d["cenas"][-1]["narracao"].rstrip() + f" A Bíblia nos ensina: {texto} {falada}."
-    d.update(materia=materia, topico=topico, valor=valor, especie=pt, especie_en=en,
+    d.update(roteirista=f"{resp.provedor}:{resp.modelo}", materia=materia, topico=topico, valor=valor, especie=pt, especie_en=en,
              versiculo={"ref": ref, "texto": texto})
     return d
 
@@ -166,6 +173,7 @@ if __name__ == "__main__":
     config.SAIDA.mkdir(exist_ok=True)
     r = gerar_roteiro()
     (config.SAIDA / "roteiro.json").write_text(json.dumps(r, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"Roteirista: {r['roteirista']}")
     print(f"Título: {r['titulo']}")
     print(f"Matéria: {r['materia']} | {r['topico']}")
     print(f"Valor: {r['valor']} | {r['versiculo']['ref']}")
