@@ -121,6 +121,10 @@ Regras:
 - EXATAMENTE 7 cenas. A narração de CADA cena tem 2 frases e 15 a 20 palavras (total de 105 a 140 palavras). Conte as cenas e as palavras antes de responder.
 - Cada "prompt_visual" em inglês descreve só a ação e o ambiente da cena e cita pela espécie em inglês cada animal presente (ex.: "the {en} and the coati ..."). Nunca descreva um animal diferente do que a narração diz.
 - Estrutura: apresentação, problema, tentativa, virada, solução e final feliz.
+- Todo animal citado na narração ou mostrado nas imagens precisa ser o protagonista ou estar em "coadjuvantes"; não acrescente figurantes, famílias ou multidões.
+- Em temas de segurança (tesoura, fogo, tomada, rua, carro), um adulto da mesma espécie do protagonista (pai, mãe ou professor, listado nos coadjuvantes) orienta e supervisiona; filhotes nunca manuseiam objeto perigoso sozinhos.
+- Coadjuvantes só de espécies amigáveis para crianças pequenas: nada de cobras, aranhas, insetos ou predadores ameaçadores.
+- Revise a ortografia e a concordância de cada frase antes de responder.
 - Linguagem simples, frases curtas, tom acolhedor e alegre.
 - Valores cristãos: amor a Deus, respeito à família e aos pais, honestidade e bondade. Deus pode ser citado com reverência, sem pregação longa.
 - PROIBIDO: política, partidos ou ideologias; sexualidade, namoro ou temas de gênero; magia, bruxaria, feitiços, ocultismo ou monstros; violência, medo intenso ou morte; desrespeito aos pais; personagens, nomes ou marcas existentes (Disney, Pixar etc.).
@@ -147,6 +151,7 @@ Regras:
 3. A moral combina com o versículo "{texto}" ({ref}) e com valores bíblicos judaico-cristãos?
 4. Está livre de política, ideologias, sexualidade, temas de gênero, magia ou ocultismo, violência, medo intenso e desrespeito à família?
 5. A linguagem é adequada para crianças de 3 a 8 anos e sem erros de português?
+Não exija menção a Deus na narração: o versículo bíblico é acrescentado automaticamente no final. Pequenas liberdades artísticas (roupas, cores, cenário) não reprovam.
 Responda aprovado=true só se tudo estiver correto. Em "problemas", liste cada problema de forma objetiva.
 
 Roteiro:
@@ -161,7 +166,9 @@ Roteiro:
             print(f"  roteiro aprovado na tentativa {tentativa}")
             break
         print(f"  tentativa {tentativa} reprovada: {'; '.join(problemas)[:400]}")
-        feedback = "\nATENÇÃO: a versão anterior foi REPROVADA por: " + "; ".join(problemas) + ". Corrija tudo isso.\n"
+        feedback = ("\nATENÇÃO: a versão anterior (abaixo) foi REPROVADA por: " + "; ".join(problemas)
+                    + ".\nREESCREVA essa MESMA história corrigindo TODOS os problemas, mantendo o que estava bom "
+                    + "e cumprindo todas as regras acima.\nVersão anterior:\n" + resp.text[:6000] + "\n")
     else:
         raise RuntimeError("Roteiro reprovado em todas as tentativas; nada será publicado.")
 
