@@ -188,6 +188,10 @@ def publicar(video, roteiro: dict, privacidade: str | None = None) -> str:
             raise
 
     video_id = resposta["id"]
+    try:
+        _enriquecer(yt, video_id, roteiro, meta)
+    except Exception as e:
+        print(f"  enriquecimento (traduções/legendas) falhou sem afetar a publicação: {str(e)[:200]}")
     _registrar(video_id, roteiro, privacidade)
 
     estado = yt.videos().list(part="status", id=video_id).execute()["items"][0]["status"]
