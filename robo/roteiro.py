@@ -158,7 +158,7 @@ Regras:
 4. Está livre de política, ideologias, sexualidade, temas de gênero, magia ou ocultismo, violência, medo intenso e desrespeito à família?
 5. A linguagem é adequada para crianças de 3 a 8 anos e sem erros de português?
 6. A história ensina conhecimento (conteúdo escolar), sabedoria (moral bíblica) e discernimento (o protagonista escolhe com clareza entre o certo e o errado)?
-Não exija menção a Deus na narração: o versículo bíblico é acrescentado automaticamente no final. Pequenas liberdades artísticas (roupas, cores, cenário) não reprovam.
+Citar Deus e Jesus na narração é PERMITIDO e bem-vindo (canal cristão), mas não é obrigatório, porque o versículo bíblico é acrescentado automaticamente no final; nunca reprove por isso. Pequenas liberdades artísticas (roupas, cores, cenário) não reprovam.
 Responda aprovado=true só se tudo estiver correto. Em "problemas", liste cada problema de forma objetiva.
 
 Roteiro:
