@@ -125,7 +125,8 @@ Regras:
 - Em temas de segurança (tesoura, fogo, tomada, rua, carro), um adulto da mesma espécie do protagonista (pai, mãe ou professor, listado nos coadjuvantes) orienta e supervisiona; filhotes nunca manuseiam objeto perigoso sozinhos.
 - Coadjuvantes podem ser qualquer animal real (inclusive insetos), sempre com aparência fofa e amigável, nunca assustadora.
 - A história ensina sempre três coisas: CONHECIMENTO (o conteúdo escolar), SABEDORIA (a moral à luz da Bíblia) e DISCERNIMENTO: o protagonista enfrenta uma escolha clara entre o certo e o errado, pensa nas consequências e escolhe o certo, para a criança aprender a discernir.
-- Revise a ortografia e a concordância de cada frase antes de responder.
+- Revise a ortografia e a concordância de cada frase antes de responder, seguindo o Acordo Ortográfico vigente (sem trema).
+- O conteúdo escolar deve ser ensinado de forma EXPLÍCITA e correta na narração: diga o fato e dê exemplos concretos (ex.: para vogais, cite cada vogal e uma palavra que começa com ela; para contar, conte os objetos em voz alta).
 - Linguagem simples, frases curtas, tom acolhedor e alegre.
 - Valores cristãos: amor a Deus, respeito à família e aos pais, honestidade e bondade. Deus pode ser citado com reverência, sem pregação longa.
 - PROIBIDO: política, partidos ou ideologias; sexualidade, namoro ou temas de gênero; magia, bruxaria, feitiços, ocultismo ou monstros; violência, medo intenso ou morte; desrespeito aos pais; personagens, nomes ou marcas existentes (Disney, Pixar etc.).
@@ -133,13 +134,17 @@ Regras:
 """
     cliente = genai.Client(api_key=config.gemini_key())
     feedback = ""
+    autor = autor_id = None
     for tentativa in range(1, TENTATIVAS + 1):
         resp = gerar_com_fallback(
             cliente, config.MODELOS_TEXTO, config.ESPERAS_RETRY_S,
+            ordem=(None if tentativa == 1 else _ordem_revisor(autor)),
             contents=base + feedback,
             config=types.GenerateContentConfig(
                 response_mime_type="application/json", response_schema=Roteiro, temperature=0.9),
         )
+        autor = autor or resp.provedor
+        autor_id = autor_id or f"{resp.provedor}:{resp.modelo}"
         try:
             r = Roteiro.model_validate_json(resp.text)
             problemas = _validar(r, pt, en, chave)
@@ -176,7 +181,8 @@ Roteiro:
 
     d = r.model_dump()
     d["cenas"][-1]["narracao"] = d["cenas"][-1]["narracao"].rstrip() + f" A Bíblia nos ensina: {texto} {falada}."
-    d.update(roteirista=f"{resp.provedor}:{resp.modelo}", materia=materia, topico=topico, valor=valor, especie=pt, especie_en=en,
+    final_id = f"{resp.provedor}:{resp.modelo}"
+    d.update(roteirista=autor_id, editor=(final_id if final_id != autor_id else None), materia=materia, topico=topico, valor=valor, especie=pt, especie_en=en,
              versiculo={"ref": ref, "texto": texto})
     return d
 

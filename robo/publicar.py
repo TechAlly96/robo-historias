@@ -41,7 +41,7 @@ def _creditos(roteiro: dict) -> str:
         return ""
     linhas = [f"🎬 {roteiro['estudio_nome']}", f"🎨 Imagens: {roteiro.get('imagem_credito', '')}"]
     if roteiro.get("roteirista"):
-        linhas.append(f"✍️ Roteiro: {roteiro['roteirista']}")
+        linhas.append(f"✍️ Roteiro: {roteiro['roteirista']}" + (f" · Edição: {roteiro['editor']}" if roteiro.get("editor") else ""))
     if roteiro.get("voz"):
         linhas.append(f"🎙️ Voz: {roteiro['voz']}")
     return "\n".join(linhas) + "\n\n"
