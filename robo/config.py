@@ -62,7 +62,7 @@ ESTILO_VISUAL = (
 PROIBIDO_VISUAL = (
     "no text, no letters, no watermark, no logos, no faces on objects, rocks, trees or clouds, "
     "animals keep natural animal anatomy with hooves or paws, no human hands, no fingers, "
-    "no extra limbs, no scary or violent elements, no real people, "
+    "no extra limbs, no scary or violent elements, no humans, no realistic people, no photorealistic style, always 3D animation or cartoon, "
     "no copyrighted or famous characters"
 )
 

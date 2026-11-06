@@ -123,7 +123,8 @@ Regras:
 - Estrutura: apresentação, problema, tentativa, virada, solução e final feliz.
 - Todo animal citado na narração ou mostrado nas imagens precisa ser o protagonista ou estar em "coadjuvantes"; não acrescente figurantes, famílias ou multidões.
 - Em temas de segurança (tesoura, fogo, tomada, rua, carro), um adulto da mesma espécie do protagonista (pai, mãe ou professor, listado nos coadjuvantes) orienta e supervisiona; filhotes nunca manuseiam objeto perigoso sozinhos.
-- Coadjuvantes só de espécies amigáveis para crianças pequenas: nada de cobras, aranhas, insetos ou predadores ameaçadores.
+- Coadjuvantes podem ser qualquer animal real (inclusive insetos), sempre com aparência fofa e amigável, nunca assustadora.
+- A história ensina sempre três coisas: CONHECIMENTO (o conteúdo escolar), SABEDORIA (a moral à luz da Bíblia) e DISCERNIMENTO: o protagonista enfrenta uma escolha clara entre o certo e o errado, pensa nas consequências e escolhe o certo, para a criança aprender a discernir.
 - Revise a ortografia e a concordância de cada frase antes de responder.
 - Linguagem simples, frases curtas, tom acolhedor e alegre.
 - Valores cristãos: amor a Deus, respeito à família e aos pais, honestidade e bondade. Deus pode ser citado com reverência, sem pregação longa.
@@ -151,6 +152,7 @@ Regras:
 3. A moral combina com o versículo "{texto}" ({ref}) e com valores bíblicos judaico-cristãos?
 4. Está livre de política, ideologias, sexualidade, temas de gênero, magia ou ocultismo, violência, medo intenso e desrespeito à família?
 5. A linguagem é adequada para crianças de 3 a 8 anos e sem erros de português?
+6. A história ensina conhecimento (conteúdo escolar), sabedoria (moral bíblica) e discernimento (o protagonista escolhe com clareza entre o certo e o errado)?
 Não exija menção a Deus na narração: o versículo bíblico é acrescentado automaticamente no final. Pequenas liberdades artísticas (roupas, cores, cenário) não reprovam.
 Responda aprovado=true só se tudo estiver correto. Em "problemas", liste cada problema de forma objetiva.
 
