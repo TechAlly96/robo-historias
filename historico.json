@@ -35,5 +35,26 @@
     "roteirista": "groq:qwen/qwen3.8-27b",
     "voz": "Gemini TTS (gemini-3.8-flash-tts)",
     "modelo_imagem": "@cf/bytedance/stable-diffusion-xl-lightning"
+  },
+  {
+    "data": "2026-11-06T01:47:11+00:00",
+    "id": "DiEfeVk4vDE",
+    "url": "https://youtube.com/shorts/DiEfeVk4vDE",
+    "titulo": "Leo e o Banquete na Floresta 🦁",
+    "moral": "Devemos ser gratos por tudo o que Deus nos dá, pois cada alimento é especial para cada animal.",
+    "privacidade": "private",
+    "materia": "ciências",
+    "topico": "o que cada animal come",
+    "valor": "gratidão",
+    "especie": "leãozinho",
+    "versiculo": {
+      "ref": "1 Tessalonicenses 5:18",
+      "texto": "Em tudo dai graças."
+    },
+    "resumo": "Leo o leãozinho aprende sobre o cardápio dos animais na savana e decide agradecer pelo seu próprio alimento.",
+    "estudio": "flux",
+    "roteirista": "gemini:gemini-3.5-flash-lite",
+    "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+    "modelo_imagem": "@cf/black-forest-labs/flux-1-schnell"
   }
 ]
