@@ -111,6 +111,7 @@ ESTUDIOS = {
         "ordem_texto": ("groq", "gemini", "cloudflare"),
         "hashtags": ["#SDXL", "#StableDiffusion"],
         "um_personagem_por_cena": True,
+        "intervalo_min_horas": 48,
     },
 }
 

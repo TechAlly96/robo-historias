@@ -4,8 +4,6 @@ on:
   schedule:
     # Horários em UTC (Brasília = UTC-3). O primeiro horário de cada turno publica;
     # o segundo é nova tentativa e só age se o vídeo do turno ainda não saiu.
-    - cron: "47 10 * * *"   # 07:47 manhã
-    - cron: "7 12 * * *"    # 09:07 manhã (nova tentativa)
     - cron: "17 15 * * *"   # 12:17 almoço
     - cron: "37 16 * * *"   # 13:37 almoço (nova tentativa)
     - cron: "17 21 * * *"   # 18:17 noite

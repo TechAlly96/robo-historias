@@ -43,16 +43,28 @@ def _nome_ia(ident: str) -> str:
 
 
 def _escolher_estudio() -> str:
-    """Rodízio: o estúdio usado há mais tempo vai ao ar (fase 4 troca por competição por audiência)."""
+    """Rodízio entre estúdios, respeitando o intervalo mínimo dos motores mais caros (cota da Cloudflare)."""
     forcado = os.environ.get("ESTUDIO", "").strip()
     if forcado in config.ESTUDIOS:
         return forcado
-    ultimo = {}
-    if config.HISTORICO.exists():
-        for i, h in enumerate(json.loads(config.HISTORICO.read_text(encoding="utf-8"))):
-            if h.get("estudio"):
-                ultimo[h["estudio"]] = i
-    return min(config.ESTUDIOS, key=lambda e: ultimo.get(e, -1))
+    hist = json.loads(config.HISTORICO.read_text(encoding="utf-8")) if config.HISTORICO.exists() else []
+    ultimo, ultima_data = {}, {}
+    for i, h in enumerate(hist):
+        if h.get("estudio"):
+            ultimo[h["estudio"]] = i
+            try:
+                ultima_data[h["estudio"]] = datetime.datetime.fromisoformat(h["data"])
+            except (KeyError, ValueError):
+                pass
+    agora = datetime.datetime.now(datetime.timezone.utc)
+
+    def liberado(e):
+        horas = config.ESTUDIOS[e].get("intervalo_min_horas", 0)
+        d = ultima_data.get(e)
+        return not horas or d is None or (agora - d).total_seconds() >= horas * 3600
+
+    candidatos = [e for e in config.ESTUDIOS if liberado(e)] or ["flux"]
+    return min(candidatos, key=lambda e: ultimo.get(e, -1))
 
 
 def main():

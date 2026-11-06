@@ -98,6 +98,8 @@ def _gerar_uma(roteiro: dict, cena: dict, reforco: bool = False) -> bytes:
                 dados = r.content
             return _para_jpeg(dados)
         ultimo = f"HTTP {r.status_code}: {r.text[:200]}"
+        if "daily free allocation" in r.text:
+            break  # cota diária da Cloudflare esgotada: renova às 00:00 UTC
         if r.status_code not in TEMPORARIOS:
             break
     raise RuntimeError(f"Falha ao gerar imagem ({modelo}): {ultimo}")
