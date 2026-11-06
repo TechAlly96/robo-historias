@@ -93,3 +93,21 @@ ESPERAS_RETRY_S = [5, 15, 45]
 
 # Ordem dos provedores de texto (roteiro e revisão). O revisor usa sempre outro provedor primeiro.
 ORDEM_TEXTO = tuple(p.strip() for p in os.environ.get("ORDEM_TEXTO", "gemini,groq,cloudflare").split(",") if p.strip())
+
+# Estúdios da Arena: cada um combina um motor de imagem com uma ordem de provedores de texto.
+ESTUDIOS = {
+    "flux": {
+        "nome": "Estúdio FLUX",
+        "modelo_imagem": "@cf/black-forest-labs/flux-1-schnell",
+        "imagem_credito": "FLUX.1 [schnell] · Black Forest Labs",
+        "ordem_texto": ("gemini", "groq", "cloudflare"),
+        "hashtags": ["#FLUX", "#BlackForestLabs"],
+    },
+    "sdxl": {
+        "nome": "Estúdio SDXL",
+        "modelo_imagem": "@cf/bytedance/stable-diffusion-xl-lightning",
+        "imagem_credito": "SDXL Lightning · ByteDance",
+        "ordem_texto": ("groq", "gemini", "cloudflare"),
+        "hashtags": ["#SDXL", "#StableDiffusion"],
+    },
+}

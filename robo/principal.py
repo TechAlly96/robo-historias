@@ -34,6 +34,27 @@ def _ja_publicado_neste_turno() -> bool:
     return False
 
 
+IAS = {"gemini": "Google", "groq": "Groq", "cloudflare": "Cloudflare"}
+
+
+def _nome_ia(ident: str) -> str:
+    provedor, _, modelo = ident.partition(":")
+    return f"{modelo.split('/')[-1]} ({IAS.get(provedor, provedor)})"
+
+
+def _escolher_estudio() -> str:
+    """Rodízio: o estúdio usado há mais tempo vai ao ar (fase 4 troca por competição por audiência)."""
+    forcado = os.environ.get("ESTUDIO", "").strip()
+    if forcado in config.ESTUDIOS:
+        return forcado
+    ultimo = {}
+    if config.HISTORICO.exists():
+        for i, h in enumerate(json.loads(config.HISTORICO.read_text(encoding="utf-8"))):
+            if h.get("estudio"):
+                ultimo[h["estudio"]] = i
+    return min(config.ESTUDIOS, key=lambda e: ultimo.get(e, -1))
+
+
 def main():
     if not os.environ.get("FORCAR") and _ja_publicado_neste_turno():
         print("O vídeo deste turno já foi publicado; nada a fazer.")
@@ -43,7 +64,16 @@ def main():
     config.SAIDA.mkdir(parents=True)
 
     print("1/5 Roteiro")
+    estudio_id = _escolher_estudio()
+    estudio = config.ESTUDIOS[estudio_id]
+    config.ORDEM_TEXTO = tuple(estudio["ordem_texto"])
+    print(f"  {estudio['nome']}")
     roteiro = gerar_roteiro()
+    roteiro.update(
+        estudio=estudio_id, estudio_nome=estudio["nome"], modelo_imagem=estudio["modelo_imagem"],
+        imagem_credito=estudio["imagem_credito"], hashtags_estudio=estudio["hashtags"],
+        credito_tela=f"{estudio['nome']} | Imagens: {estudio['imagem_credito']} | Roteiro: {_nome_ia(roteiro['roteirista'])}",
+    )
     (config.SAIDA / "roteiro.json").write_text(
         json.dumps(roteiro, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"  {roteiro['titulo']} ({len(roteiro['cenas'])} cenas)")

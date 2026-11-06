@@ -28,6 +28,7 @@ ScaledBorderAndShadow: yes
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Legenda,DejaVu Sans,62,&H00FFFFFF,&H00FFFFFF,&H00000000,&H64000000,-1,0,0,0,100,100,0,0,1,5,2,2,70,70,300,1
 Style: Titulo,DejaVu Sans,74,&H0000E1FF,&H00FFFFFF,&H00000000,&H64000000,-1,0,0,0,100,100,0,0,1,6,3,8,60,60,110,1
+Style: Credito,DejaVu Sans,30,&H00FFFFFF,&H00FFFFFF,&H00000000,&H80000000,0,0,0,0,100,100,0,0,1,2,1,2,40,40,70,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text"""
@@ -66,7 +67,7 @@ def _limpar(texto: str) -> str:
     return texto.replace("{", "(").replace("}", ")").replace("\n", " ").strip()
 
 
-def _legenda(destino, texto, duracao_fala, titulo=None):
+def _legenda(destino, texto, duracao_fala, titulo=None, credito=None):
     frases = [f for f in re.split(r"(?<=[.!?…])\s+", _limpar(texto)) if f]
     total = sum(len(f) for f in frases) or 1
     linhas, t = [CABECALHO_ASS], 0.0
@@ -79,10 +80,12 @@ def _legenda(destino, texto, duracao_fala, titulo=None):
             f"Dialogue: 1,{_tempo(0)},{_tempo(min(3.5, duracao_fala))},Titulo,,0,0,0,,"
             f"{{\\fad(300,400)}}{_limpar(titulo)}"
         )
+    if credito:
+        linhas.append(f"Dialogue: 2,{_tempo(0)},{_tempo(duracao_fala + FOLGA_S)},Credito,,0,0,0,,{_limpar(credito)}")
     destino.write_text("\n".join(linhas) + "\n", encoding="utf-8")
 
 
-def _clipe(i, imagem, audio, texto, titulo):
+def _clipe(i, imagem, audio, texto, titulo, credito=None):
     fala = _duracao_wav(audio)
     dur = fala + FOLGA_S
     quadros = max(1, round(dur * FPS))
@@ -90,7 +93,7 @@ def _clipe(i, imagem, audio, texto, titulo):
     fundo = TMP / f"fundo_{i:02d}.jpg"
     _fundo(imagem, fundo)
     ass = TMP / f"cena_{i:02d}.ass"
-    _legenda(ass, texto, fala, titulo)
+    _legenda(ass, texto, fala, titulo, credito)
 
     z0, z1 = (1.0, 1 + ZOOM) if i % 2 else (1 + ZOOM, 1.0)
     filtro = ";".join([
@@ -127,6 +130,7 @@ def montar_video(roteiro: dict):
             config.SAIDA / "audio" / f"cena_{i:02d}.wav",
             cena["narracao"],
             roteiro["titulo"] if i == 1 else None,
+            roteiro.get("credito_tela"),
         )
         clipes.append(clipe)
         total += dur

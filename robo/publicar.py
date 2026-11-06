@@ -36,6 +36,17 @@ def _versiculo(roteiro: dict) -> str:
     return f"📖 \"{v['texto']}\" ({v['ref']})\n\n" if v else ""
 
 
+def _creditos(roteiro: dict) -> str:
+    if not roteiro.get("estudio_nome"):
+        return ""
+    linhas = [f"🎬 {roteiro['estudio_nome']}", f"🎨 Imagens: {roteiro.get('imagem_credito', '')}"]
+    if roteiro.get("roteirista"):
+        linhas.append(f"✍️ Roteiro: {roteiro['roteirista']}")
+    if roteiro.get("voz"):
+        linhas.append(f"🎙️ Voz: {roteiro['voz']}")
+    return "\n".join(linhas) + "\n\n"
+
+
 def _metadados(roteiro: dict) -> dict:
     titulo = _limpo(roteiro["titulo"], 100)
     if "#shorts" not in titulo.lower() and len(titulo) <= 90:
@@ -44,10 +55,11 @@ def _metadados(roteiro: dict) -> dict:
         f"{roteiro['descricao']}\n\n"
         f"✨ Moral da história: {roteiro['moral']}\n\n"
         f"{_versiculo(roteiro)}"
+        f"{_creditos(roteiro)}"
         "História infantil original, criada com inteligência artificial "
         "(roteiro, imagens e narração).\n"
         "Um novo episódio todos os dias!\n\n"
-        f"{HASHTAGS}",
+        f"{HASHTAGS} {' '.join(roteiro.get('hashtags_estudio', []))}",
         5000,
     )
     tags, soma = [], 0
@@ -76,6 +88,10 @@ def _registrar(video_id: str, roteiro: dict, privacidade: str):
         "especie": roteiro.get("especie"),
         "versiculo": roteiro.get("versiculo"),
         "resumo": roteiro.get("resumo"),
+        "estudio": roteiro.get("estudio"),
+        "roteirista": roteiro.get("roteirista"),
+        "voz": roteiro.get("voz"),
+        "modelo_imagem": roteiro.get("modelo_imagem"),
     })
     config.HISTORICO.write_text(json.dumps(historico, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 

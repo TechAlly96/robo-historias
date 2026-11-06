@@ -170,6 +170,7 @@ def gerar_narracao(roteiro: dict) -> list:
             destino = pasta / f"cena_{i:02d}.wav"
             resultado.append({"arquivo": destino, "duracao": _salvar_wav(destino, _remover_ruido_final(parte))})
         print(f"  voz: {modelo} (1 chamada)")
+        roteiro["voz"] = f"Gemini TTS ({modelo})"
     else:
         print("  voz Gemini indisponível: usando Piper offline")
         voz = _piper_modelo()
@@ -177,6 +178,7 @@ def gerar_narracao(roteiro: dict) -> list:
             destino = pasta / f"cena_{i:02d}.wav"
             resultado.append({"arquivo": destino, "duracao": _piper(texto, destino, voz)})
         print(f"  voz: Piper {PIPER_VOZ}")
+        roteiro["voz"] = f"Piper ({PIPER_VOZ})"
     return resultado
 
 
