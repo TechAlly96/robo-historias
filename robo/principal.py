@@ -67,6 +67,7 @@ def main():
     estudio_id = _escolher_estudio()
     estudio = config.ESTUDIOS[estudio_id]
     config.ORDEM_TEXTO = tuple(estudio["ordem_texto"])
+    config.UM_PERSONAGEM_POR_CENA = estudio.get("um_personagem_por_cena", False)
     print(f"  {estudio['nome']}")
     roteiro = gerar_roteiro()
     roteiro.update(
@@ -80,6 +81,11 @@ def main():
 
     print("2/5 Imagens")
     gerar_imagens(roteiro)
+    if roteiro.get("cenas_reserva_flux"):
+        cenas = ", ".join(map(str, roteiro["cenas_reserva_flux"]))
+        novo = f"{roteiro['imagem_credito']} + {config.ESTUDIOS['flux']['imagem_credito']} (cenas {cenas})"
+        roteiro["credito_tela"] = roteiro["credito_tela"].replace(roteiro["imagem_credito"], novo)
+        roteiro["imagem_credito"] = novo
 
     print("3/5 Narração")
     gerar_narracao(roteiro)

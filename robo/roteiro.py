@@ -132,6 +132,10 @@ Regras:
 - PROIBIDO: política, partidos ou ideologias; sexualidade, namoro ou temas de gênero; magia, bruxaria, feitiços, ocultismo ou monstros; violência, medo intenso ou morte; desrespeito aos pais; personagens, nomes ou marcas existentes (Disney, Pixar etc.).
 - Não repita estes enredos já publicados: {resumos if resumos else "nenhum"}
 """
+    if getattr(config, "UM_PERSONAGEM_POR_CENA", False):
+        base += ("- Cada imagem mostra apenas UM personagem, alternando entre eles como closes de cinema: o "
+                 "\"prompt_visual\" de cada cena descreve só esse personagem, e cada coadjuvante aparece sozinho "
+                 "em pelo menos uma cena.\n")
     cliente = genai.Client(api_key=config.gemini_key())
     feedback = ""
     autor = autor_id = None

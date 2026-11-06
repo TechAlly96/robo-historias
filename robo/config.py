@@ -109,5 +109,6 @@ ESTUDIOS = {
         "imagem_credito": "SDXL Lightning · ByteDance",
         "ordem_texto": ("groq", "gemini", "cloudflare"),
         "hashtags": ["#SDXL", "#StableDiffusion"],
+        "um_personagem_por_cena": True,
     },
 }

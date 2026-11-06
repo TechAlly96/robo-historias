@@ -160,6 +160,16 @@ def gerar_imagens(roteiro: dict) -> list:
             pendentes[n] = caminhos[n]
     else:
         reprovadas = _verificar(roteiro, pendentes)
+        if reprovadas and "flux" not in (roteiro.get("modelo_imagem") or config.MODELO_IMAGEM):
+            print(f"  FLUX como reserva nas cenas {sorted(reprovadas)}")
+            reserva = dict(roteiro, modelo_imagem=config.MODELO_IMAGEM)
+            pendentes = {}
+            for n in sorted(reprovadas):
+                caminhos[n].write_bytes(_gerar_uma(reserva, roteiro["cenas"][n - 1], reforco=True))
+                pendentes[n] = caminhos[n]
+            reprovadas = _verificar(roteiro, pendentes)
+            if not reprovadas:
+                roteiro["cenas_reserva_flux"] = sorted(pendentes)
         if reprovadas:
             raise RuntimeError(f"Imagens incompatíveis com a história mesmo após correções: {reprovadas}. "
                                "Nada será publicado.")
