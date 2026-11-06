@@ -10,6 +10,7 @@ from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaFileUpload
 
 from robo import config
+from robo.traducao import traduzir
 
 ESCOPOS = [
     "https://www.googleapis.com/auth/youtube.upload",
@@ -21,7 +22,7 @@ HASHTAGS = "#Shorts #HistoriaInfantil #HistoriasParaCriancas #AnimacaoInfantil"
 
 def _youtube():
     info = json.loads(config.youtube_token_json())
-    cred = Credentials.from_authorized_user_info(info, ESCOPOS)
+    cred = Credentials.from_authorized_user_info(info, info.get("scopes") or ESCOPOS)
     if not cred.valid:
         cred.refresh(Request())
     return build("youtube", "v3", credentials=cred, cache_discovery=False)
@@ -94,6 +95,58 @@ def _registrar(video_id: str, roteiro: dict, privacidade: str):
         "modelo_imagem": roteiro.get("modelo_imagem"),
     })
     config.HISTORICO.write_text(json.dumps(historico, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def _srt(blocos) -> str:
+    def ts(s):
+        ms = int(round(s * 1000))
+        h, ms = divmod(ms, 3600000)
+        m, ms = divmod(ms, 60000)
+        seg, ms = divmod(ms, 1000)
+        return f"{h:02d}:{m:02d}:{seg:02d},{ms:03d}"
+    return "\n".join(f"{i}\n{ts(a)} --> {ts(b)}\n{f}\n" for i, (a, b, f) in enumerate(blocos, start=1))
+
+
+def _enriquecer(yt, video_id: str, roteiro: dict, meta: dict):
+    """Títulos/descrições em 15 idiomas e legendas CC (exige a permissão youtube.force-ssl)."""
+    if not config.token_tem_escopo(config.ESCOPO_LEGENDAS):
+        print("  traduções e legendas CC aguardando nova autorização do YouTube (permissão force-ssl)")
+        return
+    arq = config.SAIDA / "legendas.json"
+    blocos = json.loads(arq.read_text(encoding="utf-8")) if arq.exists() else []
+    frases = [b[2] for b in blocos]
+    trad = traduzir(meta["titulo"], meta["descricao"], frases, config.IDIOMAS_TRADUCAO)
+    if trad:
+        try:
+            atual = yt.videos().list(part="snippet", id=video_id).execute()["items"][0]["snippet"]
+            yt.videos().update(part="snippet,localizations", body={
+                "id": video_id,
+                "snippet": {"title": atual["title"], "description": atual["description"],
+                            "categoryId": atual["categoryId"], "tags": atual.get("tags", []),
+                            "defaultLanguage": config.IDIOMA, "defaultAudioLanguage": config.IDIOMA},
+                "localizations": {l: {"title": d["titulo"], "description": d["descricao"]} for l, d in trad.items()},
+            }).execute()
+            print(f"  título e descrição em {len(trad)} idiomas")
+        except HttpError as e:
+            print(f"  traduções de título/descrição falharam: {str(e)[:200]}")
+    faixas = {config.IDIOMA: frases}
+    for lang in config.LEGENDAS_CC:
+        if lang != config.IDIOMA and (trad.get(lang) or {}).get("frases"):
+            faixas[lang] = trad[lang]["frases"]
+    for lang, textos in faixas.items():
+        if not blocos:
+            break
+        caminho = config.SAIDA / f"legenda_{lang}.srt"
+        caminho.write_text(_srt([(b[0], b[1], t) for b, t in zip(blocos, textos)]), encoding="utf-8")
+        try:
+            yt.captions().insert(
+                part="snippet",
+                body={"snippet": {"videoId": video_id, "language": lang, "name": "", "isDraft": False}},
+                media_body=MediaFileUpload(str(caminho), mimetype="application/octet-stream"),
+            ).execute()
+            print(f"  legenda CC enviada: {lang}")
+        except HttpError as e:
+            print(f"  legenda {lang} falhou: {str(e)[:200]}")
 
 
 def publicar(video, roteiro: dict, privacidade: str | None = None) -> str:

@@ -73,7 +73,7 @@ def main():
     roteiro.update(
         estudio=estudio_id, estudio_nome=estudio["nome"], modelo_imagem=estudio["modelo_imagem"],
         imagem_credito=estudio["imagem_credito"], hashtags_estudio=estudio["hashtags"],
-        credito_tela=f"{estudio['nome']} | Imagens: {estudio['imagem_credito']} | Roteiro: {_nome_ia(roteiro['roteirista'])}",
+        credito_tela=f"{estudio['nome']} · {estudio['imagem_credito']} · {_nome_ia(roteiro['roteirista'])}",
     )
     (config.SAIDA / "roteiro.json").write_text(
         json.dumps(roteiro, ensure_ascii=False, indent=2), encoding="utf-8")

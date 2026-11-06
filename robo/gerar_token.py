@@ -10,6 +10,8 @@ TOKEN = RAIZ / "secrets" / "token.json"
 ESCOPOS = [
     "https://www.googleapis.com/auth/youtube.upload",
     "https://www.googleapis.com/auth/youtube.readonly",
+    "https://www.googleapis.com/auth/youtube.force-ssl",
+    "https://www.googleapis.com/auth/yt-analytics.readonly",
 ]
 
 flow = InstalledAppFlow.from_client_secrets_file(str(CLIENT), ESCOPOS)

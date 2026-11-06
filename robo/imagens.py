@@ -110,7 +110,7 @@ def _verificar(roteiro: dict, caminhos: dict) -> dict:
 Protagonista: {roteiro.get('nome_protagonista', '')} = um(a) {roteiro.get('especie', '')} ("{roteiro.get('especie_en', '')}").
 Coadjuvantes: {coadj}.
 Para cada imagem, reprove (ok=false) SOMENTE se houver um destes problemas:
-1. o protagonista não é claramente um(a) {roteiro.get('especie_en', '')} (espécie errada, animal inventado ou híbrido);
+1. o protagonista não é claramente um(a) {roteiro.get('especie_en', '')} (espécie errada, animal inventado ou híbrido); se a descrição pedida da cena mostra só um coadjuvante, é correto o protagonista não aparecer;
 2. aparece qualquer animal ou personagem que não está na história, mesmo pequeno ou ao fundo, ou um coadjuvante com traços de outra espécie (ex.: orelhas de coelho num porco-espinho);
 3. animal com mãos humanas e dedos, membros a mais ou deformação evidente;
 4. letras, textos ou marca d'água;

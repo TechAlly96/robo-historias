@@ -3,6 +3,7 @@
 Credenciais vêm de variáveis de ambiente (GitHub Actions) ou, localmente,
 dos arquivos em secrets/ (protegidos pelo .gitignore).
 """
+import json
 import os
 from pathlib import Path
 
@@ -112,3 +113,20 @@ ESTUDIOS = {
         "um_personagem_por_cena": True,
     },
 }
+
+# Tradução para o mundo: títulos/descrições em 15 idiomas; legendas CC em pt-BR e inglês
+# (o YouTube traduz automaticamente as legendas para os demais idiomas no player).
+IDIOMAS_TRADUCAO = {
+    "en": "English", "es": "Español", "fr": "Français", "de": "Deutsch", "it": "Italiano",
+    "ru": "Русский", "tr": "Türkçe", "ar": "العربية", "hi": "हिन्दी", "id": "Bahasa Indonesia",
+    "ja": "日本語", "ko": "한국어", "zh-CN": "中文（简体）", "vi": "Tiếng Việt", "pl": "Polski",
+}
+LEGENDAS_CC = ["pt-BR", "en"]
+ESCOPO_LEGENDAS = "https://www.googleapis.com/auth/youtube.force-ssl"
+
+
+def token_tem_escopo(escopo: str) -> bool:
+    try:
+        return escopo in (json.loads(youtube_token_json()).get("scopes") or [])
+    except Exception:
+        return False

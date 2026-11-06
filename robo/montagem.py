@@ -16,6 +16,7 @@ FADE_S = 0.35     # transição suave entre cenas
 VOLUME_MUSICA = 0.10
 FPS = config.FPS
 W, H = config.LARGURA, config.ALTURA
+GRAVAR_LEGENDA = not config.token_tem_escopo(config.ESCOPO_LEGENDAS)  # com CC, a imagem fica limpa
 
 CABECALHO_ASS = f"""[Script Info]
 ScriptType: v4.00+
@@ -67,22 +68,32 @@ def _limpar(texto: str) -> str:
     return texto.replace("{", "(").replace("}", ")").replace("\n", " ").strip()
 
 
-def _legenda(destino, texto, duracao_fala, titulo=None, credito=None):
+def _frases(texto, duracao_fala):
     frases = [f for f in re.split(r"(?<=[.!?…])\s+", _limpar(texto)) if f]
     total = sum(len(f) for f in frases) or 1
-    linhas, t = [CABECALHO_ASS], 0.0
+    blocos, t = [], 0.0
     for frase in frases:
         fim = t + duracao_fala * len(frase) / total
-        linhas.append(f"Dialogue: 0,{_tempo(t)},{_tempo(fim)},Legenda,,0,0,0,,{frase}")
+        blocos.append((t, fim, frase))
         t = fim
-    if titulo:
-        linhas.append(
-            f"Dialogue: 1,{_tempo(0)},{_tempo(min(3.5, duracao_fala))},Titulo,,0,0,0,,"
-            f"{{\\fad(300,400)}}{_limpar(titulo)}"
-        )
+    return blocos
+
+
+def _legenda(destino, texto, duracao_fala, titulo=None, credito=None):
+    linhas = [CABECALHO_ASS]
+    blocos = _frases(texto, duracao_fala)
+    if GRAVAR_LEGENDA:
+        for ini, fim, frase in blocos:
+            linhas.append(f"Dialogue: 0,{_tempo(ini)},{_tempo(fim)},Legenda,,0,0,0,,{frase}")
+        if titulo:
+            linhas.append(
+                f"Dialogue: 1,{_tempo(0)},{_tempo(min(3.5, duracao_fala))},Titulo,,0,0,0,,"
+                f"{{\\fad(300,400)}}{_limpar(titulo)}"
+            )
     if credito:
         linhas.append(f"Dialogue: 2,{_tempo(0)},{_tempo(duracao_fala + FOLGA_S)},Credito,,0,0,0,,{_limpar(credito)}")
     destino.write_text("\n".join(linhas) + "\n", encoding="utf-8")
+    return blocos
 
 
 def _clipe(i, imagem, audio, texto, titulo, credito=None):
@@ -93,7 +104,7 @@ def _clipe(i, imagem, audio, texto, titulo, credito=None):
     fundo = TMP / f"fundo_{i:02d}.jpg"
     _fundo(imagem, fundo)
     ass = TMP / f"cena_{i:02d}.ass"
-    _legenda(ass, texto, fala, titulo, credito)
+    blocos = _legenda(ass, texto, fala, titulo, credito)
 
     z0, z1 = (1.0, 1 + ZOOM) if i % 2 else (1 + ZOOM, 1.0)
     filtro = ";".join([
@@ -115,16 +126,16 @@ def _clipe(i, imagem, audio, texto, titulo, credito=None):
         "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-r", FPS,
         "-c:a", "aac", "-b:a", "160k", "-t", f"{dur:.3f}", saida,
     ])
-    return saida, dur
+    return saida, dur, blocos
 
 
 def montar_video(roteiro: dict):
     TMP.mkdir(parents=True, exist_ok=True)
-    clipes, total = [], 0.0
+    clipes, total, legendas = [], 0.0, []
     cenas = roteiro["cenas"]
     for i, cena in enumerate(cenas, start=1):
         print(f"  clipe {i}/{len(cenas)}...")
-        clipe, dur = _clipe(
+        clipe, dur, blocos = _clipe(
             i,
             config.SAIDA / "cenas" / f"cena_{i:02d}.jpg",
             config.SAIDA / "audio" / f"cena_{i:02d}.wav",
@@ -133,6 +144,7 @@ def montar_video(roteiro: dict):
             roteiro.get("credito_tela"),
         )
         clipes.append(clipe)
+        legendas.extend([total + a, total + b, f] for a, b, f in blocos)
         total += dur
 
     lista = TMP / "lista.txt"
@@ -141,6 +153,7 @@ def montar_video(roteiro: dict):
     _rodar(["ffmpeg", "-loglevel", "error", "-y", "-f", "concat", "-safe", "0",
             "-i", lista, "-c", "copy", sem_musica])
 
+    (config.SAIDA / "legendas.json").write_text(json.dumps(legendas, ensure_ascii=False), encoding="utf-8")
     final = config.SAIDA / "video.mp4"
     musicas = sorted((config.ASSETS / "musicas").glob("*.mp3"))
     if musicas:
