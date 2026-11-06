@@ -14,5 +14,26 @@
     "titulo": "Tito e o Grande Tesouro do Deserto 🏜️",
     "moral": "Compartilhar o que temos de bom faz a nossa alegria se multiplicar.",
     "privacidade": "private"
+  },
+  {
+    "data": "2026-11-06T01:06:15+00:00",
+    "id": "GPN3toCGdoA",
+    "url": "https://youtube.com/shorts/GPN3toCGdoA",
+    "titulo": "O Patinho Duque e a Verdade no Pantanal 🦆",
+    "moral": "Deixai a mentira e falai a verdade cada um com o seu próximo.",
+    "privacidade": "private",
+    "materia": "geografia",
+    "topico": "o Pantanal",
+    "valor": "honestidade",
+    "especie": "patinho",
+    "versiculo": {
+      "ref": "Efésios 4:25",
+      "texto": "Deixai a mentira e falai a verdade cada um com o seu próximo."
+    },
+    "resumo": "Duque descobre o Pantanal e aprende com sua mãe Mallard Duck que a honestidade é fundamental.",
+    "estudio": "sdxl",
+    "roteirista": "groq:qwen/qwen3.8-27b",
+    "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+    "modelo_imagem": "@cf/bytedance/stable-diffusion-xl-lightning"
   }
 ]
