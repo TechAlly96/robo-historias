@@ -6,7 +6,8 @@ import datetime
 from zoneinfo import ZoneInfo
 
 from robo import config
-from robo.imagens import gerar_imagens
+from robo import curriculo
+from robo.imagens import EspecieDificil, gerar_imagens
 from robo.montagem import montar_video
 from robo.narracao import gerar_narracao
 from robo.publicar import publicar
@@ -32,6 +33,48 @@ def _ja_publicado_neste_turno() -> bool:
         if dt.date() == agora.date() and _turno(dt) == _turno(agora):
             return True
     return False
+
+
+JANELA_HORAS = (5, 21)      # só gera entre 05:00 e 21:00 de Brasília (a cota da Cloudflare renova às 21:00)
+MAX_POR_DIA = 2             # vídeos por dia no plano gratuito
+INTERVALO_MIN_HORAS = 4     # distância mínima entre dois vídeos
+DIFICEIS = config.HISTORICO.parent / "especies_dificeis.json"
+
+
+def _motivo_para_nao_publicar():
+    """Agenda robusta: o GitHub atrasa ou pula horários, então o robô é acordado várias vezes
+    e decide aqui se ainda falta vídeo hoje. Retorna o motivo para não publicar, ou None."""
+    agora = datetime.datetime.now(FUSO)
+    if not (JANELA_HORAS[0] <= agora.hour < JANELA_HORAS[1]):
+        return f"fora da janela de publicação ({JANELA_HORAS[0]}h–{JANELA_HORAS[1]}h de Brasília)"
+    if not config.HISTORICO.exists():
+        return None
+    datas = []
+    for h in json.loads(config.HISTORICO.read_text(encoding="utf-8")):
+        try:
+            datas.append(datetime.datetime.fromisoformat(h["data"]).astimezone(FUSO))
+        except (KeyError, ValueError, TypeError):
+            continue
+    hoje = [d for d in datas if d.date() == agora.date()]
+    if len(hoje) >= MAX_POR_DIA:
+        return f"os {MAX_POR_DIA} vídeos de hoje já foram publicados"
+    if datas and (agora - max(datas)).total_seconds() < INTERVALO_MIN_HORAS * 3600:
+        return f"o último vídeo saiu há menos de {INTERVALO_MIN_HORAS} horas"
+    return None
+
+
+def _dificeis() -> dict:
+    try:
+        return json.loads(DIFICEIS.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+
+
+def _excluir_especies(nomes) -> None:
+    """Tira do sorteio os animais que a IA de imagem deste estúdio não desenha bem."""
+    restantes = [e for e in curriculo.ESPECIES if e[0] not in nomes]
+    if len(restantes) >= 5:
+        curriculo.ESPECIES[:] = restantes
 
 
 IAS = {"gemini": "Google", "groq": "Groq", "cloudflare": "Cloudflare"}
@@ -68,31 +111,44 @@ def _escolher_estudio() -> str:
 
 
 def main():
-    if not os.environ.get("FORCAR") and _ja_publicado_neste_turno():
-        print("O vídeo deste turno já foi publicado; nada a fazer.")
-        return
+    if not os.environ.get("FORCAR"):
+        motivo = _motivo_para_nao_publicar()
+        if motivo:
+            print(f"Nada a fazer agora: {motivo}.")
+            return
     if config.SAIDA.exists():
         shutil.rmtree(config.SAIDA)
     config.SAIDA.mkdir(parents=True)
 
-    print("1/5 Roteiro")
     estudio_id = _escolher_estudio()
     estudio = config.ESTUDIOS[estudio_id]
     config.ORDEM_TEXTO = tuple(estudio["ordem_texto"])
     config.UM_PERSONAGEM_POR_CENA = estudio.get("um_personagem_por_cena", False)
-    print(f"  {estudio['nome']}")
-    roteiro = gerar_roteiro()
-    roteiro.update(
-        estudio=estudio_id, estudio_nome=estudio["nome"], modelo_imagem=estudio["modelo_imagem"],
-        imagem_credito=estudio["imagem_credito"], hashtags_estudio=estudio["hashtags"],
-        credito_tela=f"{estudio['nome']} · {estudio['imagem_credito']} · {_nome_ia(roteiro['roteirista'])}",
-    )
-    (config.SAIDA / "roteiro.json").write_text(
-        json.dumps(roteiro, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"  {roteiro['titulo']} ({len(roteiro['cenas'])} cenas)")
+    dificeis = _dificeis()
+    for tentativa in (1, 2):
+        _excluir_especies(dificeis.get(estudio_id, {}))
+        print("1/5 Roteiro")
+        print(f"  {estudio['nome']}")
+        roteiro = gerar_roteiro()
+        roteiro.update(
+            estudio=estudio_id, estudio_nome=estudio["nome"], modelo_imagem=estudio["modelo_imagem"],
+            imagem_credito=estudio["imagem_credito"], hashtags_estudio=estudio["hashtags"],
+            credito_tela=f"{estudio['nome']} · {estudio['imagem_credito']} · {_nome_ia(roteiro['roteirista'])}",
+        )
+        (config.SAIDA / "roteiro.json").write_text(
+            json.dumps(roteiro, ensure_ascii=False, indent=2), encoding="utf-8")
+        print(f"  {roteiro['titulo']} ({len(roteiro['cenas'])} cenas)")
 
-    print("2/5 Imagens")
-    gerar_imagens(roteiro)
+        print("2/5 Imagens")
+        try:
+            gerar_imagens(roteiro)
+            break
+        except EspecieDificil as e:
+            dificeis.setdefault(estudio_id, {})[e.especie] = datetime.date.today().isoformat()
+            DIFICEIS.write_text(json.dumps(dificeis, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            print(f"  {e}: '{e.especie}' sai do sorteio do {estudio['nome']}; nova história com outro animal")
+            if tentativa == 2:
+                raise
     if roteiro.get("cenas_reserva_flux"):
         cenas = ", ".join(map(str, roteiro["cenas_reserva_flux"]))
         novo = f"{roteiro['imagem_credito']} + {config.ESTUDIOS['flux']['imagem_credito']} (cenas {cenas})"

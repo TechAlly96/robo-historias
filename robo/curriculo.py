@@ -118,3 +118,38 @@ VALORES = {
                  "Este é o dia que fez o Senhor; regozijemo-nos e alegremo-nos nele.")],
     "humildade": [("Filipenses 2:3", "Filipenses, capítulo 2, versículo 3", "Cada um considere os outros superiores a si mesmo.")],
 }
+
+
+# Anatomia em inglês de cada protagonista: vai no início do prompt de imagem.
+APARENCIA = {
+    "capivara": "a large barrel-shaped rodent with a blunt square snout, small rounded ears, reddish-brown fur and no tail",
+    "tamanduá-bandeira": "a giant anteater with a very long thin tubular snout, tiny mouth, small round ears, a huge bushy fan-like tail, gray-brown fur and a bold black-and-white diagonal stripe across the shoulder",
+    "arara-azul": "a hyacinth macaw parrot with cobalt-blue feathers, a yellow ring around the eyes, a yellow patch at the base of a large curved black beak and a long tail",
+    "tucano": "a toco toucan bird with black feathers, a white throat and a huge bright orange beak with a black tip",
+    "jabuti": "a red-footed tortoise with a high domed dark shell with yellow patches and red-orange scales on the legs and head",
+    "boto-cor-de-rosa": "a pink Amazon river dolphin with a long thin beak-like snout, rounded forehead and smooth pink skin, living in a river",
+    "mico-leão-dourado": "a golden lion tamarin monkey with long shiny golden-orange fur forming a lion-like mane around a small dark face, and a long tail",
+    "quati": "a coati with a long pointed upturned snout, brown fur and a long ringed striped tail held upright",
+    "tatu": "an armadillo with a banded armored shell, pointed snout, small ears, short legs and a scaly tail",
+    "lobo-guará": "a maned wolf with very long thin black legs, reddish-orange fur, big upright ears, a black mane on the neck and a white-tipped tail",
+    "peixe-boi": "a manatee, a large round gray aquatic mammal with paddle-shaped flippers, a flat rounded tail and a whiskered snout, living in water",
+    "onça-pintada": "a jaguar cub, a golden-yellow big cat cub covered with black rosette spots",
+    "bicho-preguiça": "a three-toed sloth with shaggy gray-brown fur, a round face with dark eye stripes and a gentle smile, long arms with three long curved claws, hanging from branches",
+    "sapinho": "a small bright green tree frog with big round eyes and round sticky toe pads",
+    "tartaruga-marinha": "a sea turtle with a smooth streamlined shell and large paddle flippers, swimming in the ocean",
+    "cachorrinho": "a puppy dog with floppy ears and a wagging tail",
+    "gatinho": "a kitten with pointed ears, whiskers and a long tail",
+    "coelhinho": "a bunny rabbit with long upright ears, a fluffy round tail and a twitching nose",
+    "ovelhinha": "a lamb with fluffy white curly wool and a small face and legs",
+    "pintinho": "a baby chick, a tiny fluffy yellow bird with a small orange beak",
+    "patinho": "a duckling, a fluffy yellow baby duck with a flat orange bill and webbed feet",
+    "bezerrinho": "a calf, a young cow with small horn buds, big ears and hooves",
+    "elefantinho": "a baby elephant with gray skin, a long trunk and big floppy ears",
+    "girafinha": "a baby giraffe with a very long neck, a tan-and-brown spotted pattern and two small horns on the head",
+    "leãozinho": "a lion cub, a golden-tan big cat cub with round ears and a tufted tail",
+    "pinguim": "a penguin chick, fluffy gray and white, with a small black beak and flippers",
+    "corujinha": "a baby owl, fluffy and round, with huge round eyes, a small hooked beak and ear tufts",
+    "esquilo": "a squirrel, a small rodent with a big bushy curled tail and small rounded ears",
+    "ursinho-panda": "a panda cub, a black-and-white bear cub with black eye patches, black ears and black legs",
+    "raposinha": "a red fox kit with orange-red fur, a white chest, pointed ears and a bushy white-tipped tail",
+}

@@ -2,12 +2,15 @@ name: Robo Historias - video diario
 
 on:
   schedule:
-    # Horários em UTC (Brasília = UTC-3). O primeiro horário de cada turno publica;
-    # o segundo é nova tentativa e só age se o vídeo do turno ainda não saiu.
+    # Horários em UTC (Brasília = UTC-3). O GitHub atrasa ou pula agendamentos, então o robô
+    # é acordado várias vezes; ele mesmo decide se ainda falta vídeo (máx. 2/dia, 4 h de intervalo).
     - cron: "17 15 * * *"   # 12:17 almoço
-    - cron: "37 16 * * *"   # 13:37 almoço (nova tentativa)
+    - cron: "47 16 * * *"   # 13:47 nova tentativa
+    - cron: "17 18 * * *"   # 15:17 nova tentativa
     - cron: "17 21 * * *"   # 18:17 noite
-    - cron: "37 22 * * *"   # 19:37 noite (nova tentativa)
+    - cron: "07 22 * * *"   # 19:07 nova tentativa
+    - cron: "57 22 * * *"   # 19:57 nova tentativa
+    - cron: "37 23 * * *"   # 20:37 última tentativa (a cota renova às 21:00)
   workflow_dispatch:
     inputs:
       privacidade:
@@ -91,11 +94,11 @@ jobs:
           if-no-files-found: ignore
 
       - name: Salvar histórico no repositório
-        if: success()
+        if: always()
         run: |
           git config user.name "robo-historias[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add historico.json
-          git diff --cached --quiet || git commit -m "Histórico: vídeo de $(date -u +%F)"
+          for f in historico.json especies_dificeis.json; do [ -f "$f" ] && git add "$f"; done
+          git diff --cached --quiet || git commit -m "Histórico: execução de $(date -u +%F)"
           git pull -q --rebase origin main
           git push

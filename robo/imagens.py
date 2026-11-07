@@ -2,6 +2,7 @@
 import base64
 import io
 import json
+import os
 import time
 
 import requests
@@ -11,11 +12,28 @@ from PIL import Image
 from pydantic import BaseModel
 
 from robo import config
+from robo.curriculo import APARENCIA
 from robo.resiliencia import gerar_com_fallback
 
 TEMPORARIOS = {429, 500, 502, 503, 504}
 ESPERAS = [0, 5, 15, 45]
 RODADAS_CORRECAO = 3
+# Teto de imagens por execução: ~metade da cota gratuita diária da Cloudflare (10 mil neurônios ≈ 34 imagens FLUX).
+# Assim uma execução com problema nunca consome a cota do outro vídeo do dia.
+LIMITE_IMAGENS = int(os.environ.get("LIMITE_IMAGENS") or 17)
+_usadas = 0
+
+
+class OrcamentoEsgotado(RuntimeError):
+    pass
+
+
+class EspecieDificil(RuntimeError):
+    """A IA de imagem não consegue desenhar este animal: melhor trocar de espécie do que gastar a cota."""
+
+    def __init__(self, especie: str):
+        super().__init__(f"a IA de imagem não acertou a espécie '{especie}'")
+        self.especie = especie
 NEGATIVO_SDXL = ("text, letters, watermark, logo, human, person, people, realistic photo, photorealistic, "
                  "scary, violent, extra limbs, deformed, human hands, fingers, blurry")
 
@@ -39,8 +57,10 @@ def _coadjuvantes_na_cena(roteiro: dict, cena: dict) -> list:
 def _prompt(roteiro: dict, cena: dict, reforco: bool = False) -> str:
     """Prompt longo e detalhado (FLUX lê o texto inteiro)."""
     especie = roteiro.get("especie_en", "")
-    inicio = (f"IMPORTANT: the main character is a {especie}, a real animal, never any other species. "
-              if reforco and especie else "")
+    anatomia = APARENCIA.get(roteiro.get("especie", ""), "")
+    inicio = (f"The main character is {anatomia}. " if anatomia else "")
+    if reforco and especie:
+        inicio = f"IMPORTANT: the main character is a {especie}, a real animal, never any other species. " + inicio
     extras = [f"{c['nome']} is a {c['especie_en']}: {c.get('aparencia_en', '')}" for c in _coadjuvantes_na_cena(roteiro, cena)]
     elenco = ("Other characters, identical in every scene: " + "; ".join(extras)
               + ". Only these characters appear; no other animals or characters, not even in the background. "
@@ -73,6 +93,10 @@ def _para_jpeg(dados: bytes) -> bytes:
 
 
 def _gerar_uma(roteiro: dict, cena: dict, reforco: bool = False) -> bytes:
+    global _usadas
+    if _usadas >= LIMITE_IMAGENS:
+        raise OrcamentoEsgotado(f"teto de {LIMITE_IMAGENS} imagens desta execução atingido; "
+                                "o restante da cota fica para o outro vídeo do dia")
     modelo = roteiro.get("modelo_imagem") or config.MODELO_IMAGEM
     if "flux" in modelo:
         corpo = {"prompt": _prompt(roteiro, cena, reforco), "steps": 8}
@@ -96,6 +120,7 @@ def _gerar_uma(roteiro: dict, cena: dict, reforco: bool = False) -> bytes:
                 dados = base64.b64decode(r.json()["result"]["image"])
             else:
                 dados = r.content
+            _usadas += 1
             return _para_jpeg(dados)
         ultimo = f"HTTP {r.status_code}: {r.text[:200]}"
         if "daily free allocation" in r.text:
@@ -155,6 +180,11 @@ def gerar_imagens(roteiro: dict) -> list:
         if not reprovadas:
             print(f"  verificação visual: aprovadas ({len(pendentes)} conferidas na rodada {rodada})")
             break
+        especie_errada = [n for n, p in reprovadas.items() if "protagonista" in p.lower()]
+        if rodada <= 2 and len(especie_errada) >= max(3, len(pendentes) // 2 + 1):
+            for n in especie_errada:
+                print(f"  cena {n} reprovada: {reprovadas[n]}")
+            raise EspecieDificil(roteiro.get("especie", ""))
         pendentes = {}
         for n, problema in sorted(reprovadas.items()):
             print(f"  cena {n} reprovada: {problema} -> refazendo")
