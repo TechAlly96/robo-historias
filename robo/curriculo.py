@@ -153,3 +153,23 @@ APARENCIA = {
     "ursinho-panda": "a panda cub, a black-and-white bear cub with black eye patches, black ears and black legs",
     "raposinha": "a red fox kit with orange-red fur, a white chest, pointed ears and a bushy white-tipped tail",
 }
+
+
+# Protagonistas que a IA de imagem gratuita não desenha bem (testado: saem com patas, híbridos ou espécie errada).
+# Ficam fora do sorteio; voltam se um motor de imagem melhor entrar no canal.
+DIFICEIS_IMAGEM = {"peixe-boi", "boto-cor-de-rosa", "tartaruga-marinha", "tamanduá-bandeira", "tatu", "jabuti"}
+
+# Coadjuvantes que a IA desenha bem (lista entregue ao roteirista).
+COADJUVANTES_SEGUROS = [
+    "capivara", "arara", "tucano", "mico-leão-dourado", "quati", "onça-pintada", "bicho-preguiça", "sapinho",
+    "cachorro", "gato", "coelho", "ovelha", "galinha", "pintinho", "pato", "vaca", "bezerro", "porquinho",
+    "cavalo", "pônei", "cabra", "elefante", "girafa", "leão", "zebra", "macaco", "urso", "panda", "pinguim",
+    "coruja", "esquilo", "raposa", "ratinho", "joaninha", "abelha", "borboleta",
+]
+
+# Trechos que reprovam um coadjuvante (aquáticos, cascos, escamas e anatomias que a IA erra).
+COADJUVANTES_PROIBIDOS = [
+    "peixe", "boto", "golfinh", "baleia", "tubar", "tartarug", "jabuti", "cagado", "tatu", "tamandu", "iguana",
+    "lagart", "jacare", "cobra", "serpente", "polvo", "caranguej", "camar", "agua-viva", "estrela-do-mar",
+    "cavalo-marinho", "porco-espinho", "ourico", "aranha", "escorpi", "centopeia", "formiga", "barata",
+]

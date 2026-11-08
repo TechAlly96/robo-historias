@@ -8,7 +8,7 @@ from google.genai import types
 from pydantic import BaseModel, Field
 
 from robo import config
-from robo.curriculo import ESPECIES, MATERIAS, VALORES
+from robo.curriculo import COADJUVANTES_PROIBIDOS, COADJUVANTES_SEGUROS, ESPECIES, MATERIAS, VALORES
 from robo.resiliencia import gerar_com_fallback
 
 TENTATIVAS = 4
@@ -96,6 +96,18 @@ def _validar(r: Roteiro, pt: str, en: str, chave: str) -> list:
     return problemas
 
 
+def _coadjuvantes_fora_da_lista(r, pt: str) -> list:
+    """Coadjuvantes que a IA de imagem não desenha bem (o mesmo animal do protagonista é sempre aceito)."""
+    problemas = []
+    for co in r.coadjuvantes:
+        nome = _norm(co.especie_pt)
+        if _norm(pt) in nome:
+            continue
+        if any(_norm(p) in nome for p in COADJUVANTES_PROIBIDOS):
+            problemas.append(f'o coadjuvante {co.nome} ({co.especie_pt}) não pode ser usado: escolha um animal da lista permitida')
+    return problemas
+
+
 def gerar_roteiro() -> dict:
     hist = _historico()
     materia = _escolher(list(MATERIAS), hist, "materia")
@@ -123,7 +135,8 @@ Regras:
 - Estrutura: apresentação, problema, tentativa, virada, solução e final feliz.
 - Todo animal citado na narração ou mostrado nas imagens precisa ser o protagonista ou estar em "coadjuvantes"; não acrescente figurantes, famílias ou multidões.
 - Em temas de segurança (tesoura, fogo, tomada, rua, carro), um adulto da mesma espécie do protagonista (pai, mãe ou professor, listado nos coadjuvantes) orienta e supervisiona; filhotes nunca manuseiam objeto perigoso sozinhos.
-- Coadjuvantes podem ser qualquer animal real (inclusive insetos), sempre com aparência fofa e amigável, nunca assustadora.
+- Coadjuvantes: escolha SOMENTE animais desta lista (são os que a ilustração consegue desenhar certo): {', '.join(COADJUVANTES_SEGUROS)}; ou um adulto da mesma espécie do protagonista. Sempre com aparência fofa e amigável, nunca assustadora.
+- Ambientes em terra firme ou à beira d'água (campo, floresta, quintal, escola, casa, margem do rio); nada de cenas debaixo d'água, cardumes ou multidões ao fundo.
 - A história ensina sempre três coisas: CONHECIMENTO (o conteúdo escolar), SABEDORIA (a moral à luz da Bíblia) e DISCERNIMENTO: o protagonista enfrenta uma escolha clara entre o certo e o errado, pensa nas consequências e escolhe o certo, para a criança aprender a discernir.
 - Revise a ortografia e a concordância de cada frase antes de responder, seguindo o Acordo Ortográfico vigente (sem trema).
 - O conteúdo escolar deve ser ensinado de forma EXPLÍCITA e correta na narração: diga o fato e dê exemplos concretos (ex.: para vogais, cite cada vogal e uma palavra que começa com ela; para contar, conte os objetos em voz alta).
@@ -151,7 +164,7 @@ Regras:
         autor_id = autor_id or f"{resp.provedor}:{resp.modelo}"
         try:
             r = Roteiro.model_validate_json(resp.text)
-            problemas = _validar(r, pt, en, chave)
+            problemas = _validar(r, pt, en, chave) + _coadjuvantes_fora_da_lista(r, pt)
         except Exception as e:
             problemas = [f"resposta fora do formato pedido ({str(e)[:200]})"]
         if not problemas:

@@ -126,7 +126,9 @@ def main():
     config.UM_PERSONAGEM_POR_CENA = estudio.get("um_personagem_por_cena", False)
     dificeis = _dificeis()
     for tentativa in (1, 2):
-        _excluir_especies(dificeis.get(estudio_id, {}))
+        recentes = {e for e, d in dificeis.get(estudio_id, {}).items()
+                    if (datetime.date.today() - datetime.date.fromisoformat(d)).days <= 60}
+        _excluir_especies(recentes | curriculo.DIFICEIS_IMAGEM)
         print("1/5 Roteiro")
         print(f"  {estudio['nome']}")
         roteiro = gerar_roteiro()

@@ -197,7 +197,8 @@ def gerar_imagens(roteiro: dict) -> list:
             print(f"  verificação visual: aprovadas ({len(pendentes)} conferidas na rodada {rodada})")
             break
         especie_errada = [n for n, p in reprovadas.items() if "protagonista" in p.lower()]
-        if rodada <= 2 and len(especie_errada) >= max(3, len(pendentes) // 2 + 1):
+        quase_tudo = rodada == 1 and len(reprovadas) >= 5
+        if quase_tudo or (rodada <= 2 and len(especie_errada) >= max(3, len(pendentes) // 2 + 1)):
             for n in especie_errada:
                 print(f"  cena {n} reprovada: {reprovadas[n]}")
             raise EspecieDificil(roteiro.get("especie", ""))
