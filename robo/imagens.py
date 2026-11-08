@@ -75,6 +75,20 @@ def _prompt(roteiro: dict, cena: dict, reforco: bool = False) -> str:
     )
 
 
+def _prompt_seguro(roteiro: dict, cena: dict) -> str:
+    """Plano seguro para cena teimosa: close no protagonista, sem patas nem outros personagens."""
+    especie = roteiro.get("especie_en", "")
+    anatomia = APARENCIA.get(roteiro.get("especie", ""), f"a {especie}")
+    return (
+        f"Close-up portrait of the main character, {anatomia}, shown from the chest up, "
+        f"paws and hands out of frame, calm happy expression, looking at the camera. "
+        f"Main character details: {roteiro['personagem_visual']}. "
+        f"Background setting only (no characters in it): {cena['prompt_visual']}. "
+        f"Only this one character in the image, no other animals or characters. "
+        f"Style: {config.ESTILO_VISUAL}. {config.PROIBIDO_VISUAL}."
+    )
+
+
 def _prompt_sdxl(roteiro: dict, cena: dict, reforco: bool = False) -> str:
     """Prompt curto com o essencial no começo (SDXL só lê ~77 tokens)."""
     especie = roteiro.get("especie_en", "")
@@ -92,13 +106,15 @@ def _para_jpeg(dados: bytes) -> bytes:
     return buf.getvalue()
 
 
-def _gerar_uma(roteiro: dict, cena: dict, reforco: bool = False) -> bytes:
+def _gerar_uma(roteiro: dict, cena: dict, reforco: bool = False, seguro: bool = False) -> bytes:
     global _usadas
     if _usadas >= LIMITE_IMAGENS:
         raise OrcamentoEsgotado(f"teto de {LIMITE_IMAGENS} imagens desta execução atingido; "
                                 "o restante da cota fica para o outro vídeo do dia")
-    modelo = roteiro.get("modelo_imagem") or config.MODELO_IMAGEM
-    if "flux" in modelo:
+    modelo = config.MODELO_IMAGEM if seguro else (roteiro.get("modelo_imagem") or config.MODELO_IMAGEM)
+    if seguro:
+        corpo = {"prompt": _prompt_seguro(roteiro, cena), "steps": 8}
+    elif "flux" in modelo:
         corpo = {"prompt": _prompt(roteiro, cena, reforco), "steps": 8}
     else:
         corpo = {"prompt": _prompt_sdxl(roteiro, cena, reforco), "negative_prompt": NEGATIVO_SDXL,
@@ -200,8 +216,24 @@ def gerar_imagens(roteiro: dict) -> list:
                 caminhos[n].write_bytes(_gerar_uma(reserva, roteiro["cenas"][n - 1], reforco=True))
                 pendentes[n] = caminhos[n]
             reprovadas = _verificar(roteiro, pendentes)
-            if not reprovadas:
-                roteiro["cenas_reserva_flux"] = sorted(pendentes)
+            roteiro["cenas_reserva_flux"] = sorted(set(pendentes) - set(reprovadas))
+        if reprovadas and len(reprovadas) <= 2:
+            print(f"  plano seguro (close no protagonista) nas cenas {sorted(reprovadas)}")
+            pendentes = {}
+            for n in sorted(reprovadas):
+                caminhos[n].write_bytes(_gerar_uma(roteiro, roteiro["cenas"][n - 1], seguro=True))
+                pendentes[n] = caminhos[n]
+            reprovadas = _verificar(roteiro, pendentes)
+            if "flux" not in (roteiro.get("modelo_imagem") or config.MODELO_IMAGEM):
+                feitas = set(roteiro.get("cenas_reserva_flux", [])) | (set(pendentes) - set(reprovadas))
+                roteiro["cenas_reserva_flux"] = sorted(feitas)
+            if len(reprovadas) == 1:
+                n = next(iter(reprovadas))
+                vizinhas = sorted((m for m in caminhos if m != n), key=lambda m: (abs(m - n), m))
+                caminhos[n].write_bytes(caminhos[vizinhas[0]].read_bytes())
+                roteiro["cenas_reaproveitadas"] = {str(n): vizinhas[0]}
+                print(f"  cena {n}: reaproveitada a imagem já aprovada da cena {vizinhas[0]} (mesmo personagem)")
+                reprovadas = {}
         if reprovadas:
             raise RuntimeError(f"Imagens incompatíveis com a história mesmo após correções: {reprovadas}. "
                                "Nada será publicado.")
