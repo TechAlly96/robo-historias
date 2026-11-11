@@ -1,5 +1,7 @@
 """Narração: 1 chamada ao Gemini TTS por vídeo, dividida em cenas; Piper offline como reserva."""
 import array
+import base64
+import io
 import json
 import math
 import os
@@ -105,8 +107,41 @@ def _salvar_wav(destino, pcm: bytes) -> float:
     return len(pcm) / (TAXA * CANAIS * BYTES)
 
 
-def _gemini(texto: str):
-    cliente = genai.Client(api_key=config.gemini_key())
+ESTILO_VOZ = ("warm, gentle and cheerful storyteller for young children, "
+              "calm pace, natural Brazilian Portuguese")
+
+
+def _pcm_de(dados) -> bytes:
+    """Aceita base64, WAV ou PCM cru e devolve PCM 16 bits mono (ajusta a taxa se vier WAV)."""
+    global TAXA, JAN
+    if isinstance(dados, str):
+        dados = base64.b64decode(dados)
+    if dados[:4] == b"RIFF":
+        with wave.open(io.BytesIO(dados)) as w:
+            if w.getnchannels() != 1 or w.getsampwidth() != 2:
+                raise ValueError(f"áudio inesperado: {w.getnchannels()} canais, {w.getsampwidth() * 8} bits")
+            TAXA = w.getframerate()
+            JAN = TAXA // 50
+            return w.readframes(w.getnframes())
+    return dados
+
+
+def _via_interactions(cliente, modelo: str, texto: str) -> bytes:
+    """API nova de voz do Gemini (Interactions), exigida pelos modelos 3.8 TTS."""
+    it = cliente.interactions.create(
+        model=modelo,
+        input=[{"type": "user_input", "content": [{
+            "type": "text", "text": texto,
+            "annotations": [{"type": "speech_metadata", "style": ESTILO_VOZ}],
+        }]}],
+        response_format={"type": "audio", "mime_type": "audio/l16", "sample_rate": 24000},
+        generation_config={"speech_config": [{"voice": config.VOZ_NARRADOR}]},
+    )
+    return _pcm_de(it.output_audio.data)
+
+
+def _via_generate_content(cliente, modelo: str, texto: str) -> bytes:
+    """API antiga (generate_content + speech_config), mantida para modelos que ainda a aceitam."""
     ajustes = types.GenerateContentConfig(
         response_modalities=["AUDIO"],
         speech_config=types.SpeechConfig(
@@ -115,21 +150,40 @@ def _gemini(texto: str):
             )
         ),
     )
+    r = cliente.models.generate_content(model=modelo, contents=texto, config=ajustes)
+    return _pcm_de(r.candidates[0].content.parts[0].inline_data.data)
+
+
+def _gemini(texto: str):
+    """Tenta cada modelo de voz pela API nova e pela antiga. Qualquer erro definitivo passa para o
+    próximo caminho; se nenhum funcionar, devolve (None, None) e a narração usa o Piper offline."""
+    cliente = genai.Client(api_key=config.gemini_key())
+    caminhos = []
+    if hasattr(cliente, "interactions"):
+        caminhos.append(("interactions", _via_interactions))
+    caminhos.append(("generate_content", _via_generate_content))
     for modelo in config.MODELOS_VOZ:
-        for espera in [0, *ESPERAS_VOZ]:
-            if espera:
-                print(f"  aguardando {espera}s ({modelo})...")
-                time.sleep(espera)
-            try:
-                r = cliente.models.generate_content(model=modelo, contents=texto, config=ajustes)
-                return r.candidates[0].content.parts[0].inline_data.data, modelo
-            except errors.APIError as e:
-                codigo = getattr(e, "code", None)
-                if codigo == 404:
+        for nome, chamar in caminhos:
+            for espera in [0, *ESPERAS_VOZ]:
+                if espera:
+                    print(f"  aguardando {espera}s ({modelo})...")
+                    time.sleep(espera)
+                try:
+                    pcm = chamar(cliente, modelo, texto)
+                    if pcm and len(pcm) > TAXA:  # pelo menos ~0,5 s de áudio
+                        return pcm, modelo
+                    print(f"  {modelo} ({nome}): áudio vazio")
                     break
-                if codigo not in TEMPORARIOS:
-                    raise
-                print(f"  {modelo}: erro temporário {codigo}")
+                except errors.APIError as e:
+                    codigo = getattr(e, "code", None)
+                    if codigo in TEMPORARIOS:
+                        print(f"  {modelo} ({nome}): erro temporário {codigo}")
+                        continue
+                    print(f"  {modelo} ({nome}): erro {codigo} — {str(e)[:150]}")
+                    break
+                except Exception as e:  # formato de resposta mudou, campo ausente etc.
+                    print(f"  {modelo} ({nome}): {type(e).__name__} — {str(e)[:150]}")
+                    break
     return None, None
 
 
@@ -161,7 +215,11 @@ def gerar_narracao(roteiro: dict) -> list:
 
     pcm, modelo = (None, None)
     if os.environ.get("VOZ", "").lower() != "piper":
-        pcm, modelo = _gemini("\n\n".join(textos))
+        try:
+            pcm, modelo = _gemini("\n\n".join(textos))
+        except Exception as e:  # nunca derruba o vídeo por causa da voz
+            print(f"  voz Gemini falhou ({type(e).__name__}: {str(e)[:150]})")
+            pcm, modelo = None, None
 
     resultado = []
     if pcm:

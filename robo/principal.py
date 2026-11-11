@@ -35,7 +35,7 @@ def _ja_publicado_neste_turno() -> bool:
     return False
 
 
-JANELA_HORAS = (5, 21)      # só gera entre 05:00 e 21:00 de Brasília (a cota da Cloudflare renova às 21:00)
+JANELA_HORAS = (0, 24)      # sem restrição de horário: o GitHub chega a atrasar as execuções em horas
 MAX_POR_DIA = 2             # vídeos por dia no plano gratuito
 INTERVALO_MIN_HORAS = 4     # distância mínima entre dois vídeos
 DIFICEIS = config.HISTORICO.parent / "especies_dificeis.json"

@@ -31,7 +31,7 @@ ESPECIES = [
     ("corujinha", "baby owl", "coruj"),
     ("esquilo", "squirrel", "esquil"),
     ("ursinho-panda", "panda cub", "panda"),
-    ("raposinha", "red fox kit", "raposa"),
+    ("raposinha", "red fox kit", "rapos"),
 ]
 
 MATERIAS = {
