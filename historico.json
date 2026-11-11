@@ -56,5 +56,26 @@
     "roteirista": "gemini:gemini-3.5-flash-lite",
     "voz": "Gemini TTS (gemini-3.8-flash-tts)",
     "modelo_imagem": "@cf/black-forest-labs/flux-1-schnell"
+  },
+  {
+    "data": "2026-11-11T07:26:53+00:00",
+    "id": "YCJft64wrLk",
+    "url": "https://youtube.com/shorts/YCJft64wrLk",
+    "titulo": "Mimi e as Patinhas Limpas 🧼",
+    "moral": "Ter coragem é fazer o que é certo e cuidar com amor do próximo, confiando na presença de Deus.",
+    "privacidade": "private",
+    "materia": "saúde e higiene",
+    "topico": "lavar as mãos",
+    "valor": "coragem",
+    "especie": "corujinha",
+    "versiculo": {
+      "ref": "Josué 1:9",
+      "texto": "Esforça-te e tem bom ânimo; não temas, porque o Senhor, teu Deus, é contigo por onde quer que andares."
+    },
+    "resumo": "A corujinha Mimi aprende a lavar as patas corretamente com a mãe Luna e tem coragem para ensinar o sapinho Sal a se higienizar antes de brincar.",
+    "estudio": "sdxl",
+    "roteirista": "groq:qwen/qwen3.8-27b",
+    "voz": "Piper (pt_BR-faber-medium)",
+    "modelo_imagem": "@cf/bytedance/stable-diffusion-xl-lightning"
   }
 ]
