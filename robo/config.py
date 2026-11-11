@@ -89,7 +89,8 @@ PRIVACIDADE_PADRAO = _privacidade_padrao()
 
 # Ordem de fallback para geração de texto (erros temporários 503/429/500)
 MODELOS_TEXTO = ["gemini-3.8-flash", "gemini-3.7-flash", "gemini-3.5-flash", "gemini-flash-latest", "gemini-3.5-flash-lite"]
-MODELOS_VOZ = ["gemini-3.8-flash-tts", "gemini-3.8-flash-lite-tts", "gemini-3.1-flash-tts-preview"]
+MODELOS_VOZ = ["gemini-3.8-flash-tts", "gemini-3.8-flash-lite-tts", "gemini-3.1-flash-tts-preview",
+               "gemini-2.5-flash-preview-tts"]
 ESPERAS_RETRY_S = [5, 15, 45]
 
 # Ordem dos provedores de texto (roteiro e revisão). O revisor usa sempre outro provedor primeiro.

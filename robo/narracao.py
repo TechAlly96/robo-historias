@@ -109,6 +109,7 @@ def _salvar_wav(destino, pcm: bytes) -> float:
 
 ESTILO_VOZ = ("warm, gentle and cheerful storyteller for young children, "
               "calm pace, natural Brazilian Portuguese")
+API = "https://generativelanguage.googleapis.com/v1beta"
 
 
 def _pcm_de(dados) -> bytes:
@@ -123,67 +124,82 @@ def _pcm_de(dados) -> bytes:
             TAXA = w.getframerate()
             JAN = TAXA // 50
             return w.readframes(w.getnframes())
+    TAXA, JAN = 24000, 24000 // 50
     return dados
 
 
-def _via_interactions(cliente, modelo: str, texto: str) -> bytes:
-    """API nova de voz do Gemini (Interactions), exigida pelos modelos 3.8 TTS."""
-    it = cliente.interactions.create(
-        model=modelo,
-        input=[{"type": "user_input", "content": [{
-            "type": "text", "text": texto,
-            "annotations": [{"type": "speech_metadata", "style": ESTILO_VOZ}],
-        }]}],
-        response_format={"type": "audio", "mime_type": "audio/l16", "sample_rate": 24000},
-        generation_config={"speech_config": [{"voice": config.VOZ_NARRADOR}]},
-    )
-    return _pcm_de(it.output_audio.data)
+def _achar_audio(obj):
+    """Procura o base64 do áudio na resposta JSON, seja qual for o formato da API."""
+    if isinstance(obj, dict):
+        tipo = str(obj.get("mime_type") or obj.get("mimeType") or "")
+        if isinstance(obj.get("data"), str) and ("audio" in tipo or len(obj["data"]) > 2000):
+            return obj["data"]
+        for v in obj.values():
+            achado = _achar_audio(v)
+            if achado:
+                return achado
+    elif isinstance(obj, list):
+        for v in obj:
+            achado = _achar_audio(v)
+            if achado:
+                return achado
+    return None
 
 
-def _via_generate_content(cliente, modelo: str, texto: str) -> bytes:
-    """API antiga (generate_content + speech_config), mantida para modelos que ainda a aceitam."""
-    ajustes = types.GenerateContentConfig(
-        response_modalities=["AUDIO"],
-        speech_config=types.SpeechConfig(
-            voice_config=types.VoiceConfig(
-                prebuilt_voice_config=types.PrebuiltVoiceConfig(voice_name=config.VOZ_NARRADOR)
-            )
-        ),
-    )
-    r = cliente.models.generate_content(model=modelo, contents=texto, config=ajustes)
-    return _pcm_de(r.candidates[0].content.parts[0].inline_data.data)
+def _via_generate_content(modelo: str, texto: str):
+    """Formato clássico (o mesmo da voz aprovada no início do canal), direto na API REST."""
+    corpo = {"contents": [{"parts": [{"text": texto}]}],
+             "generationConfig": {"responseModalities": ["AUDIO"], "speechConfig": {
+                 "voiceConfig": {"prebuiltVoiceConfig": {"voiceName": config.VOZ_NARRADOR}}}}}
+    return requests.post(f"{API}/models/{modelo}:generateContent", json=corpo, timeout=300,
+                         headers={"x-goog-api-key": config.gemini_key()})
+
+
+def _via_interactions(modelo: str, texto: str):
+    """Formato novo (Interactions), só para os modelos 3.8, que aceitam o estilo de leitura."""
+    corpo = {"model": modelo,
+             "input": [{"type": "user_input", "content": [{
+                 "type": "text", "text": texto,
+                 "annotations": [{"type": "speech_metadata", "style": ESTILO_VOZ}]}]}],
+             "response_format": {"type": "audio"},
+             "generation_config": {"speech_config": [{"voice": config.VOZ_NARRADOR}]}}
+    return requests.post(f"{API}/interactions", json=corpo, timeout=300,
+                         headers={"x-goog-api-key": config.gemini_key()})
 
 
 def _gemini(texto: str):
-    """Tenta cada modelo de voz pela API nova e pela antiga. Qualquer erro definitivo passa para o
-    próximo caminho; se nenhum funcionar, devolve (None, None) e a narração usa o Piper offline."""
-    cliente = genai.Client(api_key=config.gemini_key())
-    caminhos = []
-    if hasattr(cliente, "interactions"):
-        caminhos.append(("interactions", _via_interactions))
-    caminhos.append(("generate_content", _via_generate_content))
+    """Voz do Gemini direto pela API REST (a biblioteca google-genai mudou e quebrou a voz).
+    Tenta cada modelo nos dois formatos; erro definitivo passa adiante; no fim, (None, None) = Piper."""
     for modelo in config.MODELOS_VOZ:
+        caminhos = [("generateContent", _via_generate_content)]
+        if "3.8" in modelo:
+            caminhos.append(("interactions", _via_interactions))
         for nome, chamar in caminhos:
             for espera in [0, *ESPERAS_VOZ]:
                 if espera:
                     print(f"  aguardando {espera}s ({modelo})...")
                     time.sleep(espera)
                 try:
-                    pcm = chamar(cliente, modelo, texto)
-                    if pcm and len(pcm) > TAXA:  # pelo menos ~0,5 s de áudio
-                        return pcm, modelo
-                    print(f"  {modelo} ({nome}): áudio vazio")
+                    r = chamar(modelo, texto)
+                except requests.RequestException as e:
+                    print(f"  {modelo} ({nome}): falha de rede — {str(e)[:150]}")
+                    continue
+                if r.status_code in TEMPORARIOS:
+                    print(f"  {modelo} ({nome}): erro temporário {r.status_code}")
+                    continue
+                if not r.ok:
+                    print(f"  {modelo} ({nome}): erro {r.status_code} — {r.text[:200]}")
                     break
-                except errors.APIError as e:
-                    codigo = getattr(e, "code", None)
-                    if codigo in TEMPORARIOS:
-                        print(f"  {modelo} ({nome}): erro temporário {codigo}")
-                        continue
-                    print(f"  {modelo} ({nome}): erro {codigo} — {str(e)[:150]}")
+                try:
+                    b64 = _achar_audio(r.json())
+                    pcm = _pcm_de(b64) if b64 else b""
+                except Exception as e:
+                    print(f"  {modelo} ({nome}): resposta inesperada — {type(e).__name__}: {str(e)[:150]}")
                     break
-                except Exception as e:  # formato de resposta mudou, campo ausente etc.
-                    print(f"  {modelo} ({nome}): {type(e).__name__} — {str(e)[:150]}")
-                    break
+                if len(pcm) > TAXA:  # pelo menos ~0,5 s de áudio
+                    return pcm, modelo
+                print(f"  {modelo} ({nome}): resposta sem áudio")
+                break
     return None, None
 
 
