@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Painel do Robô</title>
+<meta name="description" content="Acompanhamento em tempo real do Robô de Histórias do canal Alice Oliveira">
+<meta name="theme-color" content="#0b1220">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{
+  --bg:#0b1220;--card:#121b2e;--card2:#18233a;--line:#24324f;--txt:#e7edf8;--mut:#8fa0bf;
+  --ok:#2fbf71;--err:#ef5350;--warn:#f5b041;--run:#4da3ff;--chk:#56627a;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body{padding:max(12px,env(safe-area-inset-top)) 16px 32px}
+main{max-width:820px;margin:0 auto}
+header{display:flex;align-items:center;gap:12px;margin:4px 0 14px}
+header img{width:40px;height:40px;border-radius:10px}
+header h1{font-size:19px;margin:0;line-height:1.2}
+header p{margin:0;color:var(--mut);font-size:13px}
+.acoes{margin-left:auto;display:flex;gap:6px}
+button{background:var(--card2);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font:inherit;font-size:13px;cursor:pointer}
+button.prim{background:var(--run);border-color:var(--run);color:#06121f;font-weight:600}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin:0 0 12px}
+.card h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin:0 0 10px;font-weight:600}
+.status{display:flex;gap:14px;align-items:center}
+.pulso{width:16px;height:16px;border-radius:50%;flex:none}
+.pulso.run{background:var(--run);box-shadow:0 0 0 0 rgba(77,163,255,.6);animation:p 1.6s infinite}
+.pulso.ok{background:var(--ok)}.pulso.err{background:var(--err)}.pulso.idle{background:var(--chk)}
+@keyframes p{70%{box-shadow:0 0 0 12px rgba(77,163,255,0)}100%{box-shadow:0 0 0 0 rgba(77,163,255,0)}}
+.status b{font-size:18px;display:block}
+.status span{color:var(--mut);font-size:13px}
+.passos{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.passo{font-size:12px;padding:4px 9px;border-radius:999px;border:1px solid var(--line);color:var(--mut)}
+.passo.feito{border-color:var(--ok);color:var(--ok)}
+.passo.agora{border-color:var(--run);color:#fff;background:rgba(77,163,255,.18)}
+.passo.falhou{border-color:var(--err);color:#fff;background:rgba(239,83,80,.2)}
+.grade{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.grade{grid-template-columns:1fr}}
+.prox li{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line)}
+.prox li:last-child{border:0}
+ul{list-style:none;margin:0;padding:0}
+.mut{color:var(--mut)}
+.barra{height:12px;background:var(--card2);border-radius:999px;overflow:hidden;border:1px solid var(--line)}
+.barra i{display:block;height:100%;background:linear-gradient(90deg,var(--ok),var(--warn),var(--err))}
+.grafico{overflow-x:auto;padding-bottom:4px}
+.colunas{display:flex;align-items:flex-end;gap:6px;height:150px;min-width:100%;padding-top:8px}
+.dia{flex:0 0 30px;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%}
+.pilha{flex:1;width:22px;display:flex;flex-direction:column-reverse;justify-content:flex-start}
+.pilha i{display:block;width:100%;border-radius:4px;margin-top:2px}
+.dia small{font-size:10px;color:var(--mut);white-space:nowrap}
+.legenda{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--mut);margin-top:8px}
+.legenda b{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.exec{border-top:1px solid var(--line);padding:10px 0}
+.exec:first-child{border-top:0;padding-top:0}
+.exec .topo{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tag{font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;text-transform:uppercase;letter-spacing:.04em}
+.tag.ok{background:rgba(47,191,113,.18);color:var(--ok)}.tag.err{background:rgba(239,83,80,.18);color:#ff8a87}
+.tag.run{background:rgba(77,163,255,.18);color:var(--run)}.tag.chk{background:rgba(143,160,191,.14);color:var(--mut)}
+.tag.warn{background:rgba(245,176,65,.18);color:var(--warn)}
+.exec p{margin:6px 0 0}
+.explica{background:rgba(239,83,80,.08);border-left:3px solid var(--err);padding:8px 10px;border-radius:6px;margin-top:6px}
+.explica.ok{background:rgba(245,176,65,.08);border-color:var(--warn)}
+details{margin-top:6px;color:var(--mut);font-size:12px}
+details code{white-space:pre-wrap;word-break:break-word}
+a{color:var(--run)}
+.aviso{background:rgba(245,176,65,.1);border:1px solid rgba(245,176,65,.4);color:#ffd28a;padding:8px 12px;border-radius:10px;font-size:13px;margin-bottom:12px;display:none}
+footer{color:var(--mut);font-size:12px;text-align:center;margin-top:14px}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="icon-192.png" alt="">
+    <div><h1>Robô de Histórias</h1><p>Canal Alice Oliveira · painel em tempo real</p></div>
+    <div class="acoes">
+      <button id="btnInstalar" class="prim" hidden>Instalar app</button>
+      <button id="btnAvisos" hidden>Ativar avisos</button>
+      <button id="btnAtualizar" aria-label="Atualizar">↻</button>
+    </div>
+  </header>
+
+  <div class="aviso" id="aviso"></div>
+
+  <section class="card" id="agora"><h2>Agora</h2><div class="mut">Carregando…</div></section>
+
+  <div class="grade">
+    <section class="card"><h2>Próximos horários</h2><ul class="prox" id="proximos"><li class="mut">Carregando…</li></ul>
+      <p class="mut" style="font-size:12px;margin:8px 0 0">O GitHub costuma disparar com atraso. O robô decide sozinho se ainda falta vídeo (máx. 2 por dia de cota, 4 h de intervalo).</p></section>
+    <section class="card"><h2>Cota de imagens hoje</h2><div id="cota" class="mut">Carregando…</div></section>
+  </div>
+
+  <section class="card"><h2>Funcionamento por dia</h2>
+    <div class="grafico" id="grafico"><div class="mut">Carregando…</div></div>
+    <div class="legenda"><span><b style="background:var(--ok)"></b>Vídeos publicados</span><span><b style="background:var(--err)"></b>Execuções com erro</span><span><b style="background:var(--chk)"></b>Verificações sem ação</span></div>
+  </section>
+
+  <section class="card"><h2>Execuções</h2><div id="execucoes" class="mut">Carregando…</div></section>
+
+  <section class="card"><h2>Últimos vídeos</h2><ul id="videos"><li class="mut">Carregando…</li></ul></section>
+
+  <footer id="rodape">—</footer>
+</main>
+
+<script>
+const REPO = "TechAlly96/robo-historias";
+const API = `https://api.github.com/repos/${REPO}/actions/workflows/diario.yml/runs?per_page=100`;
+const RAW = `https://raw.githubusercontent.com/${REPO}/main/`;
+const ETAPAS = ["Disparo","Preparando","1/5 Roteiro","2/5 Imagens","3/5 Narração","4/5 Montagem","5/5 Publicação","Finalizado"];
+const IMAGENS_POR_DIA = 50;
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const hora = d => d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});
+const dataHora = d => d.toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"});
+const diaLocal = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+const duracao = ms => { const m = Math.round(ms/60000); return m < 1 ? "< 1 min" : m < 60 ? `${m} min` : `${Math.floor(m/60)} h ${m%60} min`; };
+
+let estado = {runs: [], dados: {execucoes: []}, historico: [], uso: {}, crons: [], erroApi: null, carregado: null};
+let vistos = null;
+
+async function obter(url, json = true) {
+  const r = await fetch(url, {cache: "no-store"});
+  if (!r.ok) { const e = new Error(`HTTP ${r.status}`); e.resp = r; throw e; }
+  return json ? r.json() : r.text();
+}
+const raw = (arq, json = true) => obter(`${RAW}${arq}?t=${Date.now()}`, json);
+
+async function carregar() {
+  const tarefas = [
+    obter(API).then(j => { estado.runs = j.workflow_runs || []; estado.erroApi = null; })
+      .catch(e => { estado.erroApi = e.resp && e.resp.status === 403
+        ? `Limite de consultas do GitHub atingido (60 por hora). Os dados voltam em ${e.resp.headers.get("x-ratelimit-reset") ? hora(new Date(e.resp.headers.get("x-ratelimit-reset")*1000)) : "alguns minutos"}.`
+        : "Sem conexão com o GitHub agora; mostrando os últimos dados."; }),
+    raw("docs/painel/dados.json").then(j => estado.dados = j).catch(() => {}),
+    raw("historico.json").then(j => estado.historico = Array.isArray(j) ? j : []).catch(() => {}),
+    raw("uso_imagens.json").then(j => estado.uso = j || {}).catch(() => {}),
+    raw(".github/workflows/diario.yml", false).then(t => {
+      estado.crons = [...t.matchAll(/cron:\s*"(\d+)\s+(\d+)\s+\*\s+\*\s+\*"/g)].map(m => ({min: +m[1], h: +m[2]}));
+    }).catch(() => {}),
+  ];
+  await Promise.all(tarefas);
+  estado.carregado = new Date();
+  try { localStorage.setItem("painel-cache", JSON.stringify(estado)); } catch (e) {}
+  desenhar();
+  avisarNovidades();
+}
+
+function porId() { const m = {}; for (const e of (estado.dados.execucoes || [])) m[e.id] = e; return m; }
+
+function classificar(run, d) {
+  const ini = new Date(run.run_started_at || run.created_at), fim = new Date(run.updated_at);
+  const base = {run, d, ini, fim, ms: fim - ini};
+  if (["queued","waiting","requested","pending"].includes(run.status)) return {...base, tipo: "fila", rotulo: "Na fila", cls: "run"};
+  if (run.status === "in_progress") return {...base, tipo: "rodando", rotulo: "Rodando", cls: "run"};
+  if (d && d.situacao === "publicado") return {...base, tipo: "publicado", rotulo: "Publicado", cls: "ok"};
+  if (d && d.situacao === "erro") return {...base, tipo: "erro", rotulo: "Erro", cls: "err"};
+  if (run.conclusion === "failure") return {...base, tipo: "erro", rotulo: "Erro", cls: "err"};
+  if (run.conclusion === "cancelled") return {...base, tipo: "cancelado", rotulo: "Cancelada", cls: "warn"};
+  if (run.conclusion === "success") {
+    const pub = estado.historico.find(h => { const t = new Date(h.data); return t >= ini - 60000 && t <= fim.getTime() + 300000; });
+    if (pub) return {...base, tipo: "publicado", rotulo: "Publicado", cls: "ok", pub};
+    if (base.ms < 4 * 60000) return {...base, tipo: "verificacao", rotulo: "Verificação", cls: "chk"};
+    return {...base, tipo: "concluido", rotulo: "Concluída", cls: "ok"};
+  }
+  return {...base, tipo: "outro", rotulo: run.conclusion || run.status, cls: "chk"};
+}
+
+function passos(d, falhou) {
+  const feitos = new Set((d?.etapas || []).map(e => e.nome));
+  const atual = d?.etapa;
+  return `<div class="passos">${ETAPAS.map(n => {
+    let c = "";
+    if (n === "Disparo" || feitos.has(n)) c = "feito";
+    if (n === atual && d?.situacao === "rodando") c = "agora";
+    if (falhou && n === (d?.etapa_erro || atual)) c = "falhou";
+    const t = (d?.etapas || []).find(e => e.nome === n);
+    return `<span class="passo ${c}" title="${t ? dataHora(new Date(t.inicio)) : ""}">${esc(n)}${t && n !== "Disparo" ? " · " + hora(new Date(t.inicio)) : ""}</span>`;
+  }).join("")}</div>`;
+}
+
+function desenharAgora(lista) {
+  const ativa = lista.find(x => x.tipo === "rodando" || x.tipo === "fila");
+  let h;
+  if (ativa) {
+    const d = ativa.d && ativa.d.situacao === "rodando" ? ativa.d : null;
+    const etapa = d ? d.etapa : (ativa.tipo === "fila" ? "Aguardando uma máquina do GitHub" : "Preparando o ambiente (instalando ferramentas)");
+    h = `<div class="status"><div class="pulso run"></div><div><b>${ativa.tipo === "fila" ? "Na fila para rodar" : "Gerando vídeo agora"}</b>
+      <span>${esc(etapa)} · ${ativa.tipo === "fila" ? "disparado às " + hora(new Date(ativa.run.created_at)) : "há " + duracao(Date.now() - ativa.ini)}</span></div></div>
+      ${d && d.titulo ? `<p style="margin:10px 0 0">🎬 <b>${esc(d.titulo)}</b></p>` : ""}
+      ${passos(d || {etapas: [], etapa: "Preparando", situacao: "rodando"}, false)}`;
+  } else {
+    const ult = lista.find(x => ["publicado","erro","concluido"].includes(x.tipo));
+    if (!ult) h = `<div class="status"><div class="pulso idle"></div><div><b>Aguardando o próximo horário</b><span>Nenhuma execução com trabalho registrada ainda.</span></div></div>`;
+    else {
+      const ok = ult.tipo !== "erro";
+      const d = ult.d;
+      const titulo = d?.titulo || ult.pub?.titulo || "";
+      const video = d?.video || ult.pub?.url || "";
+      h = `<div class="status"><div class="pulso ${ok ? "ok" : "err"}"></div><div><b>${ok ? "Tudo certo — aguardando o próximo horário" : "A última execução falhou"}</b>
+        <span>Última: ${dataHora(ult.ini)} · ${esc(ult.rotulo)}</span></div></div>
+        ${titulo ? `<p style="margin:10px 0 0">🎬 ${video ? `<a href="${esc(video)}" target="_blank" rel="noopener">${esc(titulo)}</a>` : esc(titulo)}</p>` : ""}
+        ${!ok ? explicacao(ult) : ""}
+        ${d ? passos(d, !ok) : ""}`;
+    }
+  }
+  $("agora").innerHTML = `<h2>Agora</h2>${h}`;
+}
+
+function explicacao(x) {
+  const d = x.d;
+  if (d && d.mensagem) {
+    return `<div class="explica ${d.recupera ? "ok" : ""}">${esc(d.mensagem)}
+      <div style="margin-top:4px;font-size:12px">${d.recupera ? "✅ O robô se recupera sozinho." : "⚠️ Precisa de uma ação sua."}</div></div>
+      ${d.tecnico ? `<details><summary>Detalhe técnico</summary><code>${esc(d.tecnico)}</code></details>` : ""}`;
+  }
+  const primeiro = (estado.dados.execucoes || []).map(e => e.inicio).sort()[0];
+  const antes = !primeiro || new Date(x.run.created_at) < new Date(primeiro);
+  return `<div class="explica ok">${antes
+    ? "Execução anterior ao painel: o motivo não foi registrado aqui."
+    : "Falhou antes de o robô começar (preparação do ambiente no GitHub, como instalação de programas). Normalmente é passageiro."}
+    <a href="${x.run.html_url}" target="_blank" rel="noopener">Ver no GitHub</a></div>`;
+}
+
+function desenharProximos() {
+  if (!estado.crons.length) { $("proximos").innerHTML = `<li class="mut">Horários indisponíveis no momento.</li>`; return; }
+  const agora = new Date(), lista = [];
+  for (let dia = 0; dia < 2; dia++) for (const c of estado.crons) {
+    const t = new Date(Date.UTC(agora.getUTCFullYear(), agora.getUTCMonth(), agora.getUTCDate() + dia, c.h, c.min));
+    if (t > agora) lista.push(t);
+  }
+  lista.sort((a, b) => a - b);
+  $("proximos").innerHTML = lista.slice(0, 5).map((t, i) => {
+    const falta = t - agora, h = Math.floor(falta / 3600000), m = Math.floor(falta % 3600000 / 60000);
+    const dia = diaLocal(t) === diaLocal(agora) ? "hoje" : "amanhã";
+    return `<li><span>${dia} ${hora(t)}</span><span class="mut">${i === 0 ? "em " : ""}${h ? h + " h " : ""}${m} min</span></li>`;
+  }).join("");
+}
+
+function desenharCota() {
+  const hoje = new Date().toISOString().slice(0, 10);
+  const usadas = estado.uso[hoje] || 0, pct = Math.min(100, Math.round(usadas / IMAGENS_POR_DIA * 100));
+  const renova = new Date(); renova.setUTCHours(24, 0, 0, 0);
+  $("cota").innerHTML = `<div style="display:flex;justify-content:space-between;margin-bottom:6px"><b>${usadas} de ~${IMAGENS_POR_DIA} imagens</b><span class="mut">${pct}%</span></div>
+    <div class="barra"><i style="width:${pct}%"></i></div>
+    <p class="mut" style="font-size:12px;margin:8px 0 0">Renova às ${hora(renova)} (horário de Brasília). ${IMAGENS_POR_DIA - usadas >= 10 ? "Há cota para um vídeo." : "Cota do dia praticamente usada."}</p>`;
+}
+
+function desenharGrafico(lista) {
+  const dias = {};
+  const add = (k, campo) => { (dias[k] ||= {pub: 0, err: 0, chk: 0})[campo]++; };
+  for (const h of estado.historico) if (h.data) add(diaLocal(new Date(h.data)), "pub");
+  for (const x of lista) {
+    if (x.tipo === "erro") add(diaLocal(x.ini), "err");
+    else if (x.tipo === "verificacao") add(diaLocal(x.ini), "chk");
+  }
+  const chaves = Object.keys(dias).sort();
+  if (!chaves.length) { $("grafico").innerHTML = `<div class="mut">Ainda sem dados.</div>`; return; }
+  const todas = [];
+  for (let d = new Date(chaves[0] + "T12:00:00"); diaLocal(d) <= diaLocal(new Date()); d.setDate(d.getDate() + 1)) todas.push(diaLocal(d));
+  const max = Math.max(1, ...todas.map(k => { const v = dias[k] || {}; return (v.pub || 0) + (v.err || 0) + (v.chk || 0); }));
+  const px = v => Math.max(v ? 4 : 0, Math.round(v / max * 118));
+  $("grafico").innerHTML = `<div class="colunas">${todas.map(k => {
+    const v = dias[k] || {pub: 0, err: 0, chk: 0}, [a, m, d] = k.split("-");
+    const tit = `${d}/${m}: ${v.pub} publicado(s), ${v.err} erro(s), ${v.chk} verificação(ões)`;
+    return `<div class="dia" title="${tit}"><div class="pilha">
+      <i style="height:${px(v.pub)}px;background:var(--ok)"></i><i style="height:${px(v.err)}px;background:var(--err)"></i><i style="height:${px(v.chk)}px;background:var(--chk)"></i>
+      </div><small>${d}/${m}</small></div>`;
+  }).join("")}</div>`;
+  $("grafico").scrollLeft = $("grafico").scrollWidth;
+}
+
+function desenharExecucoes(lista) {
+  const relevantes = lista.filter(x => x.tipo !== "verificacao").slice(0, 25);
+  const verif = lista.filter(x => x.tipo === "verificacao").length;
+  $("execucoes").innerHTML = (relevantes.map(x => {
+    const d = x.d, titulo = d?.titulo || x.pub?.titulo, video = d?.video || x.pub?.url;
+    const origem = x.run.event === "schedule" ? "agendada" : x.run.event === "workflow_dispatch" ? "manual" : x.run.event;
+    let corpo = "";
+    if (x.tipo === "publicado") corpo = `<p>🎬 ${video ? `<a href="${esc(video)}" target="_blank" rel="noopener">${esc(titulo || "Vídeo publicado")}</a>` : esc(titulo || "Vídeo publicado")}
+      ${d?.imagens ? `<span class="mut"> · ${d.imagens} imagens</span>` : ""}${d?.voz ? `<span class="mut"> · voz ${esc(d.voz)}</span>` : ""}</p>`;
+    else if (x.tipo === "erro") corpo = `${titulo ? `<p class="mut">História: ${esc(titulo)}</p>` : ""}${explicacao(x)}`;
+    else if (x.tipo === "rodando" || x.tipo === "fila") corpo = `<p class="mut">${esc(d?.etapa || "Preparando")}${titulo ? " · " + esc(titulo) : ""}</p>`;
+    return `<div class="exec"><div class="topo"><span class="tag ${x.cls}">${esc(x.rotulo)}</span>
+      <span>${dataHora(x.ini)}</span><span class="mut">· ${origem} · ${x.tipo === "rodando" ? "há " + duracao(Date.now() - x.ini) : duracao(x.ms)}</span>
+      <a href="${x.run.html_url}" target="_blank" rel="noopener" style="margin-left:auto;font-size:12px">GitHub</a></div>${corpo}</div>`;
+  }).join("") || `<div class="mut">Nenhuma execução com trabalho ainda.</div>`)
+  + (verif ? `<p class="mut" style="font-size:12px;margin:10px 0 0">+ ${verif} verificações rápidas sem ação (o robô acordou, viu que não precisava gerar vídeo e voltou a dormir).</p>` : "");
+}
+
+function desenharVideos() {
+  const v = [...estado.historico].reverse().slice(0, 10);
+  $("videos").innerHTML = v.map(h => `<li class="exec"><a href="${esc(h.url)}" target="_blank" rel="noopener">${esc(h.titulo)}</a>
+    <div class="mut" style="font-size:12px">${dataHora(new Date(h.data))}${h.especie ? " · " + esc(h.especie) : ""}</div></li>`).join("") || `<li class="mut">Nenhum vídeo ainda.</li>`;
+}
+
+function desenhar() {
+  const mapa = porId();
+  const lista = estado.runs.map(r => classificar(r, mapa[r.id]));
+  $("aviso").style.display = estado.erroApi ? "block" : "none";
+  $("aviso").textContent = estado.erroApi || "";
+  desenharAgora(lista); desenharProximos(); desenharCota(); desenharGrafico(lista); desenharExecucoes(lista); desenharVideos();
+  $("rodape").textContent = `Atualizado às ${estado.carregado ? hora(new Date(estado.carregado)) : "—"} · atualiza sozinho`;
+  agendar(lista.some(x => x.tipo === "rodando" || x.tipo === "fila"));
+}
+
+let temporizador;
+function agendar(rodando) {
+  clearTimeout(temporizador);
+  temporizador = setTimeout(() => { if (!document.hidden) carregar(); else agendar(rodando); }, rodando ? 45000 : 90000);
+}
+
+async function avisarNovidades() {
+  const mapa = porId();
+  const finais = estado.runs.filter(r => r.status === "completed").map(r => classificar(r, mapa[r.id])).filter(x => x.tipo === "publicado" || x.tipo === "erro");
+  const ids = new Set(finais.map(x => x.run.id));
+  if (vistos === null) { vistos = ids; return; }
+  for (const x of finais) if (!vistos.has(x.run.id)) {
+    const titulo = x.tipo === "publicado" ? "🎬 Vídeo publicado" : "⚠️ O robô teve um erro";
+    const corpo = x.tipo === "publicado" ? (x.d?.titulo || x.pub?.titulo || "") : (x.d?.mensagem || "Abra o painel para ver o motivo.");
+    try { if (Notification.permission === "granted") (await navigator.serviceWorker.ready).showNotification(titulo, {body: corpo, icon: "icon-192.png"}); } catch (e) {}
+  }
+  vistos = ids;
+}
+
+try { const c = JSON.parse(localStorage.getItem("painel-cache")); if (c) { estado = {...estado, ...c}; desenhar(); } } catch (e) {}
+carregar();
+setInterval(() => { desenharProximos(); }, 30000);
+document.addEventListener("visibilitychange", () => { if (!document.hidden) carregar(); });
+$("btnAtualizar").onclick = () => carregar();
+
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
+let pedidoInstalar;
+addEventListener("beforeinstallprompt", e => { e.preventDefault(); pedidoInstalar = e; $("btnInstalar").hidden = false; });
+$("btnInstalar").onclick = async () => { if (!pedidoInstalar) return; pedidoInstalar.prompt(); await pedidoInstalar.userChoice; pedidoInstalar = null; $("btnInstalar").hidden = true; };
+if ("Notification" in window && Notification.permission === "default") $("btnAvisos").hidden = false;
+$("btnAvisos").onclick = async () => { await Notification.requestPermission(); $("btnAvisos").hidden = Notification.permission !== "default"; };
+</script>
+</body>
+</html>

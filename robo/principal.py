@@ -7,6 +7,7 @@ from zoneinfo import ZoneInfo
 
 from robo import config
 from robo import curriculo
+from robo import painel
 from robo.imagens import EspecieDificil, gerar_imagens
 from robo.montagem import montar_video
 from robo.narracao import gerar_narracao
@@ -151,6 +152,7 @@ def main():
             return
         from robo import imagens
         imagens.LIMITE_IMAGENS = min(imagens.LIMITE_IMAGENS, restantes)
+    painel.iniciar()
     import atexit
     atexit.register(_salvar_uso)
     if config.SAIDA.exists():
@@ -166,7 +168,7 @@ def main():
         recentes = {e for e, d in dificeis.get(estudio_id, {}).items()
                     if (datetime.date.today() - datetime.date.fromisoformat(d)).days <= 60}
         _excluir_especies(recentes | curriculo.DIFICEIS_IMAGEM)
-        print("1/5 Roteiro")
+        print("1/5 Roteiro"); painel.etapa("1/5 Roteiro", estudio=estudio["nome"])
         print(f"  {estudio['nome']}")
         roteiro = gerar_roteiro()
         roteiro.update(
@@ -178,7 +180,7 @@ def main():
             json.dumps(roteiro, ensure_ascii=False, indent=2), encoding="utf-8")
         print(f"  {roteiro['titulo']} ({len(roteiro['cenas'])} cenas)")
 
-        print("2/5 Imagens")
+        print("2/5 Imagens"); painel.etapa("2/5 Imagens", titulo=roteiro.get("titulo"), especie=roteiro.get("especie"))
         try:
             gerar_imagens(roteiro)
             break
@@ -194,18 +196,19 @@ def main():
         roteiro["credito_tela"] = roteiro["credito_tela"].replace(roteiro["imagem_credito"], novo)
         roteiro["imagem_credito"] = novo
 
-    print("3/5 Narração")
+    print("3/5 Narração"); painel.etapa("3/5 Narração")
     gerar_narracao(roteiro)
 
-    print("4/5 Montagem")
+    print("4/5 Montagem"); painel.etapa("4/5 Montagem", voz=roteiro.get("voz"))
     video, duracao = montar_video(roteiro)
     if duracao > 175:
         raise RuntimeError(f"Vídeo com {duracao:.0f}s passa do limite de Shorts")
 
-    print("5/5 Publicação")
+    print("5/5 Publicação"); painel.etapa("5/5 Publicação")
     vid = publicar(video, roteiro, os.environ.get("PRIVACIDADE") or None)
     url = f"https://youtube.com/shorts/{vid}"
     print(f"Concluído: {url}")
+    painel.concluir(roteiro["titulo"], url, voz=roteiro.get("voz"), especie=roteiro.get("especie"))
 
     resumo = os.environ.get("GITHUB_STEP_SUMMARY")
     if resumo:
@@ -215,4 +218,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except BaseException as e:
+        if not (isinstance(e, SystemExit) and not e.code):
+            painel.erro(e)
+        raise
