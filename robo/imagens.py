@@ -20,8 +20,9 @@ ESPERAS = [0, 5, 15, 45]
 RODADAS_CORRECAO = 3
 # Teto de imagens por execução: ~metade da cota gratuita diária da Cloudflare (10 mil neurônios ≈ 34 imagens FLUX).
 # Assim uma execução com problema nunca consome a cota do outro vídeo do dia.
-LIMITE_IMAGENS = int(os.environ.get("LIMITE_IMAGENS") or 17)
+LIMITE_IMAGENS = int(os.environ.get("LIMITE_IMAGENS") or 26)
 _usadas = 0
+COTA_ESGOTADA = False  # a Cloudflare avisou que a cota do dia acabou
 
 
 class OrcamentoEsgotado(RuntimeError):
@@ -107,15 +108,15 @@ def _para_jpeg(dados: bytes) -> bytes:
 
 
 def _gerar_uma(roteiro: dict, cena: dict, reforco: bool = False, seguro: bool = False) -> bytes:
-    global _usadas
+    global _usadas, COTA_ESGOTADA
     if _usadas >= LIMITE_IMAGENS:
         raise OrcamentoEsgotado(f"teto de {LIMITE_IMAGENS} imagens desta execução atingido; "
                                 "o restante da cota fica para o outro vídeo do dia")
     modelo = config.MODELO_IMAGEM if seguro else (roteiro.get("modelo_imagem") or config.MODELO_IMAGEM)
     if seguro:
-        corpo = {"prompt": _prompt_seguro(roteiro, cena), "steps": 8}
+        corpo = {"prompt": _prompt_seguro(roteiro, cena), "steps": 4}
     elif "flux" in modelo:
-        corpo = {"prompt": _prompt(roteiro, cena, reforco), "steps": 8}
+        corpo = {"prompt": _prompt(roteiro, cena, reforco), "steps": 4}
     else:
         corpo = {"prompt": _prompt_sdxl(roteiro, cena, reforco), "negative_prompt": NEGATIVO_SDXL,
                  "width": 1024, "height": 1024}
@@ -140,6 +141,7 @@ def _gerar_uma(roteiro: dict, cena: dict, reforco: bool = False, seguro: bool = 
             return _para_jpeg(dados)
         ultimo = f"HTTP {r.status_code}: {r.text[:200]}"
         if "daily free allocation" in r.text:
+            COTA_ESGOTADA = True
             break  # cota diária da Cloudflare esgotada: renova às 00:00 UTC
         if r.status_code not in TEMPORARIOS:
             break

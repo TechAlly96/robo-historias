@@ -10,7 +10,9 @@ on:
     - cron: "17 21 * * *"   # 18:17 noite
     - cron: "07 22 * * *"   # 19:07 nova tentativa
     - cron: "57 22 * * *"   # 19:57 nova tentativa
-    - cron: "37 23 * * *"   # 20:37 última tentativa (a cota renova às 21:00)
+    - cron: "37 23 * * *"   # 20:37 nova tentativa
+    - cron: "12 0 * * *"    # 21:12 logo após a cota da Cloudflare renovar
+    - cron: "52 1 * * *"    # 22:52 nova tentativa
   workflow_dispatch:
     inputs:
       privacidade:
@@ -98,7 +100,7 @@ jobs:
         run: |
           git config user.name "robo-historias[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          for f in historico.json especies_dificeis.json; do [ -f "$f" ] && git add "$f"; done
+          for f in historico.json especies_dificeis.json uso_imagens.json; do [ -f "$f" ] && git add "$f"; done
           git diff --cached --quiet || git commit -m "Histórico: execução de $(date -u +%F)"
           git pull -q --rebase origin main
           git push

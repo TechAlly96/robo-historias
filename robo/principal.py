@@ -39,12 +39,41 @@ JANELA_HORAS = (0, 24)      # sem restrição de horário: o GitHub chega a atra
 MAX_POR_DIA = 2             # vídeos por dia no plano gratuito
 INTERVALO_MIN_HORAS = 4     # distância mínima entre dois vídeos
 DIFICEIS = config.HISTORICO.parent / "especies_dificeis.json"
+USO_IMAGENS = config.HISTORICO.parent / "uso_imagens.json"
+IMAGENS_POR_DIA = 50        # ~10 mil neurônios/dia ÷ ~175 por imagem FLUX (4 passos), com folga
+MINIMO_PARA_VIDEO = 10      # 7 cenas + algumas correções
+
+
+def _hoje_utc() -> str:
+    return datetime.datetime.now(datetime.timezone.utc).date().isoformat()
+
+
+def _uso() -> dict:
+    try:
+        return json.loads(USO_IMAGENS.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+
+
+def _salvar_uso() -> None:
+    """Soma as imagens desta execução ao total do dia (roda até quando a execução falha)."""
+    from robo import imagens
+    if not imagens._usadas and not imagens.COTA_ESGOTADA:
+        return
+    uso = _uso()
+    dia = _hoje_utc()
+    uso = {d: n for d, n in uso.items() if d >= (datetime.date.fromisoformat(dia) - datetime.timedelta(days=7)).isoformat()}
+    uso[dia] = uso.get(dia, 0) + imagens._usadas
+    if imagens.COTA_ESGOTADA:
+        uso[dia] = max(uso[dia], IMAGENS_POR_DIA)
+    USO_IMAGENS.write_text(json.dumps(uso, indent=2) + "\n", encoding="utf-8")
+    print(f"  imagens usadas hoje (dia da cota): {uso[dia]} de ~{IMAGENS_POR_DIA}")
 
 
 def _motivo_para_nao_publicar():
     """Agenda robusta: o GitHub atrasa ou pula horários, então o robô é acordado várias vezes
     e decide aqui se ainda falta vídeo hoje. Retorna o motivo para não publicar, ou None."""
-    agora = datetime.datetime.now(FUSO)
+    agora = datetime.datetime.now(datetime.timezone.utc)  # o "dia" é o da cota da Cloudflare (UTC)
     if not (JANELA_HORAS[0] <= agora.hour < JANELA_HORAS[1]):
         return f"fora da janela de publicação ({JANELA_HORAS[0]}h–{JANELA_HORAS[1]}h de Brasília)"
     if not config.HISTORICO.exists():
@@ -52,7 +81,7 @@ def _motivo_para_nao_publicar():
     datas = []
     for h in json.loads(config.HISTORICO.read_text(encoding="utf-8")):
         try:
-            datas.append(datetime.datetime.fromisoformat(h["data"]).astimezone(FUSO))
+            datas.append(datetime.datetime.fromisoformat(h["data"]).astimezone(datetime.timezone.utc))
         except (KeyError, ValueError, TypeError):
             continue
     hoje = [d for d in datas if d.date() == agora.date()]
@@ -116,6 +145,14 @@ def main():
         if motivo:
             print(f"Nada a fazer agora: {motivo}.")
             return
+        restantes = IMAGENS_POR_DIA - _uso().get(_hoje_utc(), 0)
+        if restantes < MINIMO_PARA_VIDEO:
+            print(f"Nada a fazer agora: a cota de imagens de hoje acabou ({restantes} restantes); renova às 21:00 de Brasília.")
+            return
+        from robo import imagens
+        imagens.LIMITE_IMAGENS = min(imagens.LIMITE_IMAGENS, restantes)
+    import atexit
+    atexit.register(_salvar_uso)
     if config.SAIDA.exists():
         shutil.rmtree(config.SAIDA)
     config.SAIDA.mkdir(parents=True)
