@@ -100,7 +100,7 @@
    "inicio": "2026-11-13T08:50:24+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "1/5 Roteiro",
+   "etapa": "2/5 Imagens",
    "etapas": [
     {
      "nome": "Preparando",
@@ -117,12 +117,16 @@
     {
      "nome": "1/5 Roteiro",
      "inicio": "2026-11-13T08:56:34+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-13T09:01:18+00:00"
     }
    ],
    "estudio": "Estúdio SDXL",
-   "titulo": "Bia e a Soma do Coração 💙",
-   "especie": "arara-azul"
+   "titulo": "Pipoca e as Formas da Natureza 🌿",
+   "especie": "coelhinho"
   }
  ],
- "atualizado": "2026-11-13T08:56:34+00:00"
+ "atualizado": "2026-11-13T09:01:18+00:00"
 }
