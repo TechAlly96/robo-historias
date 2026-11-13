@@ -1,0 +1,20 @@
+{
+ "execucoes": [
+  {
+   "id": 43336800704,
+   "tentativa": 1,
+   "evento": "workflow_dispatch",
+   "inicio": "2026-11-13T00:25:32+00:00",
+   "fim": null,
+   "situacao": "rodando",
+   "etapa": "Preparando",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-13T00:25:32+00:00"
+    }
+   ]
+  }
+ ],
+ "atualizado": "2026-11-13T00:25:32+00:00"
+}
