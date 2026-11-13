@@ -129,12 +129,38 @@ async function obter(url, json = true) {
 }
 const raw = (arq, json = true) => obter(`${RAW}${arq}?t=${Date.now()}`, json);
 
-async function carregar() {
+function lerApi() { try { return JSON.parse(localStorage.getItem("painel-api")) || {}; } catch (e) { return {}; } }
+function gravarApi(v) { try { localStorage.setItem("painel-api", JSON.stringify({...lerApi(), ...v})); } catch (e) {} }
+function rodandoAgora() {
+  return (estado.dados.execucoes || []).some(e => e.situacao === "rodando" && Date.now() - new Date(e.inicio) < 70 * 60000)
+    || estado.runs.some(r => r.status !== "completed");
+}
+async function consultarApi(forcar) {
+  const a = lerApi(), agora = Date.now();
+  if (a.bloqueioAte && agora < a.bloqueioAte) {
+    estado.erroApi = `Limite de consultas do GitHub atingido (60 por hora). A lista de execuções volta às ${hora(new Date(a.bloqueioAte))}; o andamento ao vivo continua.`;
+    if (a.runs) estado.runs = a.runs;
+    return;
+  }
+  const intervalo = forcar ? 20000 : (rodandoAgora() ? 120000 : 300000);
+  if (a.quando && agora - a.quando < intervalo) { if (a.runs) estado.runs = a.runs; return; }
+  try {
+    const j = await obter(API);
+    estado.runs = j.workflow_runs || []; estado.erroApi = null;
+    gravarApi({quando: agora, runs: estado.runs, bloqueioAte: 0});
+  } catch (e) {
+    if (e.resp && e.resp.status === 403) {
+      const reset = Number(e.resp.headers.get("x-ratelimit-reset")) * 1000 || agora + 15 * 60000;
+      gravarApi({bloqueioAte: reset});
+      estado.erroApi = `Limite de consultas do GitHub atingido (60 por hora). A lista de execuções volta às ${hora(new Date(reset))}; o andamento ao vivo continua.`;
+    } else estado.erroApi = "Sem conexão com o GitHub agora; mostrando os últimos dados.";
+    if (a.runs) estado.runs = a.runs;
+  }
+}
+
+async function carregar(forcar = false) {
   const tarefas = [
-    obter(API).then(j => { estado.runs = j.workflow_runs || []; estado.erroApi = null; })
-      .catch(e => { estado.erroApi = e.resp && e.resp.status === 403
-        ? `Limite de consultas do GitHub atingido (60 por hora). Os dados voltam em ${e.resp.headers.get("x-ratelimit-reset") ? hora(new Date(e.resp.headers.get("x-ratelimit-reset")*1000)) : "alguns minutos"}.`
-        : "Sem conexão com o GitHub agora; mostrando os últimos dados."; }),
+    consultarApi(forcar),
     raw("docs/painel/dados.json").then(j => estado.dados = j).catch(() => {}),
     raw("historico.json").then(j => estado.historico = Array.isArray(j) ? j : []).catch(() => {}),
     raw("uso_imagens.json").then(j => estado.uso = j || {}).catch(() => {}),
@@ -158,6 +184,8 @@ function classificar(run, d) {
   if (run.status === "in_progress") return {...base, tipo: "rodando", rotulo: "Rodando", cls: "run"};
   if (d && d.situacao === "publicado") return {...base, tipo: "publicado", rotulo: "Publicado", cls: "ok"};
   if (d && d.situacao === "erro") return {...base, tipo: "erro", rotulo: "Erro", cls: "err"};
+  if (d && d.situacao === "rodando" && run.status === "completed")
+    return {...base, tipo: "erro", rotulo: run.conclusion === "cancelled" ? "Cancelada" : "Interrompida", cls: "err", interrompida: true};
   if (run.conclusion === "failure") return {...base, tipo: "erro", rotulo: "Erro", cls: "err"};
   if (run.conclusion === "cancelled") return {...base, tipo: "cancelado", rotulo: "Cancelada", cls: "warn"};
   if (run.conclusion === "success") {
@@ -212,6 +240,11 @@ function desenharAgora(lista) {
 
 function explicacao(x) {
   const d = x.d;
+  if (x.interrompida) {
+    return `<div class="explica ok">A execução foi ${x.run.conclusion === "cancelled" ? "cancelada" : "interrompida pelo GitHub (passou do tempo máximo)"}
+      durante a etapa <b>${esc(d.etapa)}</b>. O robô tenta de novo no próximo horário.
+      <a href="${x.run.html_url}" target="_blank" rel="noopener">Ver no GitHub</a></div>`;
+  }
   if (d && d.mensagem) {
     return `<div class="explica ${d.recupera ? "ok" : ""}">${esc(d.mensagem)}
       <div style="margin-top:4px;font-size:12px">${d.recupera ? "✅ O robô se recupera sozinho." : "⚠️ Precisa de uma ação sua."}</div></div>
@@ -299,7 +332,13 @@ function desenharVideos() {
 
 function desenhar() {
   const mapa = porId();
-  const lista = estado.runs.map(r => classificar(r, mapa[r.id]));
+  const ids = new Set(estado.runs.map(r => r.id));
+  const novos = (estado.dados.execucoes || []).filter(e => !ids.has(e.id) && Date.now() - new Date(e.inicio) < 70 * 60000)
+    .map(e => ({id: e.id, status: e.situacao === "rodando" ? "in_progress" : "completed",
+      conclusion: e.situacao === "erro" ? "failure" : "success", event: e.evento, created_at: e.inicio,
+      run_started_at: e.inicio, updated_at: e.fim || new Date().toISOString(),
+      html_url: `https://github.com/${REPO}/actions/runs/${e.id}`}));
+  const lista = [...novos, ...estado.runs].map(r => classificar(r, mapa[r.id]));
   $("aviso").style.display = estado.erroApi ? "block" : "none";
   $("aviso").textContent = estado.erroApi || "";
   desenharAgora(lista); desenharProximos(); desenharCota(); desenharGrafico(lista); desenharExecucoes(lista); desenharVideos();
@@ -310,7 +349,7 @@ function desenhar() {
 let temporizador;
 function agendar(rodando) {
   clearTimeout(temporizador);
-  temporizador = setTimeout(() => { if (!document.hidden) carregar(); else agendar(rodando); }, rodando ? 45000 : 90000);
+  temporizador = setTimeout(() => { if (!document.hidden) carregar(); else agendar(rodando); }, rodando ? 40000 : 90000);
 }
 
 async function avisarNovidades() {
@@ -330,7 +369,7 @@ try { const c = JSON.parse(localStorage.getItem("painel-cache")); if (c) { estad
 carregar();
 setInterval(() => { desenharProximos(); }, 30000);
 document.addEventListener("visibilitychange", () => { if (!document.hidden) carregar(); });
-$("btnAtualizar").onclick = () => carregar();
+$("btnAtualizar").onclick = () => carregar(true);
 
 if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
 let pedidoInstalar;

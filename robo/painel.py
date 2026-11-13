@@ -101,6 +101,9 @@ def explicar(e: BaseException) -> tuple:
     if "cog prediction failed" in t or "http 409" in t or "http 5" in t:
         return ("O servidor de imagens da Cloudflare teve uma falha momentânea e não respondeu mesmo após "
                 "várias tentativas. Não é problema do robô; ele tenta de novo no próximo horário.", True)
+    if "nsfw" in t:
+        return ("O filtro de segurança da Cloudflare recusou a descrição de uma cena por engano (falso alarme), "
+                "mesmo depois de refazer com uma descrição neutra. O robô tenta outra história no próximo horário.", True)
     if nome == "OrcamentoEsgotado":
         return ("Esta execução atingiu o limite de imagens que pode gastar (para sobrar cota para o outro "
                 "vídeo do dia). A IA errou muitas cenas; o robô tenta uma história nova no próximo horário.", True)
@@ -111,6 +114,9 @@ def explicar(e: BaseException) -> tuple:
         return ("Algumas cenas continuaram com erros (animal errado, membros a mais ou texto) mesmo depois "
                 "das correções. Para não mostrar imagem errada às crianças, nada foi publicado. "
                 "O robô tenta uma história nova no próximo horário.", True)
+    if "prazo do roteiro esgotado" in t:
+        return ("As IAs de texto (Gemini e Groq) estavam muito lentas ou ocupadas e o roteiro passou de 15 minutos. "
+                "O robô desiste para não travar e tenta de novo no próximo horário.", True)
     if "roteiro reprovado" in t:
         return ("O revisor reprovou o roteiro nas 4 tentativas (erro de português, de conteúdo ou de coerência). "
                 "O robô escreve uma história nova no próximo horário.", True)

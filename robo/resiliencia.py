@@ -5,7 +5,9 @@ import time
 from types import SimpleNamespace
 
 import requests
+from google import genai
 from google.genai import errors
+from google.genai import types as gtypes
 
 from robo import config
 
@@ -13,6 +15,19 @@ TEMPORARIOS = {429, 500, 502, 503, 504}
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 MODELOS_GROQ = ["qwen/qwen3.8-27b", "openai/gpt-oss-20b", "openai/gpt-oss-120b"]
 MODELO_CF_TEXTO = "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+PRAZO_GEMINI_MS = 90_000  # nenhuma chamada ao Gemini pode ficar pendurada mais que isso
+_CLIENTE = None
+
+
+def _cliente_com_prazo(original):
+    global _CLIENTE
+    if _CLIENTE is None:
+        try:
+            _CLIENTE = genai.Client(api_key=config.gemini_key(),
+                                    http_options=gtypes.HttpOptions(timeout=PRAZO_GEMINI_MS))
+        except Exception:
+            _CLIENTE = original
+    return _CLIENTE
 
 
 def _sem_refs(schema: dict) -> dict:
@@ -49,7 +64,7 @@ def _gemini(cliente, modelos, esperas, **kwargs):
                 print(f"  aguardando {espera}s antes de tentar {modelo} de novo...")
                 time.sleep(espera)
             try:
-                return cliente.models.generate_content(model=modelo, **kwargs), modelo
+                return _cliente_com_prazo(cliente).models.generate_content(model=modelo, **kwargs), modelo
             except errors.APIError as e:
                 ultimo_erro = e
                 codigo = getattr(e, "code", None)
@@ -89,7 +104,7 @@ def _groq(contents: str, cfg):
             if modelo.startswith("qwen/"):
                 corpo["reasoning_format"] = "hidden"
             try:
-                r = requests.post(GROQ_URL, headers=cabecalho, json=corpo, timeout=120)
+                r = requests.post(GROQ_URL, headers=cabecalho, json=corpo, timeout=60)
             except requests.RequestException as e:
                 ultimo = e
                 break

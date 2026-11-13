@@ -141,6 +141,12 @@ def _gerar_uma(roteiro: dict, cena: dict, reforco: bool = False, seguro: bool = 
             _usadas += 1
             return _para_jpeg(dados)
         ultimo = f"HTTP {r.status_code}: {r.text[:200]}"
+        if "nsfw" in r.text.lower():
+            if cena.get("_neutra"):
+                break
+            print("    filtro da Cloudflare recusou a descrição (falso alarme); refazendo com descrição neutra")
+            neutra = dict(cena, prompt_visual="a cozy, sunny and colorful outdoor place for children", _neutra=True)
+            return _gerar_uma(roteiro, neutra, reforco=reforco, seguro=True)
         if "daily free allocation" in r.text:
             COTA_ESGOTADA = True
             break  # cota diária da Cloudflare esgotada: renova às 00:00 UTC

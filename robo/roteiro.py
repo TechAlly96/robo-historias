@@ -1,6 +1,7 @@
 """Roteirista: currículo em rodízio, espécie fixa, versículo e revisão de conteúdo."""
 import json
 import random
+import time
 import unicodedata
 
 from google import genai
@@ -12,6 +13,7 @@ from robo.curriculo import COADJUVANTES_PROIBIDOS, COADJUVANTES_SEGUROS, ESPECIE
 from robo.resiliencia import gerar_com_fallback
 
 TENTATIVAS = 4
+PRAZO_ROTEIRO_S = 15 * 60
 PALAVRAS = (85, 165)
 PROIBIDO_VISUAL = ["hybrid", "crossbreed", "mixed breed", "half "]
 
@@ -152,7 +154,10 @@ Regras:
     cliente = genai.Client(api_key=config.gemini_key())
     feedback = ""
     autor = autor_id = None
+    inicio_roteiro = time.monotonic()
     for tentativa in range(1, TENTATIVAS + 1):
+        if tentativa > 1 and time.monotonic() - inicio_roteiro > PRAZO_ROTEIRO_S:
+            raise RuntimeError("Prazo do roteiro esgotado: as IAs de texto estavam lentas ou ocupadas.")
         resp = gerar_com_fallback(
             cliente, config.MODELOS_TEXTO, config.ESPERAS_RETRY_S,
             ordem=(None if tentativa == 1 else _ordem_revisor(autor)),
