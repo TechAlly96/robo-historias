@@ -44,9 +44,9 @@
    "tentativa": 1,
    "evento": "schedule",
    "inicio": "2026-11-13T03:10:41+00:00",
-   "fim": null,
-   "situacao": "rodando",
-   "etapa": "5/5 Publicação",
+   "fim": "2026-11-13T03:30:39+00:00",
+   "situacao": "publicado",
+   "etapa": "Finalizado",
    "etapas": [
     {
      "nome": "Preparando",
@@ -79,13 +79,20 @@
     {
      "nome": "5/5 Publicação",
      "inicio": "2026-11-13T03:27:25+00:00"
+    },
+    {
+     "nome": "Finalizado",
+     "inicio": "2026-11-13T03:30:39+00:00"
     }
    ],
    "estudio": "Estúdio FLUX",
    "titulo": "Juca e a Descoberta dos Opostos 🐾",
    "especie": "onça-pintada",
-   "voz": "Gemini TTS (gemini-3.8-flash-tts)"
+   "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+   "video": "https://youtube.com/shorts/jStsh431RFg",
+   "imagens": 18,
+   "mensagem": "Vídeo publicado no canal."
   }
  ],
- "atualizado": "2026-11-13T03:27:25+00:00"
+ "atualizado": "2026-11-13T03:30:39+00:00"
 }
