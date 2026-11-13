@@ -92,7 +92,22 @@
    "video": "https://youtube.com/shorts/jStsh431RFg",
    "imagens": 18,
    "mensagem": "Vídeo publicado no canal."
+  },
+  {
+   "id": 43396265531,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-13T08:50:24+00:00",
+   "fim": null,
+   "situacao": "rodando",
+   "etapa": "Preparando",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-13T08:50:24+00:00"
+    }
+   ]
   }
  ],
- "atualizado": "2026-11-13T03:30:39+00:00"
+ "atualizado": "2026-11-13T08:50:24+00:00"
 }
