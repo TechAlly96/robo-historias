@@ -7,7 +7,7 @@
    "inicio": "2026-11-13T02:30:38+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "2/5 Imagens",
+   "etapa": "1/5 Roteiro",
    "etapas": [
     {
      "nome": "Preparando",
@@ -20,6 +20,10 @@
     {
      "nome": "2/5 Imagens",
      "inicio": "2026-11-13T02:40:16+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-13T02:41:52+00:00"
     }
    ],
    "estudio": "Estúdio FLUX",
@@ -27,5 +31,5 @@
    "especie": "girafinha"
   }
  ],
- "atualizado": "2026-11-13T02:40:16+00:00"
+ "atualizado": "2026-11-13T02:41:52+00:00"
 }
