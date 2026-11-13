@@ -5,8 +5,8 @@
    "tentativa": 1,
    "evento": "workflow_dispatch",
    "inicio": "2026-11-13T00:25:32+00:00",
-   "fim": null,
-   "situacao": "rodando",
+   "fim": "2026-11-13T00:35:01+00:00",
+   "situacao": "erro",
    "etapa": "2/5 Imagens",
    "etapas": [
     {
@@ -24,8 +24,13 @@
    ],
    "estudio": "Estúdio FLUX",
    "titulo": "O Combinado de Tico e o Valor da Promessa 🤝",
-   "especie": "quati"
+   "especie": "quati",
+   "imagens": 3,
+   "mensagem": "Erro inesperado (RuntimeError): Falha ao gerar imagem (@cf/black-forest-labs/flux-1-schnell): HTTP 409: {\"errors\":[{\"message\":\"AiError: AiError: Cog prediction failed (cfa34865-dcdf-4096-bbc5-c36c1678ee07)\",\"code\":8007}],\"success\":false,\"result\":{},\"messages\":[]}. O robô tenta de novo no próximo horário; se repetir, peça ao Claude para analisar.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/black-forest-labs/flux-1-schnell): HTTP 409: {\"errors\":[{\"message\":\"AiError: AiError: Cog prediction failed (cfa34865-dcdf-4096-bbc5-c36c1678ee07)\",\"code\":8007}],\"success\":false,\"result\":{},\"messages\":[]}",
+   "etapa_erro": "2/5 Imagens"
   }
  ],
- "atualizado": "2026-11-13T00:34:44+00:00"
+ "atualizado": "2026-11-13T00:35:01+00:00"
 }
