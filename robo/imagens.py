@@ -16,7 +16,8 @@ from robo.curriculo import APARENCIA
 from robo.resiliencia import gerar_com_fallback
 
 TEMPORARIOS = {429, 500, 502, 503, 504}
-ESPERAS = [0, 5, 15, 45]
+ESPERAS = [0, 5, 15, 45, 90]
+DEFINITIVOS = {400, 401, 403, 404, 413}  # pedido/chave inválidos: repetir não adianta
 RODADAS_CORRECAO = 3
 # Teto de imagens por execução: ~metade da cota gratuita diária da Cloudflare (10 mil neurônios ≈ 34 imagens FLUX).
 # Assim uma execução com problema nunca consome a cota do outro vídeo do dia.
@@ -143,7 +144,7 @@ def _gerar_uma(roteiro: dict, cena: dict, reforco: bool = False, seguro: bool = 
         if "daily free allocation" in r.text:
             COTA_ESGOTADA = True
             break  # cota diária da Cloudflare esgotada: renova às 00:00 UTC
-        if r.status_code not in TEMPORARIOS:
+        if r.status_code in DEFINITIVOS:
             break
     raise RuntimeError(f"Falha ao gerar imagem ({modelo}): {ultimo}")
 

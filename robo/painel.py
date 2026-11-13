@@ -98,6 +98,9 @@ def explicar(e: BaseException) -> tuple:
     if "daily free allocation" in t or "neurons" in t:
         return ("A cota gratuita diária de imagens da Cloudflare acabou. Ela renova às 21:00 (Brasília) "
                 "e o robô tenta de novo no próximo horário depois disso.", True)
+    if "cog prediction failed" in t or "http 409" in t or "http 5" in t:
+        return ("O servidor de imagens da Cloudflare teve uma falha momentânea e não respondeu mesmo após "
+                "várias tentativas. Não é problema do robô; ele tenta de novo no próximo horário.", True)
     if nome == "OrcamentoEsgotado":
         return ("Esta execução atingiu o limite de imagens que pode gastar (para sobrar cota para o outro "
                 "vídeo do dia). A IA errou muitas cenas; o robô tenta uma história nova no próximo horário.", True)
