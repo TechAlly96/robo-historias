@@ -5,8 +5,8 @@
    "tentativa": 1,
    "evento": "schedule",
    "inicio": "2026-11-13T02:30:38+00:00",
-   "fim": null,
-   "situacao": "rodando",
+   "fim": "2026-11-13T02:42:41+00:00",
+   "situacao": "erro",
    "etapa": "2/5 Imagens",
    "etapas": [
     {
@@ -32,8 +32,13 @@
    ],
    "estudio": "Estúdio FLUX",
    "titulo": "Caco e o Segredo da Tomada Segura ⚡",
-   "especie": "onça-pintada"
+   "especie": "onça-pintada",
+   "imagens": 12,
+   "mensagem": "Erro inesperado (RuntimeError): Falha ao gerar imagem (@cf/black-forest-labs/flux-1-schnell): HTTP 400: {\"errors\":[{\"message\":\"AiError: AiError: Input prompt contains NSFW content. (8962d134-0395-4758-83c3-8bd0a2484cd8)\",\"code\":8007}],\"success\":false,\"result\":{},\"messages\":[]}. O robô tenta de novo no próximo horário; se repetir, peça ao Claude para analisar.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/black-forest-labs/flux-1-schnell): HTTP 400: {\"errors\":[{\"message\":\"AiError: AiError: Input prompt contains NSFW content. (8962d134-0395-4758-83c3-8bd0a2484cd8)\",\"code\":8007}],\"success\":false,\"result\":{},\"messages\":[]}",
+   "etapa_erro": "2/5 Imagens"
   }
  ],
- "atualizado": "2026-11-13T02:42:25+00:00"
+ "atualizado": "2026-11-13T02:42:41+00:00"
 }
