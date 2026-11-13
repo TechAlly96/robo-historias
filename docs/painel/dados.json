@@ -46,7 +46,7 @@
    "inicio": "2026-11-13T03:10:41+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "1/5 Roteiro",
+   "etapa": "2/5 Imagens",
    "etapas": [
     {
      "nome": "Preparando",
@@ -55,10 +55,16 @@
     {
      "nome": "1/5 Roteiro",
      "inicio": "2026-11-13T03:10:43+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-13T03:11:40+00:00"
     }
    ],
-   "estudio": "Estúdio FLUX"
+   "estudio": "Estúdio FLUX",
+   "titulo": "A Lição de Paciência da Arara Cadu 🚦",
+   "especie": "arara-azul"
   }
  ],
- "atualizado": "2026-11-13T03:10:43+00:00"
+ "atualizado": "2026-11-13T03:11:40+00:00"
 }
