@@ -77,5 +77,26 @@
     "roteirista": "groq:qwen/qwen3.8-27b",
     "voz": "Piper (pt_BR-faber-medium)",
     "modelo_imagem": "@cf/bytedance/stable-diffusion-xl-lightning"
+  },
+  {
+    "data": "2026-11-13T03:30:39+00:00",
+    "id": "jStsh431RFg",
+    "url": "https://youtube.com/shorts/jStsh431RFg",
+    "titulo": "Juca e a Descoberta dos Opostos 🐾",
+    "moral": "O verdadeiro amigo ama em todos os momentos, acolhendo e ajudando sem se importar com as diferenças.",
+    "privacidade": "public",
+    "materia": "português",
+    "topico": "opostos: grande e pequeno, alto e baixo",
+    "valor": "amizade",
+    "especie": "onça-pintada",
+    "versiculo": {
+      "ref": "Provérbios 17:17",
+      "texto": "Em todo o tempo ama o amigo."
+    },
+    "resumo": "Juca aprende sobre conceitos opostos ao ajudar seus amigos a alcançar uma fruta e descobre o verdadeiro valor da amizade.",
+    "estudio": "flux",
+    "roteirista": "gemini:gemini-3.8-flash",
+    "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+    "modelo_imagem": "@cf/black-forest-labs/flux-1-schnell"
   }
 ]
