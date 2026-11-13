@@ -11,8 +11,6 @@ on:
     - cron: "07 22 * * *"   # 19:07 nova tentativa
     - cron: "57 22 * * *"   # 19:57 nova tentativa
     - cron: "37 23 * * *"   # 20:37 nova tentativa
-    - cron: "12 0 * * *"    # 21:12 logo após a cota da Cloudflare renovar
-    - cron: "52 1 * * *"    # 22:52 nova tentativa
   workflow_dispatch:
     inputs:
       privacidade:

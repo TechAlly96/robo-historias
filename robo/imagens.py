@@ -21,7 +21,7 @@ DEFINITIVOS = {400, 401, 403, 404, 413}  # pedido/chave inválidos: repetir não
 RODADAS_CORRECAO = 3
 # Teto de imagens por execução: ~metade da cota gratuita diária da Cloudflare (10 mil neurônios ≈ 34 imagens FLUX).
 # Assim uma execução com problema nunca consome a cota do outro vídeo do dia.
-LIMITE_IMAGENS = int(os.environ.get("LIMITE_IMAGENS") or 26)
+LIMITE_IMAGENS = int(os.environ.get("LIMITE_IMAGENS") or 40)
 _usadas = 0
 COTA_ESGOTADA = False  # a Cloudflare avisou que a cota do dia acabou
 

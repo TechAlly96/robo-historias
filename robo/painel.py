@@ -105,8 +105,8 @@ def explicar(e: BaseException) -> tuple:
         return ("O filtro de segurança da Cloudflare recusou a descrição de uma cena por engano (falso alarme), "
                 "mesmo depois de refazer com uma descrição neutra. O robô tenta outra história no próximo horário.", True)
     if nome == "OrcamentoEsgotado":
-        return ("Esta execução atingiu o limite de imagens que pode gastar (para sobrar cota para o outro "
-                "vídeo do dia). A IA errou muitas cenas; o robô tenta uma história nova no próximo horário.", True)
+        return ("Esta execução usou todas as imagens disponíveis da cota do dia e a IA ainda errou cenas demais. "
+                "O robô tenta uma história nova quando a cota renovar (21:00 de Brasília).", True)
     if nome == "EspecieDificil":
         return ("A IA de imagem não conseguiu desenhar o animal sorteado nem na segunda história. "
                 "Os animais difíceis saem do sorteio e o robô tenta de novo no próximo horário.", True)

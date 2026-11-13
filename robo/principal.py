@@ -37,12 +37,12 @@ def _ja_publicado_neste_turno() -> bool:
 
 
 JANELA_HORAS = (0, 24)      # sem restrição de horário: o GitHub chega a atrasar as execuções em horas
-MAX_POR_DIA = 2             # vídeos por dia no plano gratuito
+MAX_POR_DIA = 1             # 1 vídeo por dia, com a cota inteira de imagens para ele
 INTERVALO_MIN_HORAS = 4     # distância mínima entre dois vídeos
 DIFICEIS = config.HISTORICO.parent / "especies_dificeis.json"
 USO_IMAGENS = config.HISTORICO.parent / "uso_imagens.json"
 IMAGENS_POR_DIA = 50        # ~10 mil neurônios/dia ÷ ~175 por imagem FLUX (4 passos), com folga
-MINIMO_PARA_VIDEO = 10      # 7 cenas + algumas correções
+MINIMO_PARA_VIDEO = 25      # 7 cenas + correções com folga; abaixo disso nem começa
 
 
 def _hoje_utc() -> str:

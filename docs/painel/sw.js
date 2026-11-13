@@ -1,5 +1,5 @@
 // Service worker do painel: abre offline com a última versão; dados sempre buscados na rede.
-const CACHE = "painel-robo-v2";
+const CACHE = "painel-robo-v3";
 const BASE = ["./", "index.html", "manifest.webmanifest", "icon-192.png", "icon-512.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(BASE))); self.skipWaiting(); });
 self.addEventListener("activate", e => {
