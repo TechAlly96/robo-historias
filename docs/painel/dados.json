@@ -1,87 +1,25 @@
 {
  "execucoes": [
   {
-   "id": 43336800704,
+   "id": 43352557357,
    "tentativa": 1,
-   "evento": "workflow_dispatch",
-   "inicio": "2026-11-13T00:25:32+00:00",
-   "fim": "2026-11-13T00:35:01+00:00",
-   "situacao": "erro",
-   "etapa": "2/5 Imagens",
-   "etapas": [
-    {
-     "nome": "Preparando",
-     "inicio": "2026-11-13T00:25:32+00:00"
-    },
-    {
-     "nome": "1/5 Roteiro",
-     "inicio": "2026-11-13T00:25:34+00:00"
-    },
-    {
-     "nome": "2/5 Imagens",
-     "inicio": "2026-11-13T00:34:44+00:00"
-    }
-   ],
-   "estudio": "Estúdio FLUX",
-   "titulo": "O Combinado de Tico e o Valor da Promessa 🤝",
-   "especie": "quati",
-   "imagens": 3,
-   "mensagem": "Erro inesperado (RuntimeError): Falha ao gerar imagem (@cf/black-forest-labs/flux-1-schnell): HTTP 409: {\"errors\":[{\"message\":\"AiError: AiError: Cog prediction failed (cfa34865-dcdf-4096-bbc5-c36c1678ee07)\",\"code\":8007}],\"success\":false,\"result\":{},\"messages\":[]}. O robô tenta de novo no próximo horário; se repetir, peça ao Claude para analisar.",
-   "recupera": true,
-   "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/black-forest-labs/flux-1-schnell): HTTP 409: {\"errors\":[{\"message\":\"AiError: AiError: Cog prediction failed (cfa34865-dcdf-4096-bbc5-c36c1678ee07)\",\"code\":8007}],\"success\":false,\"result\":{},\"messages\":[]}",
-   "etapa_erro": "2/5 Imagens"
-  },
-  {
-   "id": 43338638662,
-   "tentativa": 1,
-   "evento": "workflow_dispatch",
-   "inicio": "2026-11-13T00:39:06+00:00",
+   "evento": "schedule",
+   "inicio": "2026-11-13T02:30:38+00:00",
    "fim": null,
    "situacao": "rodando",
    "etapa": "1/5 Roteiro",
    "etapas": [
     {
      "nome": "Preparando",
-     "inicio": "2026-11-13T00:39:06+00:00"
+     "inicio": "2026-11-13T02:30:38+00:00"
     },
     {
      "nome": "1/5 Roteiro",
-     "inicio": "2026-11-13T00:39:07+00:00"
+     "inicio": "2026-11-13T02:30:39+00:00"
     }
    ],
    "estudio": "Estúdio FLUX"
-  },
-  {
-   "id": 43348323321,
-   "tentativa": 1,
-   "evento": "schedule",
-   "inicio": "2026-11-13T01:55:16+00:00",
-   "fim": "2026-11-13T02:29:45+00:00",
-   "situacao": "erro",
-   "etapa": "2/5 Imagens",
-   "etapas": [
-    {
-     "nome": "Preparando",
-     "inicio": "2026-11-13T01:55:16+00:00"
-    },
-    {
-     "nome": "1/5 Roteiro",
-     "inicio": "2026-11-13T01:55:17+00:00"
-    },
-    {
-     "nome": "2/5 Imagens",
-     "inicio": "2026-11-13T02:08:07+00:00"
-    }
-   ],
-   "estudio": "Estúdio FLUX",
-   "titulo": "O Elefantinho Beto e as Vogais 🐘",
-   "especie": "elefantinho",
-   "imagens": 16,
-   "mensagem": "Algumas cenas continuaram com erros (animal errado, membros a mais ou texto) mesmo depois das correções. Para não mostrar imagem errada às crianças, nada foi publicado. O robô tenta uma história nova no próximo horário.",
-   "recupera": true,
-   "tecnico": "RuntimeError: Imagens incompatíveis com a história mesmo após correções: {5: 'Presença de letras nos blocos de brinquedo e mais de uma coruja no cenário.', 6: 'Presença de letras nos blocos de brinquedo e personagem/animal não pertencente à história ao fundo.'}. Nada será publicado.",
-   "etapa_erro": "2/5 Imagens"
   }
  ],
- "atualizado": "2026-11-13T02:29:45+00:00"
+ "atualizado": "2026-11-13T02:30:39+00:00"
 }
