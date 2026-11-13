@@ -98,8 +98,8 @@
    "tentativa": 1,
    "evento": "schedule",
    "inicio": "2026-11-13T08:50:24+00:00",
-   "fim": null,
-   "situacao": "rodando",
+   "fim": "2026-11-13T09:01:55+00:00",
+   "situacao": "erro",
    "etapa": "2/5 Imagens",
    "etapas": [
     {
@@ -125,8 +125,13 @@
    ],
    "estudio": "Estúdio SDXL",
    "titulo": "Pipoca e as Formas da Natureza 🌿",
-   "especie": "coelhinho"
+   "especie": "coelhinho",
+   "imagens": 13,
+   "mensagem": "Esta execução atingiu o limite de imagens que pode gastar (para sobrar cota para o outro vídeo do dia). A IA errou muitas cenas; o robô tenta uma história nova no próximo horário.",
+   "recupera": true,
+   "tecnico": "OrcamentoEsgotado: teto de 13 imagens desta execução atingido; o restante da cota fica para o outro vídeo do dia",
+   "etapa_erro": "2/5 Imagens"
   }
  ],
- "atualizado": "2026-11-13T09:01:18+00:00"
+ "atualizado": "2026-11-13T09:01:55+00:00"
 }
