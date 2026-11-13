@@ -100,14 +100,19 @@
    "inicio": "2026-11-13T08:50:24+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "Preparando",
+   "etapa": "1/5 Roteiro",
    "etapas": [
     {
      "nome": "Preparando",
      "inicio": "2026-11-13T08:50:24+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-13T08:50:26+00:00"
     }
-   ]
+   ],
+   "estudio": "Estúdio SDXL"
   }
  ],
- "atualizado": "2026-11-13T08:50:24+00:00"
+ "atualizado": "2026-11-13T08:50:26+00:00"
 }
