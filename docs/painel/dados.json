@@ -7,7 +7,7 @@
    "inicio": "2026-11-13T02:30:38+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "1/5 Roteiro",
+   "etapa": "2/5 Imagens",
    "etapas": [
     {
      "nome": "Preparando",
@@ -24,12 +24,16 @@
     {
      "nome": "1/5 Roteiro",
      "inicio": "2026-11-13T02:41:52+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-13T02:42:25+00:00"
     }
    ],
    "estudio": "Estúdio FLUX",
-   "titulo": "Bento Aprende a Esperar a Vez 🦒",
-   "especie": "girafinha"
+   "titulo": "Caco e o Segredo da Tomada Segura ⚡",
+   "especie": "onça-pintada"
   }
  ],
- "atualizado": "2026-11-13T02:41:52+00:00"
+ "atualizado": "2026-11-13T02:42:25+00:00"
 }
