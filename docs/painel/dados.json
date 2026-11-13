@@ -30,7 +30,22 @@
    "recupera": true,
    "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/black-forest-labs/flux-1-schnell): HTTP 409: {\"errors\":[{\"message\":\"AiError: AiError: Cog prediction failed (cfa34865-dcdf-4096-bbc5-c36c1678ee07)\",\"code\":8007}],\"success\":false,\"result\":{},\"messages\":[]}",
    "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 43338638662,
+   "tentativa": 1,
+   "evento": "workflow_dispatch",
+   "inicio": "2026-11-13T00:39:06+00:00",
+   "fim": null,
+   "situacao": "rodando",
+   "etapa": "Preparando",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-13T00:39:06+00:00"
+    }
+   ]
   }
  ],
- "atualizado": "2026-11-13T00:35:01+00:00"
+ "atualizado": "2026-11-13T00:39:06+00:00"
 }
