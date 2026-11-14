@@ -139,7 +139,7 @@
    "inicio": "2026-11-14T01:29:47+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "2/5 Imagens",
+   "etapa": "3/5 Narração",
    "etapas": [
     {
      "nome": "Preparando",
@@ -152,6 +152,10 @@
     {
      "nome": "2/5 Imagens",
      "inicio": "2026-11-14T01:35:41+00:00"
+    },
+    {
+     "nome": "3/5 Narração",
+     "inicio": "2026-11-14T01:37:11+00:00"
     }
    ],
    "estudio": "Estúdio SDXL",
@@ -159,5 +163,5 @@
    "especie": "lobo-guará"
   }
  ],
- "atualizado": "2026-11-14T01:35:41+00:00"
+ "atualizado": "2026-11-14T01:37:11+00:00"
 }
