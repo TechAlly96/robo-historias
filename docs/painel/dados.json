@@ -131,7 +131,22 @@
    "recupera": true,
    "tecnico": "OrcamentoEsgotado: teto de 13 imagens desta execução atingido; o restante da cota fica para o outro vídeo do dia",
    "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 43540822742,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-14T01:29:47+00:00",
+   "fim": null,
+   "situacao": "rodando",
+   "etapa": "Preparando",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-14T01:29:47+00:00"
+    }
+   ]
   }
  ],
- "atualizado": "2026-11-13T09:01:55+00:00"
+ "atualizado": "2026-11-14T01:29:47+00:00"
 }
