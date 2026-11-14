@@ -98,5 +98,26 @@
     "roteirista": "gemini:gemini-3.8-flash",
     "voz": "Gemini TTS (gemini-3.8-flash-tts)",
     "modelo_imagem": "@cf/black-forest-labs/flux-1-schnell"
+  },
+  {
+    "data": "2026-11-14T01:40:01+00:00",
+    "id": "ZeGGMLqPvPg",
+    "url": "https://youtube.com/shorts/ZeGGMLqPvPg",
+    "titulo": "Milo e a Lição da Metade 🍓",
+    "moral": "O sábio ouve os ensinamentos com humildade e cresce em conhecimento e discernimento.",
+    "privacidade": "public",
+    "materia": "matemática",
+    "topico": "dividir em partes iguais: a metade",
+    "valor": "sabedoria",
+    "especie": "lobo-guará",
+    "versiculo": {
+      "ref": "Provérbios 1:5",
+      "texto": "O sábio ouvirá e crescerá em ciência."
+    },
+    "resumo": "Milo descobre como dividir seis morangos igualmente pela metade ao ouvir com sabedoria os conselhos de sua mãe.",
+    "estudio": "sdxl",
+    "roteirista": "groq:qwen/qwen3.8-27b",
+    "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+    "modelo_imagem": "@cf/bytedance/stable-diffusion-xl-lightning"
   }
 ]
