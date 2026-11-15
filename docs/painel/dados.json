@@ -216,7 +216,7 @@
    "inicio": "2026-11-15T01:41:11+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "2/5 Imagens",
+   "etapa": "3/5 Narração",
    "etapas": [
     {
      "nome": "Preparando",
@@ -229,6 +229,10 @@
     {
      "nome": "2/5 Imagens",
      "inicio": "2026-11-15T01:46:04+00:00"
+    },
+    {
+     "nome": "3/5 Narração",
+     "inicio": "2026-11-15T01:52:06+00:00"
     }
    ],
    "estudio": "Estúdio FLUX",
@@ -236,5 +240,5 @@
    "especie": "ursinho-panda"
   }
  ],
- "atualizado": "2026-11-15T01:46:04+00:00"
+ "atualizado": "2026-11-15T01:52:06+00:00"
 }
