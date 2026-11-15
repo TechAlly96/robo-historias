@@ -183,8 +183,8 @@
    "tentativa": 1,
    "evento": "schedule",
    "inicio": "2026-11-15T01:06:57+00:00",
-   "fim": null,
-   "situacao": "rodando",
+   "fim": "2026-11-15T01:38:29+00:00",
+   "situacao": "erro",
    "etapa": "2/5 Imagens",
    "etapas": [
     {
@@ -202,8 +202,13 @@
    ],
    "estudio": "Estúdio FLUX",
    "titulo": "As Cores do Brasil na Floresta 🇧🇷",
-   "especie": "pintinho"
+   "especie": "pintinho",
+   "imagens": 16,
+   "mensagem": "Algumas cenas continuaram com erros (animal errado, membros a mais ou texto) mesmo depois das correções. Para não mostrar imagem errada às crianças, nada foi publicado. O robô tenta uma história nova no próximo horário.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Imagens incompatíveis com a história mesmo após correções: {3: 'Aparece outro pintinho ao fundo no canto esquerdo, o que viola a regra de personagens não pertencentes à história.', 6: 'O pintinho possui asas com dedos e o pedaço de plástico está flutuando no ar de forma deformada, além do plástico não estar no bico.'}. Nada será publicado.",
+   "etapa_erro": "2/5 Imagens"
   }
  ],
- "atualizado": "2026-11-15T01:23:51+00:00"
+ "atualizado": "2026-11-15T01:38:29+00:00"
 }
