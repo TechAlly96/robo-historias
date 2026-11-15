@@ -119,5 +119,26 @@
     "roteirista": "groq:qwen/qwen3.8-27b",
     "voz": "Gemini TTS (gemini-3.8-flash-tts)",
     "modelo_imagem": "@cf/bytedance/stable-diffusion-xl-lightning"
+  },
+  {
+    "data": "2026-11-15T01:55:17+00:00",
+    "id": "N8Mi-5fPEEo",
+    "url": "https://youtube.com/shorts/N8Mi-5fPEEo",
+    "titulo": "Tico e o Segredo da Tomada Segura ⚡",
+    "moral": "Fazer as coisas com responsabilidade e cuidado de todo o coração nos protege do perigo e alegra quem amamos.",
+    "privacidade": "public",
+    "materia": "segurança",
+    "topico": "não mexer em tomadas",
+    "valor": "responsabilidade",
+    "especie": "ursinho-panda",
+    "versiculo": {
+      "ref": "Colossenses 3:23",
+      "texto": "Tudo quanto fizerdes, fazei-o de todo o coração, como ao Senhor."
+    },
+    "resumo": "O ursinho-panda Tico descobre que tomadas oferecem perigo de choque elétrico e escolhe agir com responsabilidade chamando sua mãe para ligar seu brinquedo.",
+    "estudio": "flux",
+    "roteirista": "gemini:gemini-3.7-flash",
+    "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+    "modelo_imagem": "@cf/black-forest-labs/flux-1-schnell"
   }
 ]
