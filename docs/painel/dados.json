@@ -208,7 +208,22 @@
    "recupera": true,
    "tecnico": "RuntimeError: Imagens incompatíveis com a história mesmo após correções: {3: 'Aparece outro pintinho ao fundo no canto esquerdo, o que viola a regra de personagens não pertencentes à história.', 6: 'O pintinho possui asas com dedos e o pedaço de plástico está flutuando no ar de forma deformada, além do plástico não estar no bico.'}. Nada será publicado.",
    "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 43664157159,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-15T01:41:11+00:00",
+   "fim": null,
+   "situacao": "rodando",
+   "etapa": "Preparando",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-15T01:41:11+00:00"
+    }
+   ]
   }
  ],
- "atualizado": "2026-11-15T01:38:29+00:00"
+ "atualizado": "2026-11-15T01:41:11+00:00"
 }
