@@ -214,9 +214,9 @@
    "tentativa": 1,
    "evento": "schedule",
    "inicio": "2026-11-15T01:41:11+00:00",
-   "fim": null,
-   "situacao": "rodando",
-   "etapa": "5/5 Publicação",
+   "fim": "2026-11-15T01:55:17+00:00",
+   "situacao": "publicado",
+   "etapa": "Finalizado",
    "etapas": [
     {
      "nome": "Preparando",
@@ -241,13 +241,20 @@
     {
      "nome": "5/5 Publicação",
      "inicio": "2026-11-15T01:53:07+00:00"
+    },
+    {
+     "nome": "Finalizado",
+     "inicio": "2026-11-15T01:55:17+00:00"
     }
    ],
    "estudio": "Estúdio FLUX",
    "titulo": "Tico e o Segredo da Tomada Segura ⚡",
    "especie": "ursinho-panda",
-   "voz": "Gemini TTS (gemini-3.8-flash-tts)"
+   "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+   "video": "https://youtube.com/shorts/N8Mi-5fPEEo",
+   "imagens": 11,
+   "mensagem": "Vídeo publicado no canal."
   }
  ],
- "atualizado": "2026-11-15T01:53:07+00:00"
+ "atualizado": "2026-11-15T01:55:17+00:00"
 }
