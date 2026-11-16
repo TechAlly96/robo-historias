@@ -293,7 +293,22 @@
    "recupera": true,
    "tecnico": "RuntimeError: Todos os provedores falharam: The read operation timed out",
    "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 43787914210,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-16T01:44:19+00:00",
+   "fim": null,
+   "situacao": "rodando",
+   "etapa": "Preparando",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-16T01:44:19+00:00"
+    }
+   ]
   }
  ],
- "atualizado": "2026-11-16T01:29:43+00:00"
+ "atualizado": "2026-11-16T01:44:19+00:00"
 }
