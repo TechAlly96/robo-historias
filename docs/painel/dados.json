@@ -254,7 +254,22 @@
    "video": "https://youtube.com/shorts/N8Mi-5fPEEo",
    "imagens": 11,
    "mensagem": "Vídeo publicado no canal."
+  },
+  {
+   "id": 43784266308,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-16T01:07:43+00:00",
+   "fim": null,
+   "situacao": "rodando",
+   "etapa": "Preparando",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-16T01:07:43+00:00"
+    }
+   ]
   }
  ],
- "atualizado": "2026-11-15T01:55:17+00:00"
+ "atualizado": "2026-11-16T01:07:43+00:00"
 }
