@@ -260,8 +260,8 @@
    "tentativa": 1,
    "evento": "schedule",
    "inicio": "2026-11-16T01:07:43+00:00",
-   "fim": null,
-   "situacao": "rodando",
+   "fim": "2026-11-16T01:29:43+00:00",
+   "situacao": "erro",
    "etapa": "2/5 Imagens",
    "etapas": [
     {
@@ -287,8 +287,13 @@
    ],
    "estudio": "Estúdio FLUX",
    "titulo": "Caco e o Parque Limpo para Todos 🌿",
-   "especie": "capivara"
+   "especie": "capivara",
+   "imagens": 14,
+   "mensagem": "As IAs de texto (Gemini e Groq) estavam fora do ar ou sem cota naquele momento. Isso costuma passar sozinho; o robô tenta de novo no próximo horário.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Todos os provedores falharam: The read operation timed out",
+   "etapa_erro": "2/5 Imagens"
   }
  ],
- "atualizado": "2026-11-16T01:26:24+00:00"
+ "atualizado": "2026-11-16T01:29:43+00:00"
 }
