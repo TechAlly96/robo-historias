@@ -140,5 +140,26 @@
     "roteirista": "gemini:gemini-3.7-flash",
     "voz": "Gemini TTS (gemini-3.8-flash-tts)",
     "modelo_imagem": "@cf/black-forest-labs/flux-1-schnell"
+  },
+  {
+    "data": "2026-11-16T02:03:29+00:00",
+    "id": "6sPvkLruQes",
+    "url": "https://youtube.com/shorts/6sPvkLruQes",
+    "titulo": "Pipoca e o Valor da Palavra 🐥",
+    "moral": "Cumprir promessas gera confiança e verdadeira alegria no coração, transformando cada dia em um motivo abençoado para celebrar.",
+    "privacidade": "public",
+    "materia": "educação moral e cívica",
+    "topico": "cumprir combinados e promessas",
+    "valor": "alegria",
+    "especie": "pintinho",
+    "versiculo": {
+      "ref": "Salmos 118:24",
+      "texto": "Este é o dia que fez o Senhor; regozijemo-nos e alegremo-nos nele."
+    },
+    "resumo": "O pintinho Pipoca e seus amigos aprendem que cumprir combinados constrói confiança e espalha a verdadeira alegria pelo quintal.",
+    "estudio": "sdxl",
+    "roteirista": "groq:qwen/qwen3.8-27b",
+    "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+    "modelo_imagem": "@cf/bytedance/stable-diffusion-xl-lightning"
   }
 ]
