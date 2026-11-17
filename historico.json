@@ -161,5 +161,26 @@
     "roteirista": "groq:qwen/qwen3.8-27b",
     "voz": "Gemini TTS (gemini-3.8-flash-tts)",
     "modelo_imagem": "@cf/bytedance/stable-diffusion-xl-lightning"
+  },
+  {
+    "data": "2026-11-17T01:04:11+00:00",
+    "id": "dUACBX59r98",
+    "url": "https://youtube.com/shorts/dUACBX59r98",
+    "titulo": "Kiko e o Tesouro do Cerrado 🌳",
+    "moral": "Dar com alegria e generosidade traz felicidade ao coração e agrada a Deus.",
+    "privacidade": "public",
+    "materia": "geografia",
+    "topico": "o Cerrado",
+    "valor": "generosidade",
+    "especie": "sapinho",
+    "versiculo": {
+      "ref": "2 Coríntios 9:7",
+      "texto": "Deus ama ao que dá com alegria."
+    },
+    "resumo": "No Cerrado seco, o sapinho Kiko decide compartilhar sua preciosa água com os amigos e aprende o valor da generosidade.",
+    "estudio": "flux",
+    "roteirista": "gemini:gemini-3.5-flash",
+    "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+    "modelo_imagem": "@cf/black-forest-labs/flux-1-schnell"
   }
 ]
