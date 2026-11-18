@@ -182,5 +182,26 @@
     "roteirista": "gemini:gemini-3.5-flash",
     "voz": "Gemini TTS (gemini-3.8-flash-tts)",
     "modelo_imagem": "@cf/black-forest-labs/flux-1-schnell"
+  },
+  {
+    "data": "2026-11-18T01:54:51+00:00",
+    "id": "ClKv1QFVssE",
+    "url": "https://youtube.com/shorts/ClKv1QFVssE",
+    "titulo": "O Gatinho Nino e a Semente de Girassol 🌱",
+    "moral": "Tudo tem o seu tempo determinado.",
+    "privacidade": "public",
+    "materia": "ciências",
+    "topico": "as plantas precisam de sol, água e terra",
+    "valor": "paciência",
+    "especie": "gatinho",
+    "versiculo": {
+      "ref": "Eclesiastes 3:1",
+      "texto": "Tudo tem o seu tempo determinado."
+    },
+    "resumo": "Nino aprende que plantas precisam de sol, água e terra, desenvolvendo a paciência ao ver seu girassol crescer.",
+    "estudio": "flux",
+    "roteirista": "gemini:gemini-3.5-flash-lite",
+    "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+    "modelo_imagem": "@cf/black-forest-labs/flux-1-schnell"
   }
 ]
