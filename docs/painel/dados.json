@@ -385,7 +385,22 @@
    "video": "https://youtube.com/shorts/dUACBX59r98",
    "imagens": 14,
    "mensagem": "Vídeo publicado no canal."
+  },
+  {
+   "id": 44212226383,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-18T01:17:30+00:00",
+   "fim": null,
+   "situacao": "rodando",
+   "etapa": "Preparando",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-18T01:17:30+00:00"
+    }
+   ]
   }
  ],
- "atualizado": "2026-11-17T01:04:11+00:00"
+ "atualizado": "2026-11-18T01:17:30+00:00"
 }
