@@ -391,9 +391,9 @@
    "tentativa": 1,
    "evento": "schedule",
    "inicio": "2026-11-18T01:17:30+00:00",
-   "fim": null,
-   "situacao": "rodando",
-   "etapa": "5/5 Publicação",
+   "fim": "2026-11-18T01:54:51+00:00",
+   "situacao": "publicado",
+   "etapa": "Finalizado",
    "etapas": [
     {
      "nome": "Preparando",
@@ -418,13 +418,20 @@
     {
      "nome": "5/5 Publicação",
      "inicio": "2026-11-18T01:41:05+00:00"
+    },
+    {
+     "nome": "Finalizado",
+     "inicio": "2026-11-18T01:54:51+00:00"
     }
    ],
    "estudio": "Estúdio FLUX",
    "titulo": "O Gatinho Nino e a Semente de Girassol 🌱",
    "especie": "gatinho",
-   "voz": "Gemini TTS (gemini-3.8-flash-tts)"
+   "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+   "video": "https://youtube.com/shorts/ClKv1QFVssE",
+   "imagens": 11,
+   "mensagem": "Vídeo publicado no canal."
   }
  ],
- "atualizado": "2026-11-18T01:41:05+00:00"
+ "atualizado": "2026-11-18T01:54:51+00:00"
 }
