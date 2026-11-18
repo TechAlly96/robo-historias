@@ -393,7 +393,7 @@
    "inicio": "2026-11-18T01:17:30+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "1/5 Roteiro",
+   "etapa": "2/5 Imagens",
    "etapas": [
     {
      "nome": "Preparando",
@@ -402,10 +402,16 @@
     {
      "nome": "1/5 Roteiro",
      "inicio": "2026-11-18T01:17:32+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-18T01:24:46+00:00"
     }
    ],
-   "estudio": "Estúdio FLUX"
+   "estudio": "Estúdio FLUX",
+   "titulo": "O Gatinho Nino e a Semente de Girassol 🌱",
+   "especie": "gatinho"
   }
  ],
- "atualizado": "2026-11-18T01:17:32+00:00"
+ "atualizado": "2026-11-18T01:24:46+00:00"
 }
