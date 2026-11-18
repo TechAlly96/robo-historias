@@ -393,7 +393,7 @@
    "inicio": "2026-11-18T01:17:30+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "2/5 Imagens",
+   "etapa": "3/5 Narração",
    "etapas": [
     {
      "nome": "Preparando",
@@ -406,6 +406,10 @@
     {
      "nome": "2/5 Imagens",
      "inicio": "2026-11-18T01:24:46+00:00"
+    },
+    {
+     "nome": "3/5 Narração",
+     "inicio": "2026-11-18T01:40:09+00:00"
     }
    ],
    "estudio": "Estúdio FLUX",
@@ -413,5 +417,5 @@
    "especie": "gatinho"
   }
  ],
- "atualizado": "2026-11-18T01:24:46+00:00"
+ "atualizado": "2026-11-18T01:40:09+00:00"
 }
