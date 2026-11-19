@@ -203,5 +203,26 @@
     "roteirista": "gemini:gemini-3.5-flash-lite",
     "voz": "Gemini TTS (gemini-3.8-flash-tts)",
     "modelo_imagem": "@cf/black-forest-labs/flux-1-schnell"
+  },
+  {
+    "data": "2026-11-19T01:12:20+00:00",
+    "id": "DSsBSKbbZ0k",
+    "url": "https://youtube.com/shorts/DSsBSKbbZ0k",
+    "titulo": "O Cachorrinho Bibi e a Água da Saúde 💧",
+    "moral": "Honrar e obedecer aos pais protege nossa saúde e nos traz uma vida feliz e cheia de paz.",
+    "privacidade": "public",
+    "materia": "saúde e higiene",
+    "topico": "beber água",
+    "valor": "obediência aos pais",
+    "especie": "cachorrinho",
+    "versiculo": {
+      "ref": "Êxodo 20:12",
+      "texto": "Honra a teu pai e a tua mãe."
+    },
+    "resumo": "O cachorrinho Bibi aprende com sua mãe a importância de beber água para ter saúde e escolhe obedecer com alegria.",
+    "estudio": "sdxl",
+    "roteirista": "groq:qwen/qwen3.8-27b",
+    "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+    "modelo_imagem": "@cf/bytedance/stable-diffusion-xl-lightning"
   }
 ]
