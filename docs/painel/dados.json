@@ -439,7 +439,7 @@
    "inicio": "2026-11-19T00:49:25+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "2/5 Imagens",
+   "etapa": "3/5 Narração",
    "etapas": [
     {
      "nome": "Preparando",
@@ -452,6 +452,10 @@
     {
      "nome": "2/5 Imagens",
      "inicio": "2026-11-19T00:54:42+00:00"
+    },
+    {
+     "nome": "3/5 Narração",
+     "inicio": "2026-11-19T01:04:56+00:00"
     }
    ],
    "estudio": "Estúdio SDXL",
@@ -459,5 +463,5 @@
    "especie": "cachorrinho"
   }
  ],
- "atualizado": "2026-11-19T00:54:42+00:00"
+ "atualizado": "2026-11-19T01:04:56+00:00"
 }
