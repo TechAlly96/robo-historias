@@ -516,7 +516,7 @@
    "inicio": "2026-11-20T02:36:37+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "1/5 Roteiro",
+   "etapa": "2/5 Imagens",
    "etapas": [
     {
      "nome": "Preparando",
@@ -525,10 +525,16 @@
     {
      "nome": "1/5 Roteiro",
      "inicio": "2026-11-20T02:36:38+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-20T02:47:33+00:00"
     }
    ],
-   "estudio": "Estúdio FLUX"
+   "estudio": "Estúdio FLUX",
+   "titulo": "A Girafinha Nina e as Palavras com a Letra B 🦒",
+   "especie": "girafinha"
   }
  ],
- "atualizado": "2026-11-20T02:36:38+00:00"
+ "atualizado": "2026-11-20T02:47:33+00:00"
 }
