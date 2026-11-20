@@ -508,7 +508,22 @@
    "recupera": true,
    "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/black-forest-labs/flux-1-schnell): HTTP 400: {\"errors\":[{\"message\":\"AiError: AiError: Input prompt contains NSFW content. (3602bbf1-bd62-471d-ac66-4c58a60b7126)\",\"code\":8007}],\"success\":false,\"result\":{},\"messages\":[]}",
    "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 44660440102,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-20T02:36:37+00:00",
+   "fim": null,
+   "situacao": "rodando",
+   "etapa": "Preparando",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-20T02:36:37+00:00"
+    }
+   ]
   }
  ],
- "atualizado": "2026-11-20T00:54:42+00:00"
+ "atualizado": "2026-11-20T02:36:37+00:00"
 }
