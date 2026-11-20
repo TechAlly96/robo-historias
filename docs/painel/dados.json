@@ -483,8 +483,8 @@
    "tentativa": 1,
    "evento": "schedule",
    "inicio": "2026-11-20T00:46:49+00:00",
-   "fim": null,
-   "situacao": "rodando",
+   "fim": "2026-11-20T00:54:42+00:00",
+   "situacao": "erro",
    "etapa": "2/5 Imagens",
    "etapas": [
     {
@@ -502,8 +502,13 @@
    ],
    "estudio": "Estúdio FLUX",
    "titulo": "A Raposinha Rui e o Som das Palavras 🦊",
-   "especie": "raposinha"
+   "especie": "raposinha",
+   "imagens": 2,
+   "mensagem": "O filtro de segurança da Cloudflare recusou a descrição de uma cena por engano (falso alarme), mesmo depois de refazer com uma descrição neutra. O robô tenta outra história no próximo horário.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/black-forest-labs/flux-1-schnell): HTTP 400: {\"errors\":[{\"message\":\"AiError: AiError: Input prompt contains NSFW content. (3602bbf1-bd62-471d-ac66-4c58a60b7126)\",\"code\":8007}],\"success\":false,\"result\":{},\"messages\":[]}",
+   "etapa_erro": "2/5 Imagens"
   }
  ],
- "atualizado": "2026-11-20T00:54:33+00:00"
+ "atualizado": "2026-11-20T00:54:42+00:00"
 }
