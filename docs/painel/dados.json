@@ -7,7 +7,7 @@
    "inicio": "2026-11-20T03:11:17+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "1/5 Roteiro",
+   "etapa": "2/5 Imagens",
    "etapas": [
     {
      "nome": "Preparando",
@@ -16,10 +16,16 @@
     {
      "nome": "1/5 Roteiro",
      "inicio": "2026-11-20T03:11:18+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-20T03:12:39+00:00"
     }
    ],
-   "estudio": "Estúdio FLUX"
+   "estudio": "Estúdio FLUX",
+   "titulo": "O Pinguim Pingo e as Dez Pedrinhas 🐧",
+   "especie": "pinguim"
   }
  ],
- "atualizado": "2026-11-20T03:11:18+00:00"
+ "atualizado": "2026-11-20T03:12:39+00:00"
 }
