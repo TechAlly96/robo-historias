@@ -516,7 +516,7 @@
    "inicio": "2026-11-20T02:36:37+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "3/5 Narração",
+   "etapa": "4/5 Montagem",
    "etapas": [
     {
      "nome": "Preparando",
@@ -533,12 +533,17 @@
     {
      "nome": "3/5 Narração",
      "inicio": "2026-11-20T03:00:12+00:00"
+    },
+    {
+     "nome": "4/5 Montagem",
+     "inicio": "2026-11-20T03:00:29+00:00"
     }
    ],
    "estudio": "Estúdio FLUX",
    "titulo": "A Girafinha Nina e as Palavras com a Letra B 🦒",
-   "especie": "girafinha"
+   "especie": "girafinha",
+   "voz": "Gemini TTS (gemini-3.8-flash-tts)"
   }
  ],
- "atualizado": "2026-11-20T03:00:12+00:00"
+ "atualizado": "2026-11-20T03:00:29+00:00"
 }
