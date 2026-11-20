@@ -224,5 +224,26 @@
     "roteirista": "groq:qwen/qwen3.8-27b",
     "voz": "Gemini TTS (gemini-3.8-flash-tts)",
     "modelo_imagem": "@cf/bytedance/stable-diffusion-xl-lightning"
+  },
+  {
+    "data": "2026-11-20T03:07:21+00:00",
+    "id": "r_tzBNbAfSw",
+    "url": "https://youtube.com/shorts/r_tzBNbAfSw",
+    "titulo": "A Girafinha Nina e as Palavras com a Letra B 🦒",
+    "moral": "A humildade nos leva a valorizar os outros acima de nós mesmos, compartilhando o mérito com alegria.",
+    "privacidade": "public",
+    "materia": "português",
+    "topico": "palavras que começam com a mesma letra",
+    "valor": "humildade",
+    "especie": "girafinha",
+    "versiculo": {
+      "ref": "Filipenses 2:3",
+      "texto": "Cada um considere os outros superiores a si mesmo."
+    },
+    "resumo": "Nina e Bento aprendem palavras com a letra B. Nina escolhe a humildade para ouvir e elogiar seu amigo.",
+    "estudio": "flux",
+    "roteirista": "gemini:gemini-3.8-flash",
+    "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+    "modelo_imagem": "@cf/black-forest-labs/flux-1-schnell"
   }
 ]
