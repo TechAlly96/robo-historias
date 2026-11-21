@@ -45,7 +45,22 @@
    "video": "https://youtube.com/shorts/RsEJJ-vx93s",
    "imagens": 15,
    "mensagem": "Vídeo publicado no canal."
+  },
+  {
+   "id": 44840771387,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-21T00:00:36+00:00",
+   "fim": null,
+   "situacao": "rodando",
+   "etapa": "Preparando",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-21T00:00:36+00:00"
+    }
+   ]
   }
  ],
- "atualizado": "2026-11-20T03:22:43+00:00"
+ "atualizado": "2026-11-21T00:00:36+00:00"
 }
