@@ -51,9 +51,9 @@
    "tentativa": 1,
    "evento": "schedule",
    "inicio": "2026-11-21T00:00:36+00:00",
-   "fim": null,
-   "situacao": "rodando",
-   "etapa": "5/5 Publicação",
+   "fim": "2026-11-21T00:23:19+00:00",
+   "situacao": "publicado",
+   "etapa": "Finalizado",
    "etapas": [
     {
      "nome": "Preparando",
@@ -78,13 +78,20 @@
     {
      "nome": "5/5 Publicação",
      "inicio": "2026-11-21T00:17:03+00:00"
+    },
+    {
+     "nome": "Finalizado",
+     "inicio": "2026-11-21T00:23:19+00:00"
     }
    ],
    "estudio": "Estúdio FLUX",
    "titulo": "Beto e as Dez Laranjas da Paz 🍊",
    "especie": "elefantinho",
-   "voz": "Gemini TTS (gemini-3.8-flash-tts)"
+   "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+   "video": "https://youtube.com/shorts/h8bptGsZRZY",
+   "imagens": 15,
+   "mensagem": "Vídeo publicado no canal."
   }
  ],
- "atualizado": "2026-11-21T00:17:03+00:00"
+ "atualizado": "2026-11-21T00:23:19+00:00"
 }
