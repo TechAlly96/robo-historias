@@ -245,5 +245,26 @@
     "roteirista": "gemini:gemini-3.8-flash",
     "voz": "Gemini TTS (gemini-3.8-flash-tts)",
     "modelo_imagem": "@cf/black-forest-labs/flux-1-schnell"
+  },
+  {
+    "data": "2026-11-21T00:23:19+00:00",
+    "id": "h8bptGsZRZY",
+    "url": "https://youtube.com/shorts/h8bptGsZRZY",
+    "titulo": "Beto e as Dez Laranjas da Paz 🍊",
+    "moral": "Promover a paz e a partilha justa resolve desavenças e alegra o coração de Deus.",
+    "privacidade": "public",
+    "materia": "matemática",
+    "topico": "contar de 1 a 10",
+    "valor": "paz",
+    "especie": "elefantinho",
+    "versiculo": {
+      "ref": "Mateus 5:9",
+      "texto": "Bem-aventurados os pacificadores, porque eles serão chamados filhos de Deus."
+    },
+    "resumo": "O elefantinho Beto pacifica a disputa entre a girafa Gigi e a zebra Zeca contando dez laranjas para dividir com justiça.",
+    "estudio": "flux",
+    "roteirista": "gemini:gemini-3.8-flash",
+    "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+    "modelo_imagem": "@cf/black-forest-labs/flux-1-schnell"
   }
 ]
