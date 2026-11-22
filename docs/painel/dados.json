@@ -122,7 +122,22 @@
    "recupera": true,
    "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla",
    "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 44973982552,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-22T02:00:59+00:00",
+   "fim": null,
+   "situacao": "rodando",
+   "etapa": "Preparando",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-22T02:00:59+00:00"
+    }
+   ]
   }
  ],
- "atualizado": "2026-11-22T01:34:42+00:00"
+ "atualizado": "2026-11-22T02:00:59+00:00"
 }
