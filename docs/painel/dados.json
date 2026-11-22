@@ -192,7 +192,7 @@
    "inicio": "2026-11-22T03:26:22+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "1/5 Roteiro",
+   "etapa": "2/5 Imagens",
    "etapas": [
     {
      "nome": "Preparando",
@@ -201,10 +201,16 @@
     {
      "nome": "1/5 Roteiro",
      "inicio": "2026-11-22T03:26:24+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-22T03:29:29+00:00"
     }
    ],
-   "estudio": "Estúdio SDXL"
+   "estudio": "Estúdio SDXL",
+   "titulo": "O Cinto de Segurança e o Perdão do Nino 🚗",
+   "especie": "bicho-preguiça"
   }
  ],
- "atualizado": "2026-11-22T03:26:24+00:00"
+ "atualizado": "2026-11-22T03:29:29+00:00"
 }
