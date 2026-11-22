@@ -249,7 +249,7 @@
    "inicio": "2026-11-22T22:02:12+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "1/5 Roteiro",
+   "etapa": "2/5 Imagens",
    "etapas": [
     {
      "nome": "Preparando",
@@ -258,10 +258,16 @@
     {
      "nome": "1/5 Roteiro",
      "inicio": "2026-11-22T22:02:14+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-22T22:10:32+00:00"
     }
    ],
-   "estudio": "Estúdio SDXL"
+   "estudio": "Estúdio SDXL",
+   "titulo": "Léo e o Cuidado com a Criação 🐮",
+   "especie": "bezerrinho"
   }
  ],
- "atualizado": "2026-11-22T22:02:14+00:00"
+ "atualizado": "2026-11-22T22:10:32+00:00"
 }
