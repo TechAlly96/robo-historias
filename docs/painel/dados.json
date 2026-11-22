@@ -247,8 +247,8 @@
    "tentativa": 1,
    "evento": "schedule",
    "inicio": "2026-11-22T22:02:12+00:00",
-   "fim": null,
-   "situacao": "rodando",
+   "fim": "2026-11-22T22:13:09+00:00",
+   "situacao": "erro",
    "etapa": "2/5 Imagens",
    "etapas": [
     {
@@ -266,8 +266,13 @@
    ],
    "estudio": "Estúdio SDXL",
    "titulo": "Léo e o Cuidado com a Criação 🐮",
-   "especie": "bezerrinho"
+   "especie": "bezerrinho",
+   "imagens": 0,
+   "mensagem": "Erro inesperado (RuntimeError): Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla. O robô tenta de novo no próximo horário; se repetir, peça ao Claude para analisar.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla",
+   "etapa_erro": "2/5 Imagens"
   }
  ],
- "atualizado": "2026-11-22T22:10:32+00:00"
+ "atualizado": "2026-11-22T22:13:09+00:00"
 }
