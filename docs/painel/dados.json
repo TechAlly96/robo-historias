@@ -161,7 +161,7 @@
    "inicio": "2026-11-22T02:51:10+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "1/5 Roteiro",
+   "etapa": "2/5 Imagens",
    "etapas": [
     {
      "nome": "Preparando",
@@ -170,10 +170,16 @@
     {
      "nome": "1/5 Roteiro",
      "inicio": "2026-11-22T02:51:11+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-22T03:03:28+00:00"
     }
    ],
-   "estudio": "Estúdio SDXL"
+   "estudio": "Estúdio SDXL",
+   "titulo": "A Ovelhinha Lia e a Travessia Segura 🚦",
+   "especie": "ovelhinha"
   }
  ],
- "atualizado": "2026-11-22T02:51:11+00:00"
+ "atualizado": "2026-11-22T03:03:28+00:00"
 }
