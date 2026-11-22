@@ -241,7 +241,22 @@
    "estudio": "Estúdio SDXL",
    "titulo": "Fubá e o Cuidado com a Floresta 🪵",
    "especie": "bicho-preguiça"
+  },
+  {
+   "id": 45075309708,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-22T22:02:12+00:00",
+   "fim": null,
+   "situacao": "rodando",
+   "etapa": "Preparando",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-22T22:02:12+00:00"
+    }
+   ]
   }
  ],
- "atualizado": "2026-11-22T21:07:04+00:00"
+ "atualizado": "2026-11-22T22:02:12+00:00"
 }
