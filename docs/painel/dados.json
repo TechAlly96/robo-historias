@@ -130,7 +130,7 @@
    "inicio": "2026-11-22T02:00:59+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "1/5 Roteiro",
+   "etapa": "2/5 Imagens",
    "etapas": [
     {
      "nome": "Preparando",
@@ -139,10 +139,16 @@
     {
      "nome": "1/5 Roteiro",
      "inicio": "2026-11-22T02:01:01+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-22T02:01:54+00:00"
     }
    ],
-   "estudio": "Estúdio SDXL"
+   "estudio": "Estúdio SDXL",
+   "titulo": "Tom e o Quintal Seguro",
+   "especie": "quati"
   }
  ],
- "atualizado": "2026-11-22T02:01:01+00:00"
+ "atualizado": "2026-11-22T02:01:54+00:00"
 }
