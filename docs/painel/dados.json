@@ -99,7 +99,7 @@
    "inicio": "2026-11-22T01:24:46+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "1/5 Roteiro",
+   "etapa": "2/5 Imagens",
    "etapas": [
     {
      "nome": "Preparando",
@@ -108,10 +108,16 @@
     {
      "nome": "1/5 Roteiro",
      "inicio": "2026-11-22T01:24:47+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-22T01:32:05+00:00"
     }
    ],
-   "estudio": "Estúdio SDXL"
+   "estudio": "Estúdio SDXL",
+   "titulo": "Luca e o Perigo do Fogo 🔥",
+   "especie": "coelhinho"
   }
  ],
- "atualizado": "2026-11-22T01:24:47+00:00"
+ "atualizado": "2026-11-22T01:32:05+00:00"
 }
