@@ -390,7 +390,22 @@
    "recupera": true,
    "tecnico": "RuntimeError: Roteiro reprovado em todas as tentativas; nada será publicado.",
    "etapa_erro": "1/5 Roteiro"
+  },
+  {
+   "id": 45108790124,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-23T03:56:18+00:00",
+   "fim": null,
+   "situacao": "rodando",
+   "etapa": "Preparando",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-23T03:56:18+00:00"
+    }
+   ]
   }
  ],
- "atualizado": "2026-11-23T03:38:11+00:00"
+ "atualizado": "2026-11-23T03:56:18+00:00"
 }
