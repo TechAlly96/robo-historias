@@ -398,7 +398,7 @@
    "inicio": "2026-11-23T03:56:18+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "1/5 Roteiro",
+   "etapa": "2/5 Imagens",
    "etapas": [
     {
      "nome": "Preparando",
@@ -407,10 +407,16 @@
     {
      "nome": "1/5 Roteiro",
      "inicio": "2026-11-23T03:56:19+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-23T04:00:59+00:00"
     }
    ],
-   "estudio": "Estúdio SDXL"
+   "estudio": "Estúdio SDXL",
+   "titulo": "Aurora e o Cuidado com o Fogo 🔥",
+   "especie": "raposinha"
   }
  ],
- "atualizado": "2026-11-23T03:56:19+00:00"
+ "atualizado": "2026-11-23T04:00:59+00:00"
 }
