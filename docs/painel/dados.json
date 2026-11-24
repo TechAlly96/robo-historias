@@ -1283,7 +1283,7 @@
    "inicio": "2026-11-24T21:09:07+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "2/5 Imagens",
+   "etapa": "1/5 Roteiro",
    "etapas": [
     {
      "nome": "Preparando",
@@ -1296,6 +1296,10 @@
     {
      "nome": "2/5 Imagens",
      "inicio": "2026-11-24T21:11:09+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-24T21:15:13+00:00"
     }
    ],
    "estudio": "Estúdio FLUX",
@@ -1303,5 +1307,5 @@
    "especie": "capivara"
   }
  ],
- "atualizado": "2026-11-24T21:11:09+00:00"
+ "atualizado": "2026-11-24T21:15:14+00:00"
 }
