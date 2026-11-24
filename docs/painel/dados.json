@@ -1,67 +1,25 @@
 {
  "execucoes": [
   {
-   "id": 45336030376,
+   "id": 45345067993,
    "tentativa": 1,
    "evento": "schedule",
-   "inicio": "2026-11-24T06:11:31+00:00",
-   "fim": "2026-11-24T06:17:06+00:00",
-   "situacao": "erro",
-   "etapa": "2/5 Imagens",
+   "inicio": "2026-11-24T07:48:21+00:00",
+   "fim": null,
+   "situacao": "rodando",
+   "etapa": "1/5 Roteiro",
    "etapas": [
     {
      "nome": "Preparando",
-     "inicio": "2026-11-24T06:11:31+00:00"
+     "inicio": "2026-11-24T07:48:21+00:00"
     },
     {
      "nome": "1/5 Roteiro",
-     "inicio": "2026-11-24T06:11:32+00:00"
-    },
-    {
-     "nome": "2/5 Imagens",
-     "inicio": "2026-11-24T06:14:30+00:00"
+     "inicio": "2026-11-24T07:48:22+00:00"
     }
    ],
-   "estudio": "Estúdio SDXL",
-   "titulo": "Teca Aprendendo a Usar o Cinto 🚗",
-   "especie": "bicho-preguiça",
-   "imagens": 0,
-   "mensagem": "Erro inesperado (RuntimeError): Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla. O robô tenta de novo no próximo horário; se repetir, peça ao Claude para analisar.",
-   "recupera": true,
-   "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla",
-   "etapa_erro": "2/5 Imagens"
-  },
-  {
-   "id": 45342993953,
-   "tentativa": 1,
-   "evento": "schedule",
-   "inicio": "2026-11-24T07:08:12+00:00",
-   "fim": "2026-11-24T07:21:04+00:00",
-   "situacao": "erro",
-   "etapa": "2/5 Imagens",
-   "etapas": [
-    {
-     "nome": "Preparando",
-     "inicio": "2026-11-24T07:08:12+00:00"
-    },
-    {
-     "nome": "1/5 Roteiro",
-     "inicio": "2026-11-24T07:08:13+00:00"
-    },
-    {
-     "nome": "2/5 Imagens",
-     "inicio": "2026-11-24T07:18:28+00:00"
-    }
-   ],
-   "estudio": "Estúdio SDXL",
-   "titulo": "Kiko e a Tesoura Segura 🦊",
-   "especie": "raposinha",
-   "imagens": 0,
-   "mensagem": "Erro inesperado (RuntimeError): Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla. O robô tenta de novo no próximo horário; se repetir, peça ao Claude para analisar.",
-   "recupera": true,
-   "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla",
-   "etapa_erro": "2/5 Imagens"
+   "estudio": "Estúdio SDXL"
   }
  ],
- "atualizado": "2026-11-24T07:21:04+00:00"
+ "atualizado": "2026-11-24T07:48:22+00:00"
 }
