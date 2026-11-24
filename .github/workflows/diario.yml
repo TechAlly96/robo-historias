@@ -46,6 +46,8 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
 
       - uses: actions/setup-python@v5
         with:
@@ -98,7 +100,8 @@ jobs:
         run: |
           git config user.name "robo-historias[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          for f in historico.json especies_dificeis.json uso_imagens.json docs/painel/dados.json; do [ -f "$f" ] && git add "$f"; done
+          git checkout -- docs/painel/dados.json 2>/dev/null || true
+          for f in historico.json especies_dificeis.json uso_imagens.json; do [ -f "$f" ] && git add "$f"; done
           git diff --cached --quiet || git commit -m "Histórico: execução de $(date -u +%F)"
           git pull -q --rebase origin main
           git push

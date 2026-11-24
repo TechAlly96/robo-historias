@@ -105,15 +105,7 @@ ESTUDIOS = {
         "ordem_texto": ("gemini", "groq", "cloudflare"),
         "hashtags": ["#FLUX", "#BlackForestLabs"],
     },
-    "sdxl": {
-        "nome": "Estúdio SDXL",
-        "modelo_imagem": "@cf/bytedance/stable-diffusion-xl-lightning",
-        "imagem_credito": "SDXL Lightning · ByteDance",
-        "ordem_texto": ("groq", "gemini", "cloudflare"),
-        "hashtags": ["#SDXL", "#StableDiffusion"],
-        "um_personagem_por_cena": True,
-        "intervalo_min_horas": 48,
-    },
+    # "sdxl": removido em 24/11/2026 — a Cloudflare desativou o SDXL Lightning em 20/11/2026.
 }
 
 # Tradução para o mundo: títulos/descrições em 15 idiomas; legendas CC em pt-BR e inglês

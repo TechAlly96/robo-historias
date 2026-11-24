@@ -1,6 +1,1251 @@
 {
  "execucoes": [
   {
+   "id": 43336800704,
+   "tentativa": 1,
+   "evento": "workflow_dispatch",
+   "inicio": "2026-11-13T00:25:32+00:00",
+   "fim": "2026-11-13T00:35:01+00:00",
+   "situacao": "erro",
+   "etapa": "2/5 Imagens",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-13T00:25:32+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-13T00:25:34+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-13T00:34:44+00:00"
+    }
+   ],
+   "estudio": "Estúdio FLUX",
+   "titulo": "O Combinado de Tico e o Valor da Promessa 🤝",
+   "especie": "quati",
+   "imagens": 3,
+   "mensagem": "Erro inesperado (RuntimeError): Falha ao gerar imagem (@cf/black-forest-labs/flux-1-schnell): HTTP 409: {\"errors\":[{\"message\":\"AiError: AiError: Cog prediction failed (cfa34865-dcdf-4096-bbc5-c36c1678ee07)\",\"code\":8007}],\"success\":false,\"result\":{},\"messages\":[]}. O robô tenta de novo no próximo horário; se repetir, peça ao Claude para analisar.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/black-forest-labs/flux-1-schnell): HTTP 409: {\"errors\":[{\"message\":\"AiError: AiError: Cog prediction failed (cfa34865-dcdf-4096-bbc5-c36c1678ee07)\",\"code\":8007}],\"success\":false,\"result\":{},\"messages\":[]}",
+   "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 43338638662,
+   "tentativa": 1,
+   "evento": "workflow_dispatch",
+   "inicio": "2026-11-13T00:39:06+00:00",
+   "fim": null,
+   "situacao": "rodando",
+   "etapa": "1/5 Roteiro",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-13T00:39:06+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-13T00:39:07+00:00"
+    }
+   ],
+   "estudio": "Estúdio FLUX"
+  },
+  {
+   "id": 43348323321,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-13T01:55:16+00:00",
+   "fim": "2026-11-13T02:29:45+00:00",
+   "situacao": "erro",
+   "etapa": "2/5 Imagens",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-13T01:55:16+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-13T01:55:17+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-13T02:08:07+00:00"
+    }
+   ],
+   "estudio": "Estúdio FLUX",
+   "titulo": "O Elefantinho Beto e as Vogais 🐘",
+   "especie": "elefantinho",
+   "imagens": 16,
+   "mensagem": "Algumas cenas continuaram com erros (animal errado, membros a mais ou texto) mesmo depois das correções. Para não mostrar imagem errada às crianças, nada foi publicado. O robô tenta uma história nova no próximo horário.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Imagens incompatíveis com a história mesmo após correções: {5: 'Presença de letras nos blocos de brinquedo e mais de uma coruja no cenário.', 6: 'Presença de letras nos blocos de brinquedo e personagem/animal não pertencente à história ao fundo.'}. Nada será publicado.",
+   "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 43352557357,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-13T02:30:38+00:00",
+   "fim": "2026-11-13T02:42:41+00:00",
+   "situacao": "erro",
+   "etapa": "2/5 Imagens",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-13T02:30:38+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-13T02:30:39+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-13T02:40:16+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-13T02:41:52+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-13T02:42:25+00:00"
+    }
+   ],
+   "estudio": "Estúdio FLUX",
+   "titulo": "Caco e o Segredo da Tomada Segura ⚡",
+   "especie": "onça-pintada",
+   "imagens": 12,
+   "mensagem": "Erro inesperado (RuntimeError): Falha ao gerar imagem (@cf/black-forest-labs/flux-1-schnell): HTTP 400: {\"errors\":[{\"message\":\"AiError: AiError: Input prompt contains NSFW content. (8962d134-0395-4758-83c3-8bd0a2484cd8)\",\"code\":8007}],\"success\":false,\"result\":{},\"messages\":[]}. O robô tenta de novo no próximo horário; se repetir, peça ao Claude para analisar.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/black-forest-labs/flux-1-schnell): HTTP 400: {\"errors\":[{\"message\":\"AiError: AiError: Input prompt contains NSFW content. (8962d134-0395-4758-83c3-8bd0a2484cd8)\",\"code\":8007}],\"success\":false,\"result\":{},\"messages\":[]}",
+   "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 43357093667,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-13T03:10:41+00:00",
+   "fim": "2026-11-13T03:30:39+00:00",
+   "situacao": "publicado",
+   "etapa": "Finalizado",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-13T03:10:41+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-13T03:10:43+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-13T03:11:40+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-13T03:12:26+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-13T03:17:41+00:00"
+    },
+    {
+     "nome": "3/5 Narração",
+     "inicio": "2026-11-13T03:26:19+00:00"
+    },
+    {
+     "nome": "4/5 Montagem",
+     "inicio": "2026-11-13T03:26:35+00:00"
+    },
+    {
+     "nome": "5/5 Publicação",
+     "inicio": "2026-11-13T03:27:25+00:00"
+    },
+    {
+     "nome": "Finalizado",
+     "inicio": "2026-11-13T03:30:39+00:00"
+    }
+   ],
+   "estudio": "Estúdio FLUX",
+   "titulo": "Juca e a Descoberta dos Opostos 🐾",
+   "especie": "onça-pintada",
+   "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+   "video": "https://youtube.com/shorts/jStsh431RFg",
+   "imagens": 18,
+   "mensagem": "Vídeo publicado no canal."
+  },
+  {
+   "id": 43396265531,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-13T08:50:24+00:00",
+   "fim": "2026-11-13T09:01:55+00:00",
+   "situacao": "erro",
+   "etapa": "2/5 Imagens",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-13T08:50:24+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-13T08:50:26+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-13T08:53:16+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-13T08:56:34+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-13T09:01:18+00:00"
+    }
+   ],
+   "estudio": "Estúdio SDXL",
+   "titulo": "Pipoca e as Formas da Natureza 🌿",
+   "especie": "coelhinho",
+   "imagens": 13,
+   "mensagem": "Esta execução atingiu o limite de imagens que pode gastar (para sobrar cota para o outro vídeo do dia). A IA errou muitas cenas; o robô tenta uma história nova no próximo horário.",
+   "recupera": true,
+   "tecnico": "OrcamentoEsgotado: teto de 13 imagens desta execução atingido; o restante da cota fica para o outro vídeo do dia",
+   "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 43540822742,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-14T01:29:47+00:00",
+   "fim": "2026-11-14T01:40:01+00:00",
+   "situacao": "publicado",
+   "etapa": "Finalizado",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-14T01:29:47+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-14T01:29:48+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-14T01:35:41+00:00"
+    },
+    {
+     "nome": "3/5 Narração",
+     "inicio": "2026-11-14T01:37:11+00:00"
+    },
+    {
+     "nome": "4/5 Montagem",
+     "inicio": "2026-11-14T01:37:29+00:00"
+    },
+    {
+     "nome": "5/5 Publicação",
+     "inicio": "2026-11-14T01:38:23+00:00"
+    },
+    {
+     "nome": "Finalizado",
+     "inicio": "2026-11-14T01:40:01+00:00"
+    }
+   ],
+   "estudio": "Estúdio SDXL",
+   "titulo": "Milo e a Lição da Metade 🍓",
+   "especie": "lobo-guará",
+   "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+   "video": "https://youtube.com/shorts/ZeGGMLqPvPg",
+   "imagens": 9,
+   "mensagem": "Vídeo publicado no canal."
+  },
+  {
+   "id": 43661438501,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-15T01:06:57+00:00",
+   "fim": "2026-11-15T01:38:29+00:00",
+   "situacao": "erro",
+   "etapa": "2/5 Imagens",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-15T01:06:57+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-15T01:06:59+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-15T01:23:51+00:00"
+    }
+   ],
+   "estudio": "Estúdio FLUX",
+   "titulo": "As Cores do Brasil na Floresta 🇧🇷",
+   "especie": "pintinho",
+   "imagens": 16,
+   "mensagem": "Algumas cenas continuaram com erros (animal errado, membros a mais ou texto) mesmo depois das correções. Para não mostrar imagem errada às crianças, nada foi publicado. O robô tenta uma história nova no próximo horário.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Imagens incompatíveis com a história mesmo após correções: {3: 'Aparece outro pintinho ao fundo no canto esquerdo, o que viola a regra de personagens não pertencentes à história.', 6: 'O pintinho possui asas com dedos e o pedaço de plástico está flutuando no ar de forma deformada, além do plástico não estar no bico.'}. Nada será publicado.",
+   "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 43664157159,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-15T01:41:11+00:00",
+   "fim": "2026-11-15T01:55:17+00:00",
+   "situacao": "publicado",
+   "etapa": "Finalizado",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-15T01:41:11+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-15T01:41:13+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-15T01:46:04+00:00"
+    },
+    {
+     "nome": "3/5 Narração",
+     "inicio": "2026-11-15T01:52:06+00:00"
+    },
+    {
+     "nome": "4/5 Montagem",
+     "inicio": "2026-11-15T01:52:25+00:00"
+    },
+    {
+     "nome": "5/5 Publicação",
+     "inicio": "2026-11-15T01:53:07+00:00"
+    },
+    {
+     "nome": "Finalizado",
+     "inicio": "2026-11-15T01:55:17+00:00"
+    }
+   ],
+   "estudio": "Estúdio FLUX",
+   "titulo": "Tico e o Segredo da Tomada Segura ⚡",
+   "especie": "ursinho-panda",
+   "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+   "video": "https://youtube.com/shorts/N8Mi-5fPEEo",
+   "imagens": 11,
+   "mensagem": "Vídeo publicado no canal."
+  },
+  {
+   "id": 43784266308,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-16T01:07:43+00:00",
+   "fim": "2026-11-16T01:29:43+00:00",
+   "situacao": "erro",
+   "etapa": "2/5 Imagens",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-16T01:07:43+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-16T01:07:45+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-16T01:11:30+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-16T01:21:40+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-16T01:26:24+00:00"
+    }
+   ],
+   "estudio": "Estúdio FLUX",
+   "titulo": "Caco e o Parque Limpo para Todos 🌿",
+   "especie": "capivara",
+   "imagens": 14,
+   "mensagem": "As IAs de texto (Gemini e Groq) estavam fora do ar ou sem cota naquele momento. Isso costuma passar sozinho; o robô tenta de novo no próximo horário.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Todos os provedores falharam: The read operation timed out",
+   "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 43787914210,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-16T01:44:19+00:00",
+   "fim": "2026-11-16T02:03:29+00:00",
+   "situacao": "publicado",
+   "etapa": "Finalizado",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-16T01:44:19+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-16T01:44:21+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-16T01:49:10+00:00"
+    },
+    {
+     "nome": "3/5 Narração",
+     "inicio": "2026-11-16T02:00:21+00:00"
+    },
+    {
+     "nome": "4/5 Montagem",
+     "inicio": "2026-11-16T02:00:39+00:00"
+    },
+    {
+     "nome": "5/5 Publicação",
+     "inicio": "2026-11-16T02:01:30+00:00"
+    },
+    {
+     "nome": "Finalizado",
+     "inicio": "2026-11-16T02:03:29+00:00"
+    }
+   ],
+   "estudio": "Estúdio SDXL",
+   "titulo": "Pipoca e o Valor da Palavra 🐥",
+   "especie": "pintinho",
+   "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+   "video": "https://youtube.com/shorts/6sPvkLruQes",
+   "imagens": 15,
+   "mensagem": "Vídeo publicado no canal."
+  },
+  {
+   "id": 43987967738,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-17T00:29:43+00:00",
+   "fim": "2026-11-17T01:04:11+00:00",
+   "situacao": "publicado",
+   "etapa": "Finalizado",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-17T00:29:43+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-17T00:29:44+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-17T00:35:59+00:00"
+    },
+    {
+     "nome": "3/5 Narração",
+     "inicio": "2026-11-17T00:53:25+00:00"
+    },
+    {
+     "nome": "4/5 Montagem",
+     "inicio": "2026-11-17T00:53:43+00:00"
+    },
+    {
+     "nome": "5/5 Publicação",
+     "inicio": "2026-11-17T00:54:36+00:00"
+    },
+    {
+     "nome": "Finalizado",
+     "inicio": "2026-11-17T01:04:11+00:00"
+    }
+   ],
+   "estudio": "Estúdio FLUX",
+   "titulo": "Kiko e o Tesouro do Cerrado 🌳",
+   "especie": "sapinho",
+   "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+   "video": "https://youtube.com/shorts/dUACBX59r98",
+   "imagens": 14,
+   "mensagem": "Vídeo publicado no canal."
+  },
+  {
+   "id": 44212226383,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-18T01:17:30+00:00",
+   "fim": "2026-11-18T01:54:51+00:00",
+   "situacao": "publicado",
+   "etapa": "Finalizado",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-18T01:17:30+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-18T01:17:32+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-18T01:24:46+00:00"
+    },
+    {
+     "nome": "3/5 Narração",
+     "inicio": "2026-11-18T01:40:09+00:00"
+    },
+    {
+     "nome": "4/5 Montagem",
+     "inicio": "2026-11-18T01:40:26+00:00"
+    },
+    {
+     "nome": "5/5 Publicação",
+     "inicio": "2026-11-18T01:41:05+00:00"
+    },
+    {
+     "nome": "Finalizado",
+     "inicio": "2026-11-18T01:54:51+00:00"
+    }
+   ],
+   "estudio": "Estúdio FLUX",
+   "titulo": "O Gatinho Nino e a Semente de Girassol 🌱",
+   "especie": "gatinho",
+   "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+   "video": "https://youtube.com/shorts/ClKv1QFVssE",
+   "imagens": 11,
+   "mensagem": "Vídeo publicado no canal."
+  },
+  {
+   "id": 44429020353,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-19T00:49:25+00:00",
+   "fim": "2026-11-19T01:12:20+00:00",
+   "situacao": "publicado",
+   "etapa": "Finalizado",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-19T00:49:25+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-19T00:49:26+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-19T00:54:42+00:00"
+    },
+    {
+     "nome": "3/5 Narração",
+     "inicio": "2026-11-19T01:04:56+00:00"
+    },
+    {
+     "nome": "4/5 Montagem",
+     "inicio": "2026-11-19T01:05:12+00:00"
+    },
+    {
+     "nome": "5/5 Publicação",
+     "inicio": "2026-11-19T01:05:50+00:00"
+    },
+    {
+     "nome": "Finalizado",
+     "inicio": "2026-11-19T01:12:20+00:00"
+    }
+   ],
+   "estudio": "Estúdio SDXL",
+   "titulo": "O Cachorrinho Bibi e a Água da Saúde 💧",
+   "especie": "cachorrinho",
+   "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+   "video": "https://youtube.com/shorts/DSsBSKbbZ0k",
+   "imagens": 8,
+   "mensagem": "Vídeo publicado no canal."
+  },
+  {
+   "id": 44647659655,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-20T00:46:49+00:00",
+   "fim": "2026-11-20T00:54:42+00:00",
+   "situacao": "erro",
+   "etapa": "2/5 Imagens",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-20T00:46:49+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-20T00:46:51+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-20T00:54:33+00:00"
+    }
+   ],
+   "estudio": "Estúdio FLUX",
+   "titulo": "A Raposinha Rui e o Som das Palavras 🦊",
+   "especie": "raposinha",
+   "imagens": 2,
+   "mensagem": "O filtro de segurança da Cloudflare recusou a descrição de uma cena por engano (falso alarme), mesmo depois de refazer com uma descrição neutra. O robô tenta outra história no próximo horário.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/black-forest-labs/flux-1-schnell): HTTP 400: {\"errors\":[{\"message\":\"AiError: AiError: Input prompt contains NSFW content. (3602bbf1-bd62-471d-ac66-4c58a60b7126)\",\"code\":8007}],\"success\":false,\"result\":{},\"messages\":[]}",
+   "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 44660440102,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-20T02:36:37+00:00",
+   "fim": "2026-11-20T03:07:21+00:00",
+   "situacao": "publicado",
+   "etapa": "Finalizado",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-20T02:36:37+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-20T02:36:38+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-20T02:47:33+00:00"
+    },
+    {
+     "nome": "3/5 Narração",
+     "inicio": "2026-11-20T03:00:12+00:00"
+    },
+    {
+     "nome": "4/5 Montagem",
+     "inicio": "2026-11-20T03:00:29+00:00"
+    },
+    {
+     "nome": "5/5 Publicação",
+     "inicio": "2026-11-20T03:01:06+00:00"
+    },
+    {
+     "nome": "Finalizado",
+     "inicio": "2026-11-20T03:07:21+00:00"
+    }
+   ],
+   "estudio": "Estúdio FLUX",
+   "titulo": "A Girafinha Nina e as Palavras com a Letra B 🦒",
+   "especie": "girafinha",
+   "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+   "video": "https://youtube.com/shorts/r_tzBNbAfSw",
+   "imagens": 16,
+   "mensagem": "Vídeo publicado no canal."
+  },
+  {
+   "id": 44664111155,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-20T03:11:17+00:00",
+   "fim": "2026-11-20T03:22:43+00:00",
+   "situacao": "publicado",
+   "etapa": "Finalizado",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-20T03:11:17+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-20T03:11:18+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-20T03:12:39+00:00"
+    },
+    {
+     "nome": "3/5 Narração",
+     "inicio": "2026-11-20T03:18:07+00:00"
+    },
+    {
+     "nome": "4/5 Montagem",
+     "inicio": "2026-11-20T03:18:25+00:00"
+    },
+    {
+     "nome": "5/5 Publicação",
+     "inicio": "2026-11-20T03:19:13+00:00"
+    },
+    {
+     "nome": "Finalizado",
+     "inicio": "2026-11-20T03:22:43+00:00"
+    }
+   ],
+   "estudio": "Estúdio FLUX",
+   "titulo": "O Pinguim Pingo e as Dez Pedrinhas 🐧",
+   "especie": "pinguim",
+   "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+   "video": "https://youtube.com/shorts/RsEJJ-vx93s",
+   "imagens": 15,
+   "mensagem": "Vídeo publicado no canal."
+  },
+  {
+   "id": 44840771387,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-21T00:00:36+00:00",
+   "fim": "2026-11-21T00:23:19+00:00",
+   "situacao": "publicado",
+   "etapa": "Finalizado",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-21T00:00:36+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-21T00:00:38+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-21T00:02:13+00:00"
+    },
+    {
+     "nome": "3/5 Narração",
+     "inicio": "2026-11-21T00:15:54+00:00"
+    },
+    {
+     "nome": "4/5 Montagem",
+     "inicio": "2026-11-21T00:16:15+00:00"
+    },
+    {
+     "nome": "5/5 Publicação",
+     "inicio": "2026-11-21T00:17:03+00:00"
+    },
+    {
+     "nome": "Finalizado",
+     "inicio": "2026-11-21T00:23:19+00:00"
+    }
+   ],
+   "estudio": "Estúdio FLUX",
+   "titulo": "Beto e as Dez Laranjas da Paz 🍊",
+   "especie": "elefantinho",
+   "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+   "video": "https://youtube.com/shorts/h8bptGsZRZY",
+   "imagens": 15,
+   "mensagem": "Vídeo publicado no canal."
+  },
+  {
+   "id": 44971272978,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-22T01:24:46+00:00",
+   "fim": "2026-11-22T01:34:42+00:00",
+   "situacao": "erro",
+   "etapa": "2/5 Imagens",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-22T01:24:46+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-22T01:24:47+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-22T01:32:05+00:00"
+    }
+   ],
+   "estudio": "Estúdio SDXL",
+   "titulo": "Luca e o Perigo do Fogo 🔥",
+   "especie": "coelhinho",
+   "imagens": 0,
+   "mensagem": "Erro inesperado (RuntimeError): Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla. O robô tenta de novo no próximo horário; se repetir, peça ao Claude para analisar.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla",
+   "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 44973982552,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-22T02:00:59+00:00",
+   "fim": "2026-11-22T02:04:31+00:00",
+   "situacao": "erro",
+   "etapa": "2/5 Imagens",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-22T02:00:59+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-22T02:01:01+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-22T02:01:54+00:00"
+    }
+   ],
+   "estudio": "Estúdio SDXL",
+   "titulo": "Tom e o Quintal Seguro",
+   "especie": "quati",
+   "imagens": 0,
+   "mensagem": "Erro inesperado (RuntimeError): Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla. O robô tenta de novo no próximo horário; se repetir, peça ao Claude para analisar.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla",
+   "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 44977889636,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-22T02:51:10+00:00",
+   "fim": "2026-11-22T03:06:05+00:00",
+   "situacao": "erro",
+   "etapa": "2/5 Imagens",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-22T02:51:10+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-22T02:51:11+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-22T03:03:28+00:00"
+    }
+   ],
+   "estudio": "Estúdio SDXL",
+   "titulo": "A Ovelhinha Lia e a Travessia Segura 🚦",
+   "especie": "ovelhinha",
+   "imagens": 0,
+   "mensagem": "Erro inesperado (RuntimeError): Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla. O robô tenta de novo no próximo horário; se repetir, peça ao Claude para analisar.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla",
+   "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 44980547677,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-22T03:26:22+00:00",
+   "fim": "2026-11-22T03:32:06+00:00",
+   "situacao": "erro",
+   "etapa": "2/5 Imagens",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-22T03:26:22+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-22T03:26:24+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-22T03:29:29+00:00"
+    }
+   ],
+   "estudio": "Estúdio SDXL",
+   "titulo": "O Cinto de Segurança e o Perdão do Nino 🚗",
+   "especie": "bicho-preguiça",
+   "imagens": 0,
+   "mensagem": "Erro inesperado (RuntimeError): Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla. O robô tenta de novo no próximo horário; se repetir, peça ao Claude para analisar.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla",
+   "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 45069898051,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-22T21:04:51+00:00",
+   "fim": null,
+   "situacao": "rodando",
+   "etapa": "2/5 Imagens",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-22T21:04:51+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-22T21:04:52+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-22T21:07:04+00:00"
+    }
+   ],
+   "estudio": "Estúdio SDXL",
+   "titulo": "Fubá e o Cuidado com a Floresta 🪵",
+   "especie": "bicho-preguiça"
+  },
+  {
+   "id": 45075309708,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-22T22:02:12+00:00",
+   "fim": "2026-11-22T22:13:09+00:00",
+   "situacao": "erro",
+   "etapa": "2/5 Imagens",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-22T22:02:12+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-22T22:02:14+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-22T22:10:32+00:00"
+    }
+   ],
+   "estudio": "Estúdio SDXL",
+   "titulo": "Léo e o Cuidado com a Criação 🐮",
+   "especie": "bezerrinho",
+   "imagens": 0,
+   "mensagem": "Erro inesperado (RuntimeError): Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla. O robô tenta de novo no próximo horário; se repetir, peça ao Claude para analisar.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla",
+   "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 45084306405,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-22T23:39:15+00:00",
+   "fim": "2026-11-22T23:45:33+00:00",
+   "situacao": "erro",
+   "etapa": "2/5 Imagens",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-22T23:39:15+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-22T23:39:17+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-22T23:42:56+00:00"
+    }
+   ],
+   "estudio": "Estúdio SDXL",
+   "titulo": "Tico e a Viagem Segura de Carro 🚗",
+   "especie": "tucano",
+   "imagens": 0,
+   "mensagem": "Erro inesperado (RuntimeError): Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla. O robô tenta de novo no próximo horário; se repetir, peça ao Claude para analisar.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla",
+   "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 45096665808,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-23T01:49:35+00:00",
+   "fim": "2026-11-23T01:55:05+00:00",
+   "situacao": "erro",
+   "etapa": "2/5 Imagens",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-23T01:49:35+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-23T01:49:37+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-23T01:52:28+00:00"
+    }
+   ],
+   "estudio": "Estúdio SDXL",
+   "titulo": "Lola e a Lição de Segurança 🦥",
+   "especie": "bicho-preguiça",
+   "imagens": 0,
+   "mensagem": "Erro inesperado (RuntimeError): Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla. O robô tenta de novo no próximo horário; se repetir, peça ao Claude para analisar.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla",
+   "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 45100129425,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-23T02:26:22+00:00",
+   "fim": "2026-11-23T02:32:57+00:00",
+   "situacao": "erro",
+   "etapa": "2/5 Imagens",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-23T02:26:22+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-23T02:26:23+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-23T02:30:19+00:00"
+    }
+   ],
+   "estudio": "Estúdio SDXL",
+   "titulo": "Bia e a Viagem Segura 🚗",
+   "especie": "capivara",
+   "imagens": 0,
+   "mensagem": "Erro inesperado (RuntimeError): Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla. O robô tenta de novo no próximo horário; se repetir, peça ao Claude para analisar.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla",
+   "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 45106496800,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-23T03:32:14+00:00",
+   "fim": "2026-11-23T03:38:11+00:00",
+   "situacao": "erro",
+   "etapa": "1/5 Roteiro",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-23T03:32:14+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-23T03:32:16+00:00"
+    }
+   ],
+   "estudio": "Estúdio SDXL",
+   "imagens": 0,
+   "mensagem": "O revisor reprovou o roteiro nas 4 tentativas (erro de português, de conteúdo ou de coerência). O robô escreve uma história nova no próximo horário.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Roteiro reprovado em todas as tentativas; nada será publicado.",
+   "etapa_erro": "1/5 Roteiro"
+  },
+  {
+   "id": 45108790124,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-23T03:56:18+00:00",
+   "fim": "2026-11-23T04:03:36+00:00",
+   "situacao": "erro",
+   "etapa": "2/5 Imagens",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-23T03:56:18+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-23T03:56:19+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-23T04:00:59+00:00"
+    }
+   ],
+   "estudio": "Estúdio SDXL",
+   "titulo": "Aurora e o Cuidado com o Fogo 🔥",
+   "especie": "raposinha",
+   "imagens": 0,
+   "mensagem": "Erro inesperado (RuntimeError): Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla. O robô tenta de novo no próximo horário; se repetir, peça ao Claude para analisar.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla",
+   "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 45310652685,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-24T02:33:36+00:00",
+   "fim": "2026-11-24T02:47:13+00:00",
+   "situacao": "erro",
+   "etapa": "2/5 Imagens",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-24T02:33:36+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-24T02:33:38+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-24T02:44:36+00:00"
+    }
+   ],
+   "estudio": "Estúdio SDXL",
+   "titulo": "Lucas e a Força da Gentileza 🦊",
+   "especie": "raposinha",
+   "imagens": 0,
+   "mensagem": "Erro inesperado (RuntimeError): Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla. O robô tenta de novo no próximo horário; se repetir, peça ao Claude para analisar.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla",
+   "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 45316732475,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-24T03:27:25+00:00",
+   "fim": "2026-11-24T03:36:17+00:00",
+   "situacao": "erro",
+   "etapa": "2/5 Imagens",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-24T03:27:25+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-24T03:27:27+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-24T03:33:40+00:00"
+    }
+   ],
+   "estudio": "Estúdio SDXL",
+   "titulo": "O Bezerrinho Toto e o Passeio Seguro 🐮",
+   "especie": "bezerrinho",
+   "imagens": 0,
+   "mensagem": "Erro inesperado (RuntimeError): Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla. O robô tenta de novo no próximo horário; se repetir, peça ao Claude para analisar.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla",
+   "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 45323122860,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-24T04:22:49+00:00",
+   "fim": "2026-11-24T04:26:45+00:00",
+   "situacao": "erro",
+   "etapa": "2/5 Imagens",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-24T04:22:49+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-24T04:22:51+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-24T04:24:07+00:00"
+    }
+   ],
+   "estudio": "Estúdio SDXL",
+   "titulo": "João e a Resposta Branda 🐰",
+   "especie": "coelhinho",
+   "imagens": 0,
+   "mensagem": "Erro inesperado (RuntimeError): Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla. O robô tenta de novo no próximo horário; se repetir, peça ao Claude para analisar.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla",
+   "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 45332754775,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-24T05:50:35+00:00",
+   "fim": "2026-11-24T05:55:01+00:00",
+   "situacao": "erro",
+   "etapa": "2/5 Imagens",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-24T05:50:35+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-24T05:50:37+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-24T05:52:24+00:00"
+    }
+   ],
+   "estudio": "Estúdio SDXL",
+   "titulo": "Pipo e a Travessia Segura no Parque 🐿️",
+   "especie": "esquilo",
+   "imagens": 0,
+   "mensagem": "Erro inesperado (RuntimeError): Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla. O robô tenta de novo no próximo horário; se repetir, peça ao Claude para analisar.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla",
+   "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 45336030376,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-24T06:11:31+00:00",
+   "fim": "2026-11-24T06:17:06+00:00",
+   "situacao": "erro",
+   "etapa": "2/5 Imagens",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-24T06:11:31+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-24T06:11:32+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-24T06:14:30+00:00"
+    }
+   ],
+   "estudio": "Estúdio SDXL",
+   "titulo": "Teca Aprendendo a Usar o Cinto 🚗",
+   "especie": "bicho-preguiça",
+   "imagens": 0,
+   "mensagem": "Erro inesperado (RuntimeError): Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla. O robô tenta de novo no próximo horário; se repetir, peça ao Claude para analisar.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla",
+   "etapa_erro": "2/5 Imagens"
+  },
+  {
+   "id": 45342993953,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-24T07:08:12+00:00",
+   "fim": "2026-11-24T07:21:04+00:00",
+   "situacao": "erro",
+   "etapa": "2/5 Imagens",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-24T07:08:12+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-24T07:08:13+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-24T07:18:28+00:00"
+    }
+   ],
+   "estudio": "Estúdio SDXL",
+   "titulo": "Kiko e a Tesoura Segura 🦊",
+   "especie": "raposinha",
+   "imagens": 0,
+   "mensagem": "Erro inesperado (RuntimeError): Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla. O robô tenta de novo no próximo horário; se repetir, peça ao Claude para analisar.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Falha ao gerar imagem (@cf/bytedance/stable-diffusion-xl-lightning): HTTP 410: {\"errors\":[{\"message\":\"AiError: Model has been deprecated: @cf/bytedance/stable-diffusion-xl-lightning was deprecated on 2026-11-20. See the model catalog for alternatives: https://developers.cloudfla",
+   "etapa_erro": "2/5 Imagens"
+  },
+  {
    "id": 45345067993,
    "tentativa": 1,
    "evento": "schedule",
@@ -32,5 +1277,5 @@
    "etapa_erro": "2/5 Imagens"
   }
  ],
- "atualizado": "2026-11-24T07:53:32+00:00"
+ "atualizado": "2026-11-24T07:48:21+00:00"
 }

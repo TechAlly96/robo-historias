@@ -26,25 +26,57 @@ def _carregar() -> dict:
         return {"execucoes": []}
 
 
+def _mesclar(dados: dict, extra: dict = None) -> str:
+    """Junta os registros (por id), põe a execução atual por cima e devolve o JSON pronto."""
+    por_id = {}
+    for fonte in (extra or {}, dados):
+        for e in fonte.get("execucoes", []):
+            if e.get("id") is not None:
+                por_id[e["id"]] = e
+    por_id[_atual["id"]] = _atual
+    execs = sorted(por_id.values(), key=lambda e: e.get("inicio") or "")
+    return json.dumps({"execucoes": execs[-MAX_EXECUCOES:], "atualizado": _agora()},
+                      ensure_ascii=False, indent=1) + "\n"
+
+
+def _git(*args, entrada=None, env=None):
+    return subprocess.run(["git", "-c", "user.name=robo-historias[bot]",
+                           "-c", "user.email=github-actions[bot]@users.noreply.github.com", *args],
+                          cwd=config.RAIZ, timeout=60, capture_output=True, text=True, input=entrada, env=env)
+
+
+def _enviar_ao_github(mensagem: str) -> bool:
+    """Cria o commit direto em cima do main mais novo (sem rebase, sem mexer na pasta de trabalho)."""
+    rel = ARQUIVO.relative_to(config.RAIZ).as_posix()
+    indice = dict(os.environ, GIT_INDEX_FILE=str(config.RAIZ / ".git" / "painel.index"))
+    for _ in range(4):
+        if _git("fetch", "-q", "origin", "main").returncode:
+            continue
+        r = _git("show", f"origin/main:{rel}")
+        try:
+            remoto = json.loads(r.stdout) if r.returncode == 0 else {}
+        except ValueError:
+            remoto = {}
+        texto = _mesclar(remoto, extra=_carregar())
+        ARQUIVO.write_text(texto, encoding="utf-8")
+        blob = _git("hash-object", "-w", "--stdin", entrada=texto).stdout.strip()
+        if _git("read-tree", "origin/main", env=indice).returncode:
+            continue
+        _git("update-index", "--add", "--cacheinfo", f"100644,{blob},{rel}", env=indice)
+        arvore = _git("write-tree", env=indice).stdout.strip()
+        commit = _git("commit-tree", arvore, "-p", "origin/main", "-m", f"Painel: {mensagem}").stdout.strip()
+        if commit and _git("push", "-q", "origin", f"{commit}:refs/heads/main").returncode == 0:
+            return True
+    return False
+
+
 def _enviar(mensagem: str) -> None:
     """Grava o arquivo e, dentro do GitHub Actions, envia ao repositório para o painel ver na hora."""
     try:
-        dados = _carregar()
-        execs = [e for e in dados.get("execucoes", []) if e.get("id") != _atual["id"]]
-        execs.append(_atual)
-        dados["execucoes"] = execs[-MAX_EXECUCOES:]
-        dados["atualizado"] = _agora()
         ARQUIVO.parent.mkdir(parents=True, exist_ok=True)
-        ARQUIVO.write_text(json.dumps(dados, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-        if os.environ.get("GITHUB_ACTIONS") != "true":
-            return
-        git = ["git", "-c", "user.name=robo-historias[bot]",
-               "-c", "user.email=github-actions[bot]@users.noreply.github.com"]
-        for cmd in (git + ["add", str(ARQUIVO)],
-                    git + ["commit", "-q", "-m", f"Painel: {mensagem}"],
-                    git + ["-c", "rebase.autoStash=true", "pull", "-q", "--rebase", "origin", "main"],
-                    git + ["push", "-q", "origin", "HEAD:main"]):
-            subprocess.run(cmd, cwd=config.RAIZ, timeout=60, capture_output=True)
+        ARQUIVO.write_text(_mesclar(_carregar()), encoding="utf-8")
+        if os.environ.get("GITHUB_ACTIONS") == "true" and not _enviar_ao_github(mensagem):
+            print("  (painel: não consegui enviar esta atualização ao GitHub)")
     except Exception as e:  # o painel nunca derruba o robô
         print(f"  (painel não atualizado: {type(e).__name__})")
 
@@ -98,6 +130,9 @@ def explicar(e: BaseException) -> tuple:
     if "daily free allocation" in t or "neurons" in t:
         return ("A cota gratuita diária de imagens da Cloudflare acabou. Ela renova às 21:00 (Brasília) "
                 "e o robô tenta de novo no próximo horário depois disso.", True)
+    if "deprecated" in t or "http 410" in t:
+        return ("A Cloudflare desativou o modelo de imagem usado pelo robô. Se for o FLUX (o principal), "
+                "é preciso escolher outro modelo no código; peça ao Claude.", False)
     if "cog prediction failed" in t or "http 409" in t or "http 5" in t:
         return ("O servidor de imagens da Cloudflare teve uma falha momentânea e não respondeu mesmo após "
                 "várias tentativas. Não é problema do robô; ele tenta de novo no próximo horário.", True)

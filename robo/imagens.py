@@ -141,6 +141,9 @@ def _gerar_uma(roteiro: dict, cena: dict, reforco: bool = False, seguro: bool = 
             _usadas += 1
             return _para_jpeg(dados)
         ultimo = f"HTTP {r.status_code}: {r.text[:200]}"
+        if r.status_code == 410 and modelo != config.MODELO_IMAGEM:
+            print(f"    {modelo} foi desativado pela Cloudflare; usando o FLUX")
+            return _gerar_uma(dict(roteiro, modelo_imagem=config.MODELO_IMAGEM), cena, reforco=reforco, seguro=seguro)
         if "nsfw" in r.text.lower():
             if cena.get("_neutra"):
                 break
