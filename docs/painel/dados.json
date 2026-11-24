@@ -1283,7 +1283,7 @@
    "inicio": "2026-11-24T21:09:07+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "1/5 Roteiro",
+   "etapa": "2/5 Imagens",
    "etapas": [
     {
      "nome": "Preparando",
@@ -1300,12 +1300,16 @@
     {
      "nome": "1/5 Roteiro",
      "inicio": "2026-11-24T21:15:13+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-24T21:19:11+00:00"
     }
    ],
    "estudio": "Estúdio FLUX",
-   "titulo": "Caco e o Perigo do Fogo 🔥",
-   "especie": "capivara"
+   "titulo": "Lili e o Segredo da Tesoura Segura ✂️",
+   "especie": "ovelhinha"
   }
  ],
- "atualizado": "2026-11-24T21:15:14+00:00"
+ "atualizado": "2026-11-24T21:19:12+00:00"
 }
