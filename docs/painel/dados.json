@@ -1283,7 +1283,7 @@
    "inicio": "2026-11-24T21:09:07+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "3/5 Narração",
+   "etapa": "4/5 Montagem",
    "etapas": [
     {
      "nome": "Preparando",
@@ -1308,12 +1308,17 @@
     {
      "nome": "3/5 Narração",
      "inicio": "2026-11-24T21:30:13+00:00"
+    },
+    {
+     "nome": "4/5 Montagem",
+     "inicio": "2026-11-24T21:30:30+00:00"
     }
    ],
    "estudio": "Estúdio FLUX",
    "titulo": "Lili e o Segredo da Tesoura Segura ✂️",
-   "especie": "ovelhinha"
+   "especie": "ovelhinha",
+   "voz": "Gemini TTS (gemini-3.8-flash-tts)"
   }
  ],
- "atualizado": "2026-11-24T21:30:13+00:00"
+ "atualizado": "2026-11-24T21:30:30+00:00"
 }
