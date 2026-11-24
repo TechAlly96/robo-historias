@@ -429,7 +429,7 @@
    "inicio": "2026-11-24T02:33:36+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "1/5 Roteiro",
+   "etapa": "2/5 Imagens",
    "etapas": [
     {
      "nome": "Preparando",
@@ -438,10 +438,16 @@
     {
      "nome": "1/5 Roteiro",
      "inicio": "2026-11-24T02:33:38+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-24T02:44:36+00:00"
     }
    ],
-   "estudio": "Estúdio SDXL"
+   "estudio": "Estúdio SDXL",
+   "titulo": "Lucas e a Força da Gentileza 🦊",
+   "especie": "raposinha"
   }
  ],
- "atualizado": "2026-11-24T02:33:38+00:00"
+ "atualizado": "2026-11-24T02:44:36+00:00"
 }
