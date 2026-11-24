@@ -38,7 +38,7 @@
    "inicio": "2026-11-24T07:08:12+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "1/5 Roteiro",
+   "etapa": "2/5 Imagens",
    "etapas": [
     {
      "nome": "Preparando",
@@ -47,10 +47,16 @@
     {
      "nome": "1/5 Roteiro",
      "inicio": "2026-11-24T07:08:13+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-24T07:18:28+00:00"
     }
    ],
-   "estudio": "Estúdio SDXL"
+   "estudio": "Estúdio SDXL",
+   "titulo": "Kiko e a Tesoura Segura 🦊",
+   "especie": "raposinha"
   }
  ],
- "atualizado": "2026-11-24T07:08:13+00:00"
+ "atualizado": "2026-11-24T07:18:28+00:00"
 }
