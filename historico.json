@@ -266,5 +266,26 @@
     "roteirista": "gemini:gemini-3.8-flash",
     "voz": "Gemini TTS (gemini-3.8-flash-tts)",
     "modelo_imagem": "@cf/black-forest-labs/flux-1-schnell"
+  },
+  {
+    "data": "2026-11-24T21:36:38+00:00",
+    "id": "F7vUsFubcBY",
+    "url": "https://youtube.com/shorts/F7vUsFubcBY",
+    "titulo": "Lili e o Segredo da Tesoura Segura ✂️",
+    "moral": "Responder com carinho e calmaria ajuda a desfazer a raiva e constrói um ambiente de paz.",
+    "privacidade": "public",
+    "materia": "segurança",
+    "topico": "cuidado com objetos cortantes",
+    "valor": "gentileza",
+    "especie": "ovelhinha",
+    "versiculo": {
+      "ref": "Provérbios 15:1",
+      "texto": "A resposta branda desvia o furor."
+    },
+    "resumo": "A ovelhinha Lili acalma a raiva do coelho Bento com gentileza e chama sua mãe para ensiná-los a usar tesouras com segurança.",
+    "estudio": "flux",
+    "roteirista": "gemini:gemini-3.5-flash",
+    "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+    "modelo_imagem": "@cf/black-forest-labs/flux-1-schnell"
   }
 ]
