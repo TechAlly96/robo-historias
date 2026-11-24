@@ -1283,7 +1283,7 @@
    "inicio": "2026-11-24T21:09:07+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "2/5 Imagens",
+   "etapa": "3/5 Narração",
    "etapas": [
     {
      "nome": "Preparando",
@@ -1304,6 +1304,10 @@
     {
      "nome": "2/5 Imagens",
      "inicio": "2026-11-24T21:19:11+00:00"
+    },
+    {
+     "nome": "3/5 Narração",
+     "inicio": "2026-11-24T21:30:13+00:00"
     }
    ],
    "estudio": "Estúdio FLUX",
@@ -1311,5 +1315,5 @@
    "especie": "ovelhinha"
   }
  ],
- "atualizado": "2026-11-24T21:19:12+00:00"
+ "atualizado": "2026-11-24T21:30:13+00:00"
 }
