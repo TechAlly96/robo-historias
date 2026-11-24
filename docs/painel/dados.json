@@ -7,7 +7,7 @@
    "inicio": "2026-11-24T06:11:31+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "1/5 Roteiro",
+   "etapa": "2/5 Imagens",
    "etapas": [
     {
      "nome": "Preparando",
@@ -16,10 +16,16 @@
     {
      "nome": "1/5 Roteiro",
      "inicio": "2026-11-24T06:11:32+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-24T06:14:30+00:00"
     }
    ],
-   "estudio": "Estúdio SDXL"
+   "estudio": "Estúdio SDXL",
+   "titulo": "Teca Aprendendo a Usar o Cinto 🚗",
+   "especie": "bicho-preguiça"
   }
  ],
- "atualizado": "2026-11-24T06:11:32+00:00"
+ "atualizado": "2026-11-24T06:14:30+00:00"
 }
