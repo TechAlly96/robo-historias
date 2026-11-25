@@ -1337,7 +1337,7 @@
    "inicio": "2026-11-25T02:33:50+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "2/5 Imagens",
+   "etapa": "3/5 Narração",
    "etapas": [
     {
      "nome": "Preparando",
@@ -1358,6 +1358,10 @@
     {
      "nome": "2/5 Imagens",
      "inicio": "2026-11-25T02:37:26+00:00"
+    },
+    {
+     "nome": "3/5 Narração",
+     "inicio": "2026-11-25T02:39:54+00:00"
     }
    ],
    "estudio": "Estúdio FLUX",
@@ -1365,5 +1369,5 @@
    "especie": "esquilo"
   }
  ],
- "atualizado": "2026-11-25T02:37:27+00:00"
+ "atualizado": "2026-11-25T02:39:55+00:00"
 }
