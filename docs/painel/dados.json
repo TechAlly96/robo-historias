@@ -1337,7 +1337,7 @@
    "inicio": "2026-11-25T02:33:50+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "2/5 Imagens",
+   "etapa": "1/5 Roteiro",
    "etapas": [
     {
      "nome": "Preparando",
@@ -1350,6 +1350,10 @@
     {
      "nome": "2/5 Imagens",
      "inicio": "2026-11-25T02:34:46+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-25T02:36:29+00:00"
     }
    ],
    "estudio": "Estúdio FLUX",
@@ -1357,5 +1361,5 @@
    "especie": "pinguim"
   }
  ],
- "atualizado": "2026-11-25T02:34:46+00:00"
+ "atualizado": "2026-11-25T02:36:29+00:00"
 }
