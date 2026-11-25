@@ -1337,7 +1337,7 @@
    "inicio": "2026-11-25T02:33:50+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "1/5 Roteiro",
+   "etapa": "2/5 Imagens",
    "etapas": [
     {
      "nome": "Preparando",
@@ -1354,12 +1354,16 @@
     {
      "nome": "1/5 Roteiro",
      "inicio": "2026-11-25T02:36:29+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-25T02:37:26+00:00"
     }
    ],
    "estudio": "Estúdio FLUX",
-   "titulo": "Pingo Ensina a Cuidar da Praça 🐧",
-   "especie": "pinguim"
+   "titulo": "Teco e a Faixa de Pedestre 🚦",
+   "especie": "esquilo"
   }
  ],
- "atualizado": "2026-11-25T02:36:29+00:00"
+ "atualizado": "2026-11-25T02:37:27+00:00"
 }
