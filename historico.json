@@ -287,5 +287,26 @@
     "roteirista": "gemini:gemini-3.5-flash",
     "voz": "Gemini TTS (gemini-3.8-flash-tts)",
     "modelo_imagem": "@cf/black-forest-labs/flux-1-schnell"
+  },
+  {
+    "data": "2026-11-25T02:43:18+00:00",
+    "id": "5aqqHDLV8Ek",
+    "url": "https://youtube.com/shorts/5aqqHDLV8Ek",
+    "titulo": "Teco e a Faixa de Pedestre 🚦",
+    "moral": "Cuidar da nossa vida e respeitar as regras da cidade é uma forma amorosa de honrar a criação de Deus.",
+    "privacidade": "public",
+    "materia": "educação moral e cívica",
+    "topico": "a faixa de pedestre e o semáforo",
+    "valor": "cuidado com a criação",
+    "especie": "esquilo",
+    "versiculo": {
+      "ref": "Salmos 24:1",
+      "texto": "Do Senhor é a terra e a sua plenitude."
+    },
+    "resumo": "O esquilo Teco aprende com sua mãe a respeitar o semáforo e a faixa de pedestres antes de encontrar seu amigo.",
+    "estudio": "flux",
+    "roteirista": "gemini:gemini-3.5-flash",
+    "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+    "modelo_imagem": "@cf/black-forest-labs/flux-1-schnell"
   }
 ]
