@@ -1391,7 +1391,7 @@
    "inicio": "2026-11-26T00:41:21+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "1/5 Roteiro",
+   "etapa": "2/5 Imagens",
    "etapas": [
     {
      "nome": "Preparando",
@@ -1400,10 +1400,16 @@
     {
      "nome": "1/5 Roteiro",
      "inicio": "2026-11-26T00:41:23+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-26T00:53:51+00:00"
     }
    ],
-   "estudio": "Estúdio FLUX"
+   "estudio": "Estúdio FLUX",
+   "titulo": "Beto e o Rio Amazonas 🌊",
+   "especie": "bezerrinho"
   }
  ],
- "atualizado": "2026-11-26T00:41:23+00:00"
+ "atualizado": "2026-11-26T00:53:51+00:00"
 }
