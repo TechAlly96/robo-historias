@@ -1391,7 +1391,7 @@
    "inicio": "2026-11-26T00:41:21+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "3/5 Narração",
+   "etapa": "4/5 Montagem",
    "etapas": [
     {
      "nome": "Preparando",
@@ -1408,12 +1408,17 @@
     {
      "nome": "3/5 Narração",
      "inicio": "2026-11-26T00:59:57+00:00"
+    },
+    {
+     "nome": "4/5 Montagem",
+     "inicio": "2026-11-26T01:00:16+00:00"
     }
    ],
    "estudio": "Estúdio FLUX",
    "titulo": "Beto e o Rio Amazonas 🌊",
-   "especie": "bezerrinho"
+   "especie": "bezerrinho",
+   "voz": "Gemini TTS (gemini-3.8-flash-tts)"
   }
  ],
- "atualizado": "2026-11-26T00:59:57+00:00"
+ "atualizado": "2026-11-26T01:00:16+00:00"
 }
