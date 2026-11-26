@@ -308,5 +308,26 @@
     "roteirista": "gemini:gemini-3.5-flash",
     "voz": "Gemini TTS (gemini-3.8-flash-tts)",
     "modelo_imagem": "@cf/black-forest-labs/flux-1-schnell"
+  },
+  {
+    "data": "2026-11-26T01:10:33+00:00",
+    "id": "xpqL3-5tnvA",
+    "url": "https://youtube.com/shorts/xpqL3-5tnvA",
+    "titulo": "Beto e o Rio Amazonas 🌊",
+    "moral": "O verdadeiro amor nos move a cuidar e ajudar o nosso próximo com alegria.",
+    "privacidade": "public",
+    "materia": "geografia",
+    "topico": "a Floresta Amazônica",
+    "valor": "amor ao próximo",
+    "especie": "bezerrinho",
+    "versiculo": {
+      "ref": "Mateus 22:39",
+      "texto": "Amarás o teu próximo como a ti mesmo."
+    },
+    "resumo": "O bezerrinho Beto aprende geografia da Amazônia e ajuda o quati Tico a atravessar a margem do rio.",
+    "estudio": "flux",
+    "roteirista": "gemini:gemini-3.5-flash-lite",
+    "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+    "modelo_imagem": "@cf/black-forest-labs/flux-1-schnell"
   }
 ]
