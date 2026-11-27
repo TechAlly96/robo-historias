@@ -1437,7 +1437,7 @@
    "inicio": "2026-11-27T00:49:57+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "4/5 Montagem",
+   "etapa": "5/5 Publicação",
    "etapas": [
     {
      "nome": "Preparando",
@@ -1466,6 +1466,10 @@
     {
      "nome": "4/5 Montagem",
      "inicio": "2026-11-27T01:00:49+00:00"
+    },
+    {
+     "nome": "5/5 Publicação",
+     "inicio": "2026-11-27T01:01:26+00:00"
     }
    ],
    "estudio": "Estúdio FLUX",
@@ -1474,5 +1478,5 @@
    "voz": "Gemini TTS (gemini-3.8-flash-tts)"
   }
  ],
- "atualizado": "2026-11-27T01:00:49+00:00"
+ "atualizado": "2026-11-27T01:01:26+00:00"
 }
