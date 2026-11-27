@@ -329,5 +329,26 @@
     "roteirista": "gemini:gemini-3.5-flash-lite",
     "voz": "Gemini TTS (gemini-3.8-flash-tts)",
     "modelo_imagem": "@cf/black-forest-labs/flux-1-schnell"
+  },
+  {
+    "data": "2026-11-27T01:04:35+00:00",
+    "id": "yQpwTM8OALw",
+    "url": "https://youtube.com/shorts/yQpwTM8OALw",
+    "titulo": "A Raposinha Rico e o Segredo do Dia ☀️",
+    "moral": "Devemos perseverar com alegria e nunca nos cansar de fazer o bem ao próximo.",
+    "privacidade": "public",
+    "materia": "ciências",
+    "topico": "o dia e a noite",
+    "valor": "perseverança",
+    "especie": "raposinha",
+    "versiculo": {
+      "ref": "Gálatas 6:9",
+      "texto": "E não nos cansemos de fazer o bem."
+    },
+    "resumo": "A raposinha Rico aprende o ciclo do dia e da noite ao perseverar no conserto da horta de um amigo.",
+    "estudio": "flux",
+    "roteirista": "gemini:gemini-3.7-flash",
+    "voz": "Gemini TTS (gemini-3.8-flash-tts)",
+    "modelo_imagem": "@cf/black-forest-labs/flux-1-schnell"
   }
 ]
