@@ -1437,7 +1437,7 @@
    "inicio": "2026-11-27T00:49:57+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "2/5 Imagens",
+   "etapa": "1/5 Roteiro",
    "etapas": [
     {
      "nome": "Preparando",
@@ -1450,6 +1450,10 @@
     {
      "nome": "2/5 Imagens",
      "inicio": "2026-11-27T00:50:53+00:00"
+    },
+    {
+     "nome": "1/5 Roteiro",
+     "inicio": "2026-11-27T00:53:56+00:00"
     }
    ],
    "estudio": "Estúdio FLUX",
@@ -1457,5 +1461,5 @@
    "especie": "coelhinho"
   }
  ],
- "atualizado": "2026-11-27T00:50:53+00:00"
+ "atualizado": "2026-11-27T00:53:56+00:00"
 }
