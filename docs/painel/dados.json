@@ -1437,7 +1437,7 @@
    "inicio": "2026-11-27T00:49:57+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "2/5 Imagens",
+   "etapa": "3/5 Narração",
    "etapas": [
     {
      "nome": "Preparando",
@@ -1458,6 +1458,10 @@
     {
      "nome": "2/5 Imagens",
      "inicio": "2026-11-27T00:59:39+00:00"
+    },
+    {
+     "nome": "3/5 Narração",
+     "inicio": "2026-11-27T01:00:32+00:00"
     }
    ],
    "estudio": "Estúdio FLUX",
@@ -1465,5 +1469,5 @@
    "especie": "raposinha"
   }
  ],
- "atualizado": "2026-11-27T00:59:39+00:00"
+ "atualizado": "2026-11-27T01:00:32+00:00"
 }
