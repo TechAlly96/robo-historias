@@ -1429,7 +1429,22 @@
    "video": "https://youtube.com/shorts/xpqL3-5tnvA",
    "imagens": 7,
    "mensagem": "Vídeo publicado no canal."
+  },
+  {
+   "id": 45918928219,
+   "tentativa": 1,
+   "evento": "schedule",
+   "inicio": "2026-11-27T00:49:57+00:00",
+   "fim": null,
+   "situacao": "rodando",
+   "etapa": "Preparando",
+   "etapas": [
+    {
+     "nome": "Preparando",
+     "inicio": "2026-11-27T00:49:57+00:00"
+    }
+   ]
   }
  ],
- "atualizado": "2026-11-26T01:10:34+00:00"
+ "atualizado": "2026-11-27T00:49:57+00:00"
 }
