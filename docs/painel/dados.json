@@ -1437,7 +1437,7 @@
    "inicio": "2026-11-27T00:49:57+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "1/5 Roteiro",
+   "etapa": "2/5 Imagens",
    "etapas": [
     {
      "nome": "Preparando",
@@ -1454,12 +1454,16 @@
     {
      "nome": "1/5 Roteiro",
      "inicio": "2026-11-27T00:53:56+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-27T00:59:39+00:00"
     }
    ],
    "estudio": "Estúdio FLUX",
-   "titulo": "Dudu e a Lição dos Cinco Sentidos 🌸",
-   "especie": "coelhinho"
+   "titulo": "A Raposinha Rico e o Segredo do Dia ☀️",
+   "especie": "raposinha"
   }
  ],
- "atualizado": "2026-11-27T00:53:56+00:00"
+ "atualizado": "2026-11-27T00:59:39+00:00"
 }
