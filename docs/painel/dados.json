@@ -1520,8 +1520,8 @@
    "tentativa": 1,
    "evento": "schedule",
    "inicio": "2026-11-28T01:29:33+00:00",
-   "fim": null,
-   "situacao": "rodando",
+   "fim": "2026-11-28T01:32:33+00:00",
+   "situacao": "erro",
    "etapa": "2/5 Imagens",
    "etapas": [
     {
@@ -1547,8 +1547,13 @@
    ],
    "estudio": "Estúdio FLUX",
    "titulo": "Guto e a Lição do Banho 🧼",
-   "especie": "quati"
+   "especie": "quati",
+   "imagens": 14,
+   "mensagem": "A IA de imagem não conseguiu desenhar o animal sorteado nem na segunda história. Os animais difíceis saem do sorteio e o robô tenta de novo no próximo horário.",
+   "recupera": true,
+   "tecnico": "EspecieDificil: a IA de imagem não acertou a espécie 'quati'",
+   "etapa_erro": "2/5 Imagens"
   }
  ],
- "atualizado": "2026-11-28T01:31:39+00:00"
+ "atualizado": "2026-11-28T01:32:33+00:00"
 }
