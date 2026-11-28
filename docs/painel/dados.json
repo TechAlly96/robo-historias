@@ -1489,8 +1489,8 @@
    "tentativa": 1,
    "evento": "schedule",
    "inicio": "2026-11-28T00:15:42+00:00",
-   "fim": null,
-   "situacao": "rodando",
+   "fim": "2026-11-28T00:36:48+00:00",
+   "situacao": "erro",
    "etapa": "2/5 Imagens",
    "etapas": [
     {
@@ -1508,8 +1508,13 @@
    ],
    "estudio": "Estúdio FLUX",
    "titulo": "O Tucano Teco e a Salada Especial 🍎",
-   "especie": "tucano"
+   "especie": "tucano",
+   "imagens": 18,
+   "mensagem": "Algumas cenas continuaram com erros (animal errado, membros a mais ou texto) mesmo depois das correções. Para não mostrar imagem errada às crianças, nada foi publicado. O robô tenta uma história nova no próximo horário.",
+   "recupera": true,
+   "tecnico": "RuntimeError: Imagens incompatíveis com a história mesmo após correções: {1: 'Coadjuvante com espécie errada ou ausente: não há um coati na cena, apenas dois primatas inventados.', 3: 'Coadjuvante com traços de outra espécie (mamífero com bico de ave) e ausência do coati.', 5: 'Presença de animal que não pertence à história (filhote/ave amarela inventada no lugar do coati).'}. Nada será publicado.",
+   "etapa_erro": "2/5 Imagens"
   }
  ],
- "atualizado": "2026-11-28T00:20:01+00:00"
+ "atualizado": "2026-11-28T00:36:49+00:00"
 }
