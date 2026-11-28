@@ -1491,7 +1491,7 @@
    "inicio": "2026-11-28T00:15:42+00:00",
    "fim": null,
    "situacao": "rodando",
-   "etapa": "1/5 Roteiro",
+   "etapa": "2/5 Imagens",
    "etapas": [
     {
      "nome": "Preparando",
@@ -1500,10 +1500,16 @@
     {
      "nome": "1/5 Roteiro",
      "inicio": "2026-11-28T00:15:44+00:00"
+    },
+    {
+     "nome": "2/5 Imagens",
+     "inicio": "2026-11-28T00:20:01+00:00"
     }
    ],
-   "estudio": "Estúdio FLUX"
+   "estudio": "Estúdio FLUX",
+   "titulo": "O Tucano Teco e a Salada Especial 🍎",
+   "especie": "tucano"
   }
  ],
- "atualizado": "2026-11-28T00:15:44+00:00"
+ "atualizado": "2026-11-28T00:20:01+00:00"
 }
